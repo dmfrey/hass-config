@@ -1,0 +1,14 @@
+family:
+  name: Family
+  icon: mdi:account-group
+  entities:
+    - person.dan
+    - person.steph
+    - person.camdyn
+    - person.molly
+
+pets:
+  name: Pets
+  icon: mdi:paw
+  entities:
+    - person.daisy

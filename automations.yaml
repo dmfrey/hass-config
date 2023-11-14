@@ -1,0 +1,262 @@
+- id: '1692901397864'
+  alias: Turn on the House at Sunset
+  description: Lights will turn on 45 minutes before sunset
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:45
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+    target:
+      area_id:
+      - back_yard
+      - barn
+      - camdyn_s_room
+      - den
+      - dining_room
+      - entryway
+      - family_room
+      - foyer
+      - front_yard
+      - hallway
+      - kitchen
+      - laundry_room
+      - living_room
+      - master_bedroom
+      - molly_s_room
+      - patio
+      - side_yard
+      - family_room_ambient
+  mode: single
+- id: '1692901738566'
+  alias: It's time to make dinner
+  description: Turn the lights on in the kitchen to start making dinner
+  trigger:
+  - platform: time
+    at: '16:45:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+      transition: 900
+    target:
+      area_id:
+      - kitchen
+      - dining_room
+  mode: single
+- id: '1692902441971'
+  alias: It's time to Relax
+  description: The relax scene is activated
+  trigger:
+  - platform: time
+    at: '20:15:00'
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.back_yard_dimmed
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.camdyn_s_room_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.molly_s_room_dimmed
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.hallway_dimmed
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.master_bedroom_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.foyer_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.living_room_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.den_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.side_yard_dimmed
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.kitchen_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.dining_room_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.family_room_relax
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.patio_relax
+    metadata: {}
+  mode: single
+- id: '1692902977587'
+  alias: Turn off the outside yard lights
+  description: Lights turn off at midnight
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id:
+      - back_yard
+      - side_yard
+      - front_yard
+  mode: single
+- id: '1692903090246'
+  alias: It's time to workout
+  description: ''
+  trigger:
+  - platform: time
+    at: 05:40:00
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    target:
+      area_id: basement
+  mode: single
+- id: '1692903179100'
+  alias: Workout is done
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:30:00
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id: basement
+  mode: single
+- id: '1692904228846'
+  alias: Close the Office
+  description: ''
+  trigger:
+  - platform: time
+    at: '18:00:00'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id: office
+  mode: single
+- id: '1692905069190'
+  alias: It's time to get ready for school
+  description: ''
+  trigger:
+  - platform: time
+    at: 05:45:00
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+    target:
+      area_id:
+      - dining_room
+      - family_room
+      - foyer
+      - kitchen
+  - service: light.turn_on
+    data:
+      brightness_pct: 40
+    target:
+      area_id: bathroom
+  mode: single
+- id: '1692970048043'
+  alias: Turn off the House
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: b63d58f5e359634f1fdc8c8c162e5088
+    entity_id: 1819de7c676c39aa739c370037977612
+    domain: switch
+  condition:
+  - condition: sun
+    after: sunset
+    enabled: true
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id:
+      - camdyn_s_room
+      - family_room
+      - family_room_ambient
+      - family_room_holiday
+      - den
+      - foyer
+      - living_room
+      - kitchen
+      - dining_room
+      - master_bedroom
+      - molly_s_room
+      - master_closet
+      - office
+      - patio
+      - front_yard
+      - hallway
+      - bathroom
+      - workshop
+      - front_yard_holiday
+  - service: switch.turn_off
+    data: {}
+    target:
+      area_id:
+      - master_bathroom
+      - bathroom
+      - front_yard_holiday
+  - service: scene.turn_on
+    target:
+      entity_id: scene.barn_bright
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.entryway_bright
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.laundry_room_bright
+    metadata: {}
+  - service: fan.turn_on
+    data:
+      percentage: 20
+    target:
+      area_id: master_bedroom_ambient
+  - service: scene.turn_on
+    target:
+      entity_id: scene.turn_on_diffuser
+    metadata: {}
+  mode: single
