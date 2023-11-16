@@ -4,6 +4,7 @@
 secrets.yaml
 *.pem
 .storage/
+backups/
 custom_components/
 deps/
 image/
