@@ -1,0 +1,41 @@
+- title: Network
+  path: network
+  cards:
+    - type: "custom:button-card"
+      template: chip_back
+      variables:
+        ulm_chip_back_path: home
+    - type: grid
+      columns: 2
+      square: false
+      cards:
+        - type: custom:button-card
+          template: card_graph
+          entity: sensor.adguard_home_dns_queries
+          variables:
+            ulm_card_graph_color: "var(--google-yellow)"
+            ulm_card_graph_name: DNS Queries
+            ulm_card_graph_entity: sensor.adguard_home_dns_queries
+            ulm_card_graph_type: fill
+            ulm_card_graph_hours: 24
+            ulm_card_graph_group_by: interval
+        - type: custom:button-card
+          template: card_graph
+          entity: sensor.adguard_home_dns_queries_blocked
+          variables:
+            ulm_card_graph_color: "var(--google-red)"
+            ulm_card_graph_name: Blocked Queries
+            ulm_card_graph_entity: sensor.adguard_home_dns_queries_blocked
+            ulm_card_graph_type: fill
+            ulm_card_graph_hours: 24
+            ulm_card_graph_group_by: interval
+        - type: custom:button-card
+          template: card_graph
+          entity: sensor.jsdyb_nas_001_memory_usage_real
+          variables:
+            ulm_card_graph_color: "var(--google-blue)"
+            ulm_card_graph_name: Nas Memory
+            ulm_card_graph_entity: sensor.jsdyb_nas_001_memory_available_real
+            ulm_card_graph_type: fill
+            ulm_card_graph_hours: 24
+            ulm_card_graph_group_by: interval

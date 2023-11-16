@@ -1,0 +1,68 @@
+- title: Master Bedroom
+  path: master-bedroom
+  cards:
+    - type: "custom:button-card"
+      template: chip_back
+      variables:
+        ulm_chip_back_path: home
+    - type: grid
+      columns: 2
+      square: false
+      cards:
+        - type: custom:mushroom-light-card
+          entity: light.master_bedroom_main_lights
+          name: Main Lights
+          fill_container: true
+        - type: custom:mushroom-fan-card
+          entity: fan.master_bedroom_ceiling_fan
+          name: Ceiling Fan
+          icon_animation: true
+          show_percentage_control: true
+          show_oscillate_control: false
+          secondary_info: none
+          collapsible_controls: false
+          card_mod:
+            style: |
+              :host {
+                --rgb-state-fan: var(--mush-rgb-state-fan, var(--rgb-blue-color));
+              }
+        - type: 'custom:button-card'
+          template: card_generic
+          entity: binary_sensor.jeff_bed_sensor
+        - type: 'custom:button-card'
+          template: card_generic
+          entity: binary_sensor.sara_bed_sensor
+    - type: grid
+      columns: 2
+      square: false
+      cards:
+        - type: custom:button-card
+          template: card_graph
+          entity: sensor.upstairs_temperature
+          variables:
+            ulm_card_graph_color: "var(--google-blue)"
+            ulm_card_graph_name: Temperature
+            ulm_card_graph_entity: sensor.upstairs_temperature
+            ulm_card_graph_type: fill
+            ulm_card_graph_hours: 24
+            ulm_card_graph_group_by: interval
+        - type: custom:button-card
+          template: card_graph
+          entity: sensor.upstairs_humidity
+          variables:
+            ulm_card_graph_color: "var(--google-red)"
+            ulm_card_graph_name: Humidity
+            ulm_card_graph_entity: sensor.upstairs_humidity
+            ulm_card_graph_type: fill
+            ulm_card_graph_hours: 24
+            ulm_card_graph_group_by: interval
+    - type: "custom:button-card"
+      template: card_thermostat
+      entity: climate.upstairs
+      variables:
+        ulm_card_thermostat_name: Thermostat
+        ulm_card_thermostat_enable_collapse: true
+        ulm_card_thermostat_enable_controls: true
+        ulm_card_thermostat_enable_hvac_modes: false
+        ulm_card_thermostat_enable_background_color: true
+        ulm_card_thermostat_enable_popup: true

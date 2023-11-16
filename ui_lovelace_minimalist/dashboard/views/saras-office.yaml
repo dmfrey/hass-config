@@ -1,0 +1,63 @@
+- title: Sara's Office
+  path: saras-office
+  cards:
+    - type: "custom:button-card"
+      template: chip_back
+      variables:
+        ulm_chip_back_path: home
+    - type: grid
+      columns: 2
+      square: false
+      cards:
+        - type: custom:mushroom-light-card
+          entity: light.sara_s_office_main_lights
+          name: Main Lights
+          fill_container: true
+        - type: custom:mushroom-fan-card
+          entity: fan.sara_s_office_ceiling_fan
+          name: Ceiling Fan
+          icon_animation: true
+          show_percentage_control: true
+          show_oscillate_control: false
+          secondary_info: none
+          collapsible_controls: false
+          card_mod:
+            style: |
+              :host {
+                --rgb-state-fan: var(--mush-rgb-state-fan, var(--rgb-blue-color));
+              }
+    - type: custom:mushroom-light-card
+      entity: light.sara_s_office_lamp
+      name: Lamp
+      show_brightness_control: true
+      show_color_temp_control: true
+      show_color_control: true
+      collapsible_controls: false
+      use_light_color: true
+    - type: grid
+      columns: 2
+      square: false
+      cards:
+        - type: custom:button-card
+          template: card_graph
+          entity: sensor.upstairs_temperature
+          variables:
+            ulm_card_graph_color: "var(--google-blue)"
+            ulm_card_graph_name: Temperature
+            ulm_card_graph_entity: sensor.upstairs_temperature
+            ulm_card_graph_type: fill
+            ulm_card_graph_hours: 24
+            ulm_card_graph_group_by: interval
+        - type: custom:button-card
+          template: card_graph
+          entity: sensor.upstairs_humidity
+          variables:
+            ulm_card_graph_color: "var(--google-red)"
+            ulm_card_graph_name: Humidity
+            ulm_card_graph_entity: sensor.upstairs_humidity
+            ulm_card_graph_type: fill
+            ulm_card_graph_hours: 24
+            ulm_card_graph_group_by: interval
+    - type: thermostat
+      entity: climate.upstairs
+      name: Thermostat

@@ -1,0 +1,16 @@
+- title: House
+  path: house
+  cards:
+    - type: "custom:button-card"
+      template: chip_back
+      variables:
+        ulm_chip_back_path: home
+    - type: grid
+      columns: 2
+      square: false
+      cards:
+        - type: 'custom:button-card'
+          template: card_input_boolean
+          entity: input_boolean.guest_mode
+          variables:
+            ulm_card_input_boolean_name: Guest Mode
