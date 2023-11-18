@@ -1,0 +1,5 @@
+- platform: template
+  sensors:
+    do_not_disturb:
+      friendly_name: 'Do Not Disturb'
+      value_template: "{{ 7 < now().hour or now().hour >= 23 }}"
