@@ -3,6 +3,7 @@
 *.log*
 secrets.yaml
 *.pem
+.cloud/
 .storage/
 backups/
 custom_components/
