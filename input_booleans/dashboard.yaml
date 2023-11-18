@@ -1,0 +1,4 @@
+welcome_toggle:
+  name: Welcome Collapse
+  icon: mdi:chevron-down-circle
+  initial: off
