@@ -9,10 +9,6 @@ automation:
         device_id: e8b8e265ebb91cd5f666eb940b351c7c
         entity_id: 3f946a979c007e1b792152e251c9a4bc
         domain: binary_sensor
-        for:
-          hours: 0
-          minutes: 5
-          seconds: 0
     condition: []
     action:
       - if:
