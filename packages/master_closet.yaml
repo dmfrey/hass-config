@@ -1,0 +1,33 @@
+automation:
+  - id: 8e954b7f-6483-495e-918a-651e12b1a501
+    alias: master_closet_motion_sensor_triggered
+    description: Turn on Master Closet Downlight when Master Closet Motion Sensor is triggered
+    mode: single
+    trigger:
+      - type: motion
+        platform: device
+        device_id: e8b8e265ebb91cd5f666eb940b351c7c
+        entity_id: 3f946a979c007e1b792152e251c9a4bc
+        domain: binary_sensor
+        for:
+          hours: 0
+          minutes: 5
+          seconds: 0
+    condition: []
+    action:
+      - if:
+          - condition: state
+            entity_id: sensor.do_not_disturb
+            state: "true"
+        then:
+          - type: turn_on
+            device_id: b5609c6bae929468fffe219ca82f66cc
+            entity_id: e7ada6fd36e41db3a36dbe2e5255c8e0
+            domain: light
+            brightness_pct: 30
+        else:
+          - type: turn_on
+            device_id: b5609c6bae929468fffe219ca82f66cc
+            entity_id: e7ada6fd36e41db3a36dbe2e5255c8e0
+            domain: light
+            brightness_pct: 100
