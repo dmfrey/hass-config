@@ -29,7 +29,7 @@ automation:
             brightness_pct: 100
   - id: 9997e2eb-b0d2-4c49-8a68-67727e6a0f48
     alias: Master Closet Lutron Aurora Toggles Light On/Off
-    description: Toggle Master Closet Downlight when Master Closet Lutron Aurora is tapped.
+    description: Toggle Master Closet Downlight when Master Closet Lutron Aurora is tapped
     mode: single
     trigger:
       - platform: state
