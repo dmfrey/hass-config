@@ -1,6 +1,6 @@
 automation:
   - id: 8e954b7f-6483-495e-918a-651e12b1a501
-    alias: master_closet_motion_sensor_triggered
+    alias: Master Closet Motion Sensor Triggered
     description: Turn on Master Closet Downlight when Master Closet Motion Sensor is triggered
     mode: single
     trigger:
@@ -27,3 +27,14 @@ automation:
             entity_id: e7ada6fd36e41db3a36dbe2e5255c8e0
             domain: light
             brightness_pct: 100
+  - id: 9997e2eb-b0d2-4c49-8a68-67727e6a0f48
+    alias: Master Closet Lutron Aurora Toggles Light On/Off
+    description: Toggle Master Closet Downlight when Master Closet Lutron Aurora is tapped
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: event.master_closet_aurora_button_1
+    action:
+      - service: "light.turn_{{ trigger.to_state.state }}"
+        target:
+          entity_id: light.master_closet_downlight
