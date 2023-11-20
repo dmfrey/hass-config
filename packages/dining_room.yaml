@@ -1,14 +1,13 @@
 automation:
-  - id: 7381e0ae-8a3b-4653-be59-474a3d43d978
+  - unique_id: 7381e0ae-8a3b-4653-be59-474a3d43d978
     alias: Dining Room Lutron Aurora Toggles Lights On/Off
     description: Toggle Dining Room Lights when Dining Room Lutron Aurora is tapped
     mode: single
-    enabled: false
     trigger:
       - platform: state
         entity_id: event.dining_room_aurora_button_1
     action:
-      - service: light.toggle
+      - service: light.turn_{{ trigger.to_state.state }}
         data: {}
         target:
           area_id: dining_room
