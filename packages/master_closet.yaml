@@ -35,6 +35,6 @@ automation:
       - platform: state
         entity_id: event.master_closet_aurora_button_1
     action:
-      - service: "light.turn_{{ trigger.to_state.state }}"
+      - service: "light.master_closet_{{ trigger.to_state.state }}"
         target:
-          entity_id: light.master_closet_downlight
+          entity_id: light.master_closet
