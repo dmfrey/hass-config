@@ -35,6 +35,7 @@ automation:
       - platform: state
         entity_id: event.master_closet_aurora_button_1
     action:
-      - service: "light.master_closet_{{ trigger.to_state.state }}"
+      - service: light.toggle
+        data: {}
         target:
-          entity_id: light.master_closet
+          area_id: master_closet
