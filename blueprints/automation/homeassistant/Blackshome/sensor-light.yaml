@@ -2847,6 +2847,3 @@ action:
                 service: switch.turn_off
                 target:
                   entity_id: "{{ switch_entities }}"
-×
-
-
