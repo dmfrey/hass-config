@@ -3,6 +3,7 @@ automation:
     alias: Dining Room Lutron Aurora Toggles Lights On/Off
     description: Toggle Dining Room Lights when Dining Room Lutron Aurora is tapped
     mode: single
+    enabled: false
     trigger:
       - platform: state
         entity_id: event.dining_room_aurora_button_1
