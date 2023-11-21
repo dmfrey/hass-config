@@ -8,14 +8,14 @@ automation:
         motion_trigger:
           - binary_sensor.master_closet_sensor_motion
         light_switch:
-          device_id: b5609c6bae929468fffe219ca82f66cc
+          entity_id: light.master_closet
         time_delay: 10
         include_light_control:
           - use_brightness
           - use_transition
         include_night_lights: night_lights_enabled
         night_lights:
-          device_id: b5609c6bae929468fffe219ca82f66cc
+          entity_id: light.master_closet
         include_night_light_control:
           - use_brightness
           - use_transition
