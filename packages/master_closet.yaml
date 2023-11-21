@@ -2,31 +2,28 @@ automation:
   - id: 8e954b7f-6483-495e-918a-651e12b1a501
     alias: Master Closet Motion Sensor Triggered
     description: Turn on Master Closet Downlight when Master Closet Motion Sensor is triggered
-    mode: single
-    trigger:
-      - type: motion
-        platform: device
-        device_id: e8b8e265ebb91cd5f666eb940b351c7c
-        entity_id: 3f946a979c007e1b792152e251c9a4bc
-        domain: binary_sensor
-    condition: []
-    action:
-      - if:
-          - condition: state
-            entity_id: sensor.do_not_disturb
-            state: "true"
-        then:
-          - type: turn_on
-            device_id: b5609c6bae929468fffe219ca82f66cc
-            entity_id: e7ada6fd36e41db3a36dbe2e5255c8e0
-            domain: light
-            brightness_pct: 30
-        else:
-          - type: turn_on
-            device_id: b5609c6bae929468fffe219ca82f66cc
-            entity_id: e7ada6fd36e41db3a36dbe2e5255c8e0
-            domain: light
-            brightness_pct: 100
+    use_blueprint:
+      path: homeassistant/Blackshome/sensor-light.yaml
+      input:
+        motion_trigger:
+          - binary_sensor.master_closet_sensor_motion
+        light_switch:
+          device_id: b5609c6bae929468fffe219ca82f66cc
+        time_delay: 10
+        include_light_control:
+          - use_brightness
+          - use_transition
+        include_night_lights: night_lights_enabled
+        night_lights:
+          device_id: b5609c6bae929468fffe219ca82f66cc
+        include_night_light_control:
+          - use_brightness
+          - use_transition
+        night_light_brightness: 30
+        night_lights_conditions:
+          - time_enabled
+        night_lights_after_time: "23:00:00"
+        night_lights_before_time: "08:00:00"
   - id: 9997e2eb-b0d2-4c49-8a68-67727e6a0f48
     alias: Master Closet Lutron Aurora Toggles Light On/Off
     description: Toggle Master Closet Downlight when Master Closet Lutron Aurora is tapped

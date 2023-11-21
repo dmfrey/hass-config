@@ -2,10 +2,10 @@ family:
   name: Family
   icon: mdi:account-group
   entities:
-    - person.dan
-    - person.steph
-    - person.camdyn
-    - person.molly
+    - person.daniel_frey
+    - person.stephani_frey
+    - person.camdyn_frey
+    - person.molly_molly
 
 pets:
   name: Pets
