@@ -3,9 +3,9 @@ family:
   icon: mdi:account-group
   entities:
     - person.daniel_frey
-    - person.stephani_frey
+    - person.stephanie_frey
     - person.camdyn_frey
-    - person.molly_molly
+    - person.molly_frey
 
 pets:
   name: Pets
