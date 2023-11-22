@@ -21,7 +21,7 @@ automation:
         night_time_delay: 3
         include_night_light_control:
           - use_brightness
-        night_light_brightness: 30
+        night_light_brightness: 20
         night_lights_conditions:
           - time_enabled
         night_lights_after_time: "23:00:00"
