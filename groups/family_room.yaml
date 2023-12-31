@@ -1,7 +1,7 @@
 family_room_fireplace:
     # unique_id: light.family_room.fireplace
     name: "Fireplace Lights"
-    # all: true
+    all: true
     entities:
       - light.fireplace_light_1
       - light.fireplace_light_2
