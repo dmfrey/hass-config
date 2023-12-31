@@ -1,8 +1,8 @@
-light:
-  - platform: group
-    unique_id: "family_room_fireplace_lights"
-    name: "Fireplace Lights"
-    all: true
-    entities:
-      - light.fireplace_light_1
-      - light.fireplace_light_2
+# light:
+- platform: group
+  unique_id: family_room_fireplace_lights
+  name: "Fireplace Lights"
+  all: true
+  entities:
+    - light.fireplace_light_1
+    - light.fireplace_light_2
