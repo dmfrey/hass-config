@@ -11,3 +11,18 @@ family_room_picture_wall:
     entities:
       - light.picture_wall_left_light
       - light.picture_wall_right_light
+
+family_room_ambient:
+    name: "Family Room Ambient Lights"
+    entities:
+      - group.family_room_fireplace
+      - group.family_room_picture_wall
+      - light.family_room_bloom_light
+
+family_room_holiday:
+    name: "Family Room Holiday Lights"
+    entities:
+      - switch.bookshelf_christmas_lights
+      - switch.christmas_tree_light
+      - switch.mantle_lights
+
