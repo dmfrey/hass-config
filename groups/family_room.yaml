@@ -1,0 +1,28 @@
+family_room_fireplace:
+    name: "Fireplace Lights"
+    all: true
+    entities:
+      - light.fireplace_light_1
+      - light.fireplace_light_2
+
+family_room_picture_wall:
+    name: "Picture Wall Lights"
+    all: true
+    entities:
+      - light.picture_wall_left_light
+      - light.picture_wall_right_light
+
+family_room_ambient:
+    name: "Family Room Ambient Lights"
+    entities:
+      - group.family_room_fireplace
+      - group.family_room_picture_wall
+      - light.family_room_bloom_light
+
+family_room_holiday:
+    name: "Family Room Holiday Lights"
+    entities:
+      - switch.bookshelf_christmas_lights
+      - switch.christmas_tree_light
+      - switch.mantle_lights
+
