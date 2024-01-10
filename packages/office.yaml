@@ -19,7 +19,7 @@ automation:
     use_blueprint:
       path: SirGoodenough/Zigbee2MQTT-Aqara-Magic-Cube-T1-Pro-CTP-R01-Xiaomi-Lumi.yaml
       input:
-        topic: zigbee2mqtt/Office Cube
+        topic: zigbee2mqtt/Office Aqara Cube Pro
         action_doubletap_face_1:
           - service: light.toggle
             metadata: {}
