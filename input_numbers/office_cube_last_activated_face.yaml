@@ -1,8 +1,7 @@
-input_number:
-  office_cube_last_activated_face:
-    name: Office - Cube - Last Activated Face
-    min: 0
-    max: 6
-    step: 1
-    mode: box
-    icon: mdi:cube-outline
+office_cube_last_activated_face:
+  name: Office - Cube - Last Activated Face
+  min: 0
+  max: 6
+  step: 1
+  mode: box
+  icon: mdi:cube-outline
