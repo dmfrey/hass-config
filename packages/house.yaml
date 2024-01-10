@@ -133,8 +133,7 @@ automation:
     trigger:
       - platform: device
         type: turned_on
-        device_id: b63d58f5e359634f1fdc8c8c162e5088
-        entity_id: 1819de7c676c39aa739c370037977612
+        entity_id: switch.trigger
         domain: switch
     condition:
       - condition: sun
