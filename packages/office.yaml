@@ -12,3 +12,24 @@ automation:
         target:
           area_id: office
     mode: single
+
+  - alias: Office Cube Automations
+    id: 8e854a44-6042-481b-bf0c-279e33e26e74
+    description: ""
+    use_blueprint:
+      path: SirGoodenough/Zigbee2MQTT-Aqara-Magic-Cube-T1-Pro-CTP-R01-Xiaomi-Lumi.yaml
+      input:
+        topic: zigbee2mqtt/Office Cube
+        action_doubletap_face_1:
+          - service: light.toggle
+            metadata: {}
+            data: {}
+            target:
+              area_id: office
+        action_flip_from_any_to_face_1:
+          - service: light.turn_on
+            metadata: {}
+            data:
+              brightness_pct: 100
+            target:
+              area_id: office
