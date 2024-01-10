@@ -14,7 +14,7 @@ automation:
     mode: single
 
   - alias: Office Cube Automations
-    unique_id: 8e854a44-6042-481b-bf0c-279e33e26e74
+    id: 8e854a44-6042-481b-bf0c-279e33e26e74
     description: ""
     use_blueprint:
       path: SirGoodenough/Zigbee2MQTT-Aqara-Magic-Cube-T1-Pro-CTP-R01-Xiaomi-Lumi.yaml
