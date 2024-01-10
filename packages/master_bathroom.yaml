@@ -26,5 +26,5 @@ automation:
           - use_transition
         night_lights_conditions:
           - time_enabled
-        night_lights_after_time: "32:00:00"
+        night_lights_after_time: "23:00:00"
         night_lights_before_time: "08:00:00"
