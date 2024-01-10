@@ -1,0 +1,14 @@
+automation:
+  - alias: "Close the Office"
+    id: 49cb1865-323a-4211-8298-cafcd33ccd9b
+    description: ""
+    trigger:
+      - platform: time
+        at: "18:00:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        data: {}
+        target:
+          area_id: office
+    mode: single

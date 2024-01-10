@@ -1,0 +1,28 @@
+automation:
+  - alias: "It's time to workout"
+    id: d3cfe7e4-6a8d-48e4-bbcd-1891f303339f
+    description: ""
+    trigger:
+      - platform: time
+        at: "05:40:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data: {}
+        target:
+          area_id: basement
+    mode: single
+
+  - alias: "Workout is done"
+    id: 92bb115c-a192-40bc-9e0d-0443787cab0f
+    description: ""
+    trigger:
+      - platform: time
+        at: "08:30:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        data: {}
+        target:
+          area_id: basement
+    mode: single

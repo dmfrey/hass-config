@@ -1,0 +1,216 @@
+automation:
+  - alias: "It's time to get ready for school"
+    id: ca4989f4-23c1-48d6-8178-fbad657a07b0
+    description: ""
+    trigger:
+      - platform: time
+        at: "05:45:00"
+    condition:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          area_id:
+            - dining_room
+            - family_room
+            - foyer
+            - kitchen
+      - service: light.turn_on
+        data:
+          brightness_pct: 40
+        target:
+          area_id: bathroom
+    mode: single
+
+  - alias: "Turn on the House at Sunset"
+    id: 3f4c0fdf-d9ef-468e-a973-8e7fa82c7483
+    description: "Lights will turn on 45 minutes before sunset"
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:45"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          area_id:
+            - back_yard
+            - barn
+            - camdyn_s_room
+            - den
+            - dining_room
+            - entryway
+            - family_room
+            - foyer
+            - front_yard
+            - hallway
+            - kitchen
+            - laundry_room
+            - living_room
+            - master_bedroom
+            - molly_s_room
+            - patio
+            - side_yard
+            - family_room_ambient
+    mode: single
+
+  - alias: "It's time to Relax"
+    id: a85932d9-ff4e-486b-a3a1-89b07e84feef
+    description: "The relax scene is activated"
+    trigger:
+      - platform: time
+        at: "20:15:00"
+    condition: []
+    action:
+      - service: scene.turn_on
+        target:
+          entity_id: scene.back_yard_dimmed
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.camdyn_s_room_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.molly_s_room_dimmed
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.hallway_dimmed
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.master_bedroom_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.foyer_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.living_room_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.den_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.side_yard_dimmed
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.kitchen_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.dining_room_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.family_room_relax
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.patio_relax
+        metadata: {}
+        enabled: false
+    mode: single
+
+  - alias: "Turn off the House"
+    id: 92c8fbbb-3b63-4408-95db-82587a3e704b
+    description: ""
+    trigger:
+      - platform: device
+        type: turned_on
+        device_id: b63d58f5e359634f1fdc8c8c162e5088
+        entity_id: 1819de7c676c39aa739c370037977612
+        domain: switch
+    condition:
+      - condition: sun
+        after: sunset
+        enabled: true
+    action:
+      - service: light.turn_off
+        data: {}
+        target:
+          area_id:
+            - camdyn_s_room
+            - family_room
+            - family_room_ambient
+            - family_room_holiday
+            - den
+            - foyer
+            - living_room
+            - kitchen
+            - dining_room
+            - master_bedroom
+            - molly_s_room
+            - master_closet
+            - office
+            - patio
+            - front_yard
+            - hallway
+            - bathroom
+            - workshop
+            - front_yard_holiday
+      - service: switch.turn_off
+        data: {}
+        target:
+          area_id:
+            - master_bathroom
+            - bathroom
+            - front_yard_holiday
+            - hallway
+          entity_id:
+            - switch.outside_holiday_switches
+            - switch.holiday_lights
+      - service: scene.turn_on
+        target:
+          entity_id: scene.barn_bright
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.entryway_bright
+        metadata: {}
+      - service: scene.turn_on
+        target:
+          entity_id: scene.laundry_room_bright
+        metadata: {}
+      - service: fan.turn_on
+        data:
+          percentage: 20
+        target:
+          area_id: master_bedroom_ambient
+      - service: scene.turn_on
+        target:
+          entity_id: scene.turn_on_diffuser
+        metadata: {}
+    mode: single
+
+  - alias: "Turn off the outside yard lights"
+    id: 4770ac3a-35d7-4cf0-8ab8-750f8710341f
+    description: "Lights turn off at midnight"
+    trigger:
+      - platform: time
+        at: "00:00:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        data: {}
+        target:
+          area_id:
+            - back_yard
+            - side_yard
+            - front_yard
+    mode: single
