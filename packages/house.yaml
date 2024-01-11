@@ -187,11 +187,11 @@ automation:
         target:
           entity_id: scene.laundry_room_bright
         metadata: {}
-      # - service: fan.turn_on
-      #   data:
-      #     percentage: 20
-      #   target:
-      #     area_id: master_bedroom_ambient
+      - service: fan.turn_on
+        data:
+          percentage: 33
+        target:
+          entity_id: fan.master_bedroom_tower_fan
       - service: scene.turn_on
         target:
           entity_id: scene.turn_on_diffuser
