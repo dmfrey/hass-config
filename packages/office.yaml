@@ -13,6 +13,48 @@ automation:
           area_id: office
     mode: single
 
+  - alias: "Office Switch - On"
+    id: 9a0d7561-ae4c-409c-aa82-aa615f1efe08
+    description: ""
+    trigger:
+      - platform: device
+        domain: mqtt
+        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        type: action
+        subtype: on_press
+        discovery_id: 0x0017880104e5ab52 action_on_press
+    condition: []
+    action:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          transition: 10
+          color_temp: 400
+          brightness_pct: 100
+        target:
+          area_id: office
+    mode: single
+
+  - alias: "Office Switch - Off"
+    id: ce4b4261-eec9-4224-b8be-5bb24281af49
+    description: ""
+    trigger:
+      - platform: device
+        domain: mqtt
+        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        type: action
+        subtype: off_press
+        discovery_id: 0x0017880104e5ab52 action_off_press
+    condition: []
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data:
+          transition: 5
+        target:
+          area_id: office
+    mode: single
+
   - alias: Office Cube Automations
     id: 8e854a44-6042-481b-bf0c-279e33e26e74
     description: ""
