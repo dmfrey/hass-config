@@ -95,23 +95,37 @@ automation:
           area_id: office
     mode: single
 
-  - alias: Office Cube Automations
+  - alias: Dan's Office Cube
     id: 8e854a44-6042-481b-bf0c-279e33e26e74
     description: ""
-    use_blueprint:
-      path: SirGoodenough/Zigbee2MQTT-Aqara-Magic-Cube-T1-Pro-CTP-R01-Xiaomi-Lumi.yaml
-      input:
-        topic: zigbee2mqtt/Office Aqara Cube Pro
-        action_doubletap_face_1:
+    trigger:
+       # tap
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: tap
+        id: tap
+      
+      # angle
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_angle
+        id: angle
+      
+      # push
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: slide
+        id: slide
+    action:
+      - choose:
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '1'
+          - condition: trigger
+            id: tap
+          sequence:
           - service: light.toggle
-            metadata: {}
+            target:
+              area_id: office
             data: {}
-            target:
-              area_id: office
-        action_flip_from_any_to_face_1:
-          - service: light.turn_on
-            metadata: {}
-            data:
-              brightness_pct: 100
-            target:
-              area_id: office
