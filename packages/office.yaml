@@ -99,22 +99,53 @@ automation:
     id: 8e854a44-6042-481b-bf0c-279e33e26e74
     description: ""
     trigger:
-       # tap
+      # slide
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: slide
+        id: slide
+
+      # tap
       - platform: state
         entity_id: sensor.dan_s_office_cube_action_from_side
         to: tap
         id: tap
+      
+      # rotate right
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: rotate_right
+        id: rotate_right
+
+      # rotate left
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: rotate_left
+        id: rotate_left
+
+      # shake
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: shake
+        id: shake
+      
+      # throw
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: throw
+        id: throw
+      
+      # flip 90 degrees
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: flip90
+        id: flip90
       
       # angle
       - platform: state
         entity_id: sensor.dan_s_office_cube_action_angle
         id: angle
       
-      # push
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: slide
-        id: slide
     action:
       - choose:
 
