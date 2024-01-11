@@ -154,7 +154,67 @@ automation:
             entity_id: sensor.dan_s_office_cube_side
             state: '1'
           - condition: trigger
-            id: tap
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '2'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '3'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '4'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '5'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '6'
+          - condition: trigger
+            id: flip90
           sequence:
           - service: light.toggle
             target:
