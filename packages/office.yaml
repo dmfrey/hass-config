@@ -1,5 +1,5 @@
 automation:
-  - id: '49cb1865-323a-4211-8298-cafcd33ccd9b'
+  - id: 'ea14801e-829f-4b4c-8f2f-fd653116528e'
     alias: "Open for Business"
     description: ""
     trigger:
