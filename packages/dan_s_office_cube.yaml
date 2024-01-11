@@ -1,0 +1,127 @@
+automation:
+  - id: '8e854a44-6042-481b-bf0c-279e33e26e74'
+    alias: Dan's Office Cube
+    description: ""
+    trigger:
+      # slide
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: slide
+        id: slide
+
+      # tap
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: tap
+        id: tap
+      
+      # rotate right
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: rotate_right
+        id: rotate_right
+
+      # rotate left
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: rotate_left
+        id: rotate_left
+
+      # shake
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: shake
+        id: shake
+      
+      # throw
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: throw
+        id: throw
+      
+      # flip 90 degrees
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_from_side
+        to: flip90
+        id: flip90
+      
+      # angle
+      - platform: state
+        entity_id: sensor.dan_s_office_cube_action_angle
+        id: angle
+      
+    action:
+      - choose:
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '1'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '2'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '3'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '4'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '5'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+
+        - conditions:
+          - condition: state
+            entity_id: sensor.dan_s_office_cube_side
+            state: '6'
+          - condition: trigger
+            id: flip90
+          sequence:
+          - service: light.toggle
+            target:
+              area_id: office
+            data: {}
+00

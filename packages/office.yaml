@@ -1,6 +1,24 @@
 automation:
-  - alias: "Close the Office"
-    id: 49cb1865-323a-4211-8298-cafcd33ccd9b
+  - id: '49cb1865-323a-4211-8298-cafcd33ccd9b'
+    alias: "Open for Business"
+    description: ""
+    trigger:
+      - platform: time
+        at: "08:10:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          transition: 10
+          color_temp: 400
+          brightness_pct: 100
+        target:
+          area_id: office
+    mode: single
+
+  - id: '49cb1865-323a-4211-8298-cafcd33ccd9b'
+    alias: "Close the Office"
     description: ""
     trigger:
       - platform: time
@@ -8,13 +26,14 @@ automation:
     condition: []
     action:
       - service: light.turn_off
+        metadata: {}
         data: {}
         target:
           area_id: office
     mode: single
 
-  - alias: "Office Switch - On"
-    id: 9a0d7561-ae4c-409c-aa82-aa615f1efe08
+  - id: '9a0d7561-ae4c-409c-aa82-aa615f1efe08'
+    alias: "Office Switch - On"
     description: ""
     trigger:
       - platform: device
@@ -35,8 +54,8 @@ automation:
           area_id: office
     mode: single
 
-  - alias: "Office Switch - Off"
-    id: ce4b4261-eec9-4224-b8be-5bb24281af49
+  - id: 'ce4b4261-eec9-4224-b8be-5bb24281af49'
+    alias: "Office Switch - Off"
     description: ""
     trigger:
       - platform: device
@@ -55,8 +74,8 @@ automation:
           area_id: office
     mode: single
 
-  - alias: "Office Switch - Dimmer - Increase Brightness"
-    id: 4989a5d9-3fb3-4b62-a5d0-63077c957d25
+  - id: '4989a5d9-3fb3-4b62-a5d0-63077c957d25'
+    alias: "Office Switch - Dimmer - Increase Brightness"
     description: ""
     trigger:
       - platform: device
@@ -75,8 +94,8 @@ automation:
           area_id: office
     mode: single
 
-  - alias: "Office Switch - Dimmer - Decrease Brightness"
-    id: 1c98a193-d77b-42c7-bb55-606ead3c2e33
+  - id: '1c98a193-d77b-42c7-bb55-606ead3c2e33'
+    alias: "Office Switch - Dimmer - Decrease Brightness"
     description: ""
     trigger:
       - platform: device
@@ -94,129 +113,3 @@ automation:
         target:
           area_id: office
     mode: single
-
-  - alias: Dan's Office Cube
-    id: 8e854a44-6042-481b-bf0c-279e33e26e74
-    description: ""
-    trigger:
-      # slide
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: slide
-        id: slide
-
-      # tap
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: tap
-        id: tap
-      
-      # rotate right
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: rotate_right
-        id: rotate_right
-
-      # rotate left
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: rotate_left
-        id: rotate_left
-
-      # shake
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: shake
-        id: shake
-      
-      # throw
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: throw
-        id: throw
-      
-      # flip 90 degrees
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
-        to: flip90
-        id: flip90
-      
-      # angle
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_angle
-        id: angle
-      
-    action:
-      - choose:
-
-        - conditions:
-          - condition: state
-            entity_id: sensor.dan_s_office_cube_side
-            state: '1'
-          - condition: trigger
-            id: flip90
-          sequence:
-          - service: light.toggle
-            target:
-              area_id: office
-            data: {}
-
-        - conditions:
-          - condition: state
-            entity_id: sensor.dan_s_office_cube_side
-            state: '2'
-          - condition: trigger
-            id: flip90
-          sequence:
-          - service: light.toggle
-            target:
-              area_id: office
-            data: {}
-
-        - conditions:
-          - condition: state
-            entity_id: sensor.dan_s_office_cube_side
-            state: '3'
-          - condition: trigger
-            id: flip90
-          sequence:
-          - service: light.toggle
-            target:
-              area_id: office
-            data: {}
-
-        - conditions:
-          - condition: state
-            entity_id: sensor.dan_s_office_cube_side
-            state: '4'
-          - condition: trigger
-            id: flip90
-          sequence:
-          - service: light.toggle
-            target:
-              area_id: office
-            data: {}
-
-        - conditions:
-          - condition: state
-            entity_id: sensor.dan_s_office_cube_side
-            state: '5'
-          - condition: trigger
-            id: flip90
-          sequence:
-          - service: light.toggle
-            target:
-              area_id: office
-            data: {}
-
-        - conditions:
-          - condition: state
-            entity_id: sensor.dan_s_office_cube_side
-            state: '6'
-          - condition: trigger
-            id: flip90
-          sequence:
-          - service: light.toggle
-            target:
-              area_id: office
-            data: {}

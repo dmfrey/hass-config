@@ -1,6 +1,6 @@
 automation:
-  - alias: "It's time to workout"
-    id: d3cfe7e4-6a8d-48e4-bbcd-1891f303339f
+  - id: 'd3cfe7e4-6a8d-48e4-bbcd-1891f303339f'
+    alias: "It's time to workout"
     description: ""
     trigger:
       - platform: time
@@ -13,8 +13,8 @@ automation:
           area_id: basement
     mode: single
 
-  - alias: "Workout is done"
-    id: 92bb115c-a192-40bc-9e0d-0443787cab0f
+  - id: '92bb115c-a192-40bc-9e0d-0443787cab0f'
+    alias: "Workout is done"
     description: ""
     trigger:
       - platform: time

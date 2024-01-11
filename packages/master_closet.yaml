@@ -1,6 +1,6 @@
 automation:
-  - alias: "Master Closet Motion Sensor Triggered"
-    id: 8e954b7f-6483-495e-918a-651e12b1a501
+  - id: '8e954b7f-6483-495e-918a-651e12b1a501'
+    alias: "Master Closet Motion Sensor Triggered"
     description: "Turn on Master Closet Downlight when Master Closet Motion Sensor is triggered"
     use_blueprint:
       path: homeassistant/Blackshome/sensor-light.yaml
@@ -28,8 +28,8 @@ automation:
         night_lights_after_time: "23:00:00"
         night_lights_before_time: "08:00:00"
   
-  - alias: "Master Closet Lutron Aurora Toggles Light On/Off"
-    id: 9997e2eb-b0d2-4c49-8a68-67727e6a0f48
+  - id: '9997e2eb-b0d2-4c49-8a68-67727e6a0f48'
+    alias: "Master Closet Lutron Aurora Toggles Light On/Off"
     description: "Toggle Master Closet Downlight when Master Closet Lutron Aurora is tapped"
     trigger:
       - platform: state

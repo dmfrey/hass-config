@@ -1,6 +1,6 @@
 automation:
-  - alias: "Turn on the Holiday Lights"
-    id: 938f642d-3e9f-44fa-9e2f-ccecc958e094
+  - id: '938f642d-3e9f-44fa-9e2f-ccecc958e094'
+    alias: "Turn on the Holiday Lights"
     description: ""
     trigger:
       - platform: time
@@ -13,8 +13,8 @@ automation:
           entity_id: switch.holiday_lights
     mode: single
 
-  - alias: "Turn on the Outside Holiday Lights before Sunset"
-    id: d0f1d9d3-f4d9-4845-ae37-824244d6d9af
+  - id: 'd0f1d9d3-f4d9-4845-ae37-824244d6d9af'
+    alias: "Turn on the Outside Holiday Lights before Sunset"
     description: ""
     trigger:
       - platform: sun

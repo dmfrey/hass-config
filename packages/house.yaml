@@ -1,6 +1,6 @@
 automation:
-  - alias: "It's time to get ready for school"
-    id: ca4989f4-23c1-48d6-8178-fbad657a07b0
+  - id: 'ca4989f4-23c1-48d6-8178-fbad657a07b0'
+    alias: "It's time to get ready for school"
     description: ""
     trigger:
       - platform: time
@@ -30,8 +30,8 @@ automation:
           area_id: bathroom
     mode: single
 
-  - alias: "Turn on the House at Sunset"
-    id: 3f4c0fdf-d9ef-468e-a973-8e7fa82c7483
+  - id: '3f4c0fdf-d9ef-468e-a973-8e7fa82c7483'
+    alias: "Turn on the House at Sunset"
     description: "Lights will turn on 45 minutes before sunset"
     trigger:
       - platform: sun
@@ -64,8 +64,8 @@ automation:
             - family_room_ambient
     mode: single
 
-  - alias: "It's time to Relax"
-    id: a85932d9-ff4e-486b-a3a1-89b07e84feef
+  - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
+    alias: "It's time to Relax"
     description: "The relax scene is activated"
     trigger:
       - platform: time
@@ -127,8 +127,8 @@ automation:
         enabled: false
     mode: single
 
-  - alias: "Turn off the House"
-    id: 92c8fbbb-3b63-4408-95db-82587a3e704b
+  - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
+    alias: "Turn off the House"
     description: ""
     trigger:
       - platform: device
@@ -198,8 +198,8 @@ automation:
         metadata: {}
     mode: single
 
-  - alias: "Turn off the outside yard lights"
-    id: 4770ac3a-35d7-4cf0-8ab8-750f8710341f
+  - id: '4770ac3a-35d7-4cf0-8ab8-750f8710341f'
+    alias: "Turn off the outside yard lights"
     description: "Lights turn off at midnight"
     trigger:
       - platform: time

@@ -1,6 +1,6 @@
 automation:
-  - alias: "It's time to make dinner"
-    id: 03ced7e8-00d7-445a-8efb-5c16815c0bbb
+  - id: '03ced7e8-00d7-445a-8efb-5c16815c0bbb'
+    alias: "It's time to make dinner"
     description: "Turn the lights on in the kitchen to start making dinner"
     trigger:
       - platform: time
