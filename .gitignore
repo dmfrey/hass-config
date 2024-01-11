@@ -6,7 +6,7 @@ secrets.yaml
 .cloud/
 .storage/
 backups/
-custom_components/
+#custom_components/
 deps/
 image/
 tts/
