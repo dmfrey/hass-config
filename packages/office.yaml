@@ -55,6 +55,46 @@ automation:
           area_id: office
     mode: single
 
+  - alias: "Office Switch - Dimmer - Increase Brightness"
+    id: 4989a5d9-3fb3-4b62-a5d0-63077c957d25
+    description: ""
+    trigger:
+      - platform: device
+        domain: mqtt
+        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        type: action
+        subtype: up_press
+        discovery_id: 0x0017880104e5ab52 action_up_press
+    condition: []
+    action:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          brightness_step_pct: 10
+        target:
+          area_id: office
+    mode: single
+
+  - alias: "Office Switch - Dimmer - Decrease Brightness"
+    id: 1c98a193-d77b-42c7-bb55-606ead3c2e33
+    description: ""
+    trigger:
+      - platform: device
+        domain: mqtt
+        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        type: action
+        subtype: down_press
+        discovery_id: 0x0017880104e5ab52 action_down_press
+    condition: []
+    action:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          brightness_step_pct: -10
+        target:
+          area_id: office
+    mode: single
+
   - alias: Office Cube Automations
     id: 8e854a44-6042-481b-bf0c-279e33e26e74
     description: ""
