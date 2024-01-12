@@ -19,39 +19,39 @@ automation:
         id: slide
 
       # tap
-      # - platform: mqtt
-      #   topic: "Dan's Office Cube"
-      #   payload: "tap"
-      #   value_template: "{{ value_json.action }}"
-      #   id: tap
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "{{ action_tap }}"
+        value_template: "{{ value_json.action }}"
+        id: tap
       
       # rotate right
-      # - platform: mqtt
-      #   topic: "Dan's Office Cube"
-      #   payload: "rotate_right"
-      #   value_template: "{{ value_json.action }}"
-      #   id: rotate_right
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "{{ action_rotate_right }}"
+        value_template: "{{ value_json.action }}"
+        id: rotate_right
 
       # rotate left
-      # - platform: mqtt
-      #   topic: "Dan's Office Cube"
-      #   payload: "rotate_left"
-      #   value_template: "{{ value_json.action }}"
-      #   id: rotate_left
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "{{ action_rotate_left }}"
+        value_template: "{{ value_json.action }}"
+        id: rotate_left
 
       # shake
-      # - platform: mqtt
-      #   topic: "Dan's Office Cube"
-      #   payload: "shake"
-      #   value_template: "{{ value_json.action }}"
-      #   id: shake
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "{{ action_shake }}"
+        value_template: "{{ value_json.action }}"
+        id: shake
       
       # throw
-      # - platform: mqtt
-      #   topic: "Dan's Office Cube"
-      #   payload: "throw"
-      #   value_template: "{{ value_json.action }}"
-      #   id: throw
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "{{ action_throw }}"
+        value_template: "{{ value_json.action }}"
+        id: throw
       
       # flip 90 degrees
       - platform: mqtt
