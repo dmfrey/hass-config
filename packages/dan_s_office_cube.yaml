@@ -5,7 +5,7 @@ automation:
     trigger:
       # slide
       - platform: mqtt
-        topic: "zigbee2mqtt/Dan's Office Cube"
+        topic: "Dan's Office Cube"
         payload: "slide"
         value_template: "{{ value_json.action }}"
         id: slide
@@ -13,42 +13,42 @@ automation:
 
       # tap
       - platform: mqtt
-        topic: "zigbee2mqtt/Dan's Office Cube"
+        topic: "Dan's Office Cube"
         payload: "tap"
         value_template: "{{ value_json.action }}"
         id: tap
       
       # rotate right
       - platform: mqtt
-        topic: "zigbee2mqtt/Dan's Office Cube"
+        topic: "Dan's Office Cube"
         payload: "rotate_right"
         value_template: "{{ value_json.action }}"
         id: rotate_right
 
       # rotate left
       - platform: mqtt
-        topic: "zigbee2mqtt/Dan's Office Cube"
+        topic: "Dan's Office Cube"
         payload: "rotate_left"
         value_template: "{{ value_json.action }}"
         id: rotate_left
 
       # shake
       - platform: mqtt
-        topic: "zigbee2mqtt/Dan's Office Cube"
+        topic: "Dan's Office Cube"
         payload: "shake"
         value_template: "{{ value_json.action }}"
         id: shake
       
       # throw
       - platform: mqtt
-        topic: "zigbee2mqtt/Dan's Office Cube"
+        topic: "Dan's Office Cube"
         payload: "throw"
         value_template: "{{ value_json.action }}"
         id: throw
       
       # flip 90 degrees
       - platform: state
-        topic: "zigbee2mqtt/Dan's Office Cube"
+        topic: "Dan's Office Cube"
         payload: "flip90"
         value_template: "{{ value_json.action }}"
         id: flip90
