@@ -2,61 +2,63 @@ automation:
   - id: '8e854a44-6042-481b-bf0c-279e33e26e74'
     alias: Dan's Office Cube
     description: ""
+    trigger_variables:
+      action_flip90: "flip90"
     trigger:
       # slide
-      - platform: mqtt
-        topic: "Dan's Office Cube"
-        payload: "slide"
-        value_template: "{{ value_json.action }}"
-        id: slide
-        encoding: "utf-8"
+      # - platform: mqtt
+      #   topic: "Dan's Office Cube"
+      #   payload: "slide"
+      #   value_template: "{{ value_json.action }}"
+      #   id: slide
+      #   encoding: "utf-8"
 
       # tap
-      - platform: mqtt
-        topic: "Dan's Office Cube"
-        payload: "tap"
-        value_template: "{{ value_json.action }}"
-        id: tap
+      # - platform: mqtt
+      #   topic: "Dan's Office Cube"
+      #   payload: "tap"
+      #   value_template: "{{ value_json.action }}"
+      #   id: tap
       
       # rotate right
-      - platform: mqtt
-        topic: "Dan's Office Cube"
-        payload: "rotate_right"
-        value_template: "{{ value_json.action }}"
-        id: rotate_right
+      # - platform: mqtt
+      #   topic: "Dan's Office Cube"
+      #   payload: "rotate_right"
+      #   value_template: "{{ value_json.action }}"
+      #   id: rotate_right
 
       # rotate left
-      - platform: mqtt
-        topic: "Dan's Office Cube"
-        payload: "rotate_left"
-        value_template: "{{ value_json.action }}"
-        id: rotate_left
+      # - platform: mqtt
+      #   topic: "Dan's Office Cube"
+      #   payload: "rotate_left"
+      #   value_template: "{{ value_json.action }}"
+      #   id: rotate_left
 
       # shake
-      - platform: mqtt
-        topic: "Dan's Office Cube"
-        payload: "shake"
-        value_template: "{{ value_json.action }}"
-        id: shake
+      # - platform: mqtt
+      #   topic: "Dan's Office Cube"
+      #   payload: "shake"
+      #   value_template: "{{ value_json.action }}"
+      #   id: shake
       
       # throw
-      - platform: mqtt
-        topic: "Dan's Office Cube"
-        payload: "throw"
-        value_template: "{{ value_json.action }}"
-        id: throw
+      # - platform: mqtt
+      #   topic: "Dan's Office Cube"
+      #   payload: "throw"
+      #   value_template: "{{ value_json.action }}"
+      #   id: throw
       
       # flip 90 degrees
       - platform: state
         topic: "Dan's Office Cube"
         payload: "flip90"
-        value_template: "{{ value_json.action }}"
+        value_template: "{{ 'action:' ~ action_flip90 }}"
         id: flip90
       
       # angle
-      - platform: state
-        entity_id: sensor.dan_s_office_cube_action_angle
-        id: angle
+      # - platform: state
+      #   entity_id: sensor.dan_s_office_cube_action_angle
+      #   id: angle
       
     action:
       - choose:
