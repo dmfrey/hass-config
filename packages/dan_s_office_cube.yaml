@@ -4,14 +4,19 @@ automation:
     description: ""
     trigger_variables:
       action_flip90: "flip90"
+      action_rotate_right: "rotate_right"
+      action_rotate_left: "rotate_left"
+      action_shake: "shake"
+      action_slide: "slide"
+      action_tap: "tap"
+      action_throw: "throw"
     trigger:
       # slide
-      # - platform: mqtt
-      #   topic: "Dan's Office Cube"
-      #   payload: "slide"
-      #   value_template: "{{ value_json.action }}"
-      #   id: slide
-      #   encoding: "utf-8"
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "{{ action_slide }}"
+        value_template: "{{ value_json.action }}"
+        id: slide
 
       # tap
       # - platform: mqtt
