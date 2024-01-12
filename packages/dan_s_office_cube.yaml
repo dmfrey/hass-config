@@ -49,7 +49,7 @@ automation:
       #   id: throw
       
       # flip 90 degrees
-      - platform: state
+      - platform: mqtt
         topic: "Dan\\'s\\ Office\\ Cube"
         payload: "{{ 'action:' ~ action_flip90 }}"
         id: flip90
