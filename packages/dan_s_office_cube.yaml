@@ -50,7 +50,7 @@ automation:
       
       # flip 90 degrees
       - platform: state
-        topic: "Dan's Office Cube"
+        topic: "Dan\\'s Office Cube"
         payload: "flip90"
         value_template: "{{ 'action:' ~ action_flip90 }}"
         id: flip90
