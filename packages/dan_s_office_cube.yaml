@@ -4,45 +4,53 @@ automation:
     description: ""
     trigger:
       # slide
-      - platform: state
-        entity_id: update.dan_s_office_cube
-        to: slide
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "slide"
+        value_template: "{{ value_json.action }}"
         id: slide
+        encoding: "utf-8"
 
       # tap
-      - platform: state
-        entity_id: update.dan_s_office_cube
-        to: tap
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "tap"
+        value_template: "{{ value_json.action }}"
         id: tap
       
       # rotate right
-      - platform: state
-        entity_id: update.dan_s_office_cube
-        to: rotate_right
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "rotate_right"
+        value_template: "{{ value_json.action }}"
         id: rotate_right
 
       # rotate left
-      - platform: state
-        entity_id: update.dan_s_office_cube
-        to: rotate_left
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "rotate_left"
+        value_template: "{{ value_json.action }}"
         id: rotate_left
 
       # shake
-      - platform: state
-        entity_id: update.dan_s_office_cube
-        to: shake
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "shake"
+        value_template: "{{ value_json.action }}"
         id: shake
       
       # throw
-      - platform: state
-        entity_id: update.dan_s_office_cube
-        to: throw
+      - platform: mqtt
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "throw"
+        value_template: "{{ value_json.action }}"
         id: throw
       
       # flip 90 degrees
       - platform: state
-        entity_id: update.dan_s_office_cube
-        to: flip90
+        topic: "zigbee2mqtt/Dan's Office Cube"
+        payload: "flip90"
+        value_template: "{{ value_json.action }}"
         id: flip90
       
       # angle
