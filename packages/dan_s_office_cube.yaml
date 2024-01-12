@@ -5,43 +5,43 @@ automation:
     trigger:
       # slide
       - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
+        entity_id: update.dan_s_office_cube
         to: slide
         id: slide
 
       # tap
       - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
+        entity_id: update.dan_s_office_cube
         to: tap
         id: tap
       
       # rotate right
       - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
+        entity_id: update.dan_s_office_cube
         to: rotate_right
         id: rotate_right
 
       # rotate left
       - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
+        entity_id: update.dan_s_office_cube
         to: rotate_left
         id: rotate_left
 
       # shake
       - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
+        entity_id: update.dan_s_office_cube
         to: shake
         id: shake
       
       # throw
       - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
+        entity_id: update.dan_s_office_cube
         to: throw
         id: throw
       
       # flip 90 degrees
       - platform: state
-        entity_id: sensor.dan_s_office_cube_action_from_side
+        entity_id: update.dan_s_office_cube
         to: flip90
         id: flip90
       
