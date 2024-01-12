@@ -56,7 +56,7 @@ automation:
       # flip 90 degrees
       - platform: mqtt
         topic: "zigbee2mqtt/Dan's Office Cube"
-        payload: "flip90"
+        payload: "{{ action_flip90 }}"
         value_template: "{{ value_json.action }}"
         id: flip90
       
