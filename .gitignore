@@ -6,14 +6,12 @@ secrets.yaml
 .cloud/
 .storage/
 backups/
-#custom_components/
 deps/
 image/
 tts/
 .HA_VERSION
 .vscode/
 !.vscode/settings.json
-www/community/
 nest/
 *august.conf
 configuration.yaml
