@@ -8,7 +8,7 @@ automation:
         motion_trigger:
           - binary_sensor.master_closet_sensor_motion
         light_switch:
-          entity_id: light.master_closet
+          area_id: master_closet
         time_delay: 10
         include_light_control:
           - use_brightness
@@ -17,7 +17,7 @@ automation:
         light_transition_off: 2
         include_night_lights: night_lights_enabled
         night_lights:
-          entity_id: light.master_closet
+          area_id: master_closet
         night_time_delay: 3
         include_night_light_control:
           - use_brightness
