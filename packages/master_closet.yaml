@@ -3,7 +3,7 @@ automation:
     alias: "Master Closet Motion Sensor Triggered"
     description: "Turn on Master Closet Downlight when Master Closet Motion Sensor is triggered"
     use_blueprint:
-      path: homeassistant/Blackshome/sensor-light.yaml
+      path: Blackshome/sensor-light.yaml
       input:
         motion_trigger:
           - binary_sensor.master_closet_sensor_occupancy
