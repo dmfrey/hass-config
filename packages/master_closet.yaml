@@ -9,12 +9,12 @@ automation:
           - binary_sensor.master_closet_sensor_occupancy
         light_switch:
           area_id: master_closet
-        time_delay: 10
+        time_delay: 5
         include_light_control:
           - use_brightness
           - use_transition
         light_transition_on: 2
-        light_transition_off: 2
+        light_transition_off: 1
         include_night_lights: night_lights_enabled
         night_lights:
           area_id: master_closet
