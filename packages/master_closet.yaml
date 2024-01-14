@@ -6,7 +6,7 @@ automation:
       path: homeassistant/Blackshome/sensor-light.yaml
       input:
         motion_trigger:
-          - binary_sensor.master_closet_sensor_motion
+          - binary_sensor.master_closet_sensor_occupancy
         light_switch:
           area_id: master_closet
         time_delay: 10
