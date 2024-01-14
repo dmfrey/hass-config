@@ -29,13 +29,32 @@ automation:
         night_lights_before_time: "08:00:00"
   
   - id: '9997e2eb-b0d2-4c49-8a68-67727e6a0f48'
-    alias: "Master Closet Lutron Aurora Toggles Light On/Off"
-    description: "Toggle Master Closet Downlight when Master Closet Lutron Aurora is tapped"
+    alias: "Master Closet Inovelli Smart 2-1 Switch Turns Light On"
+    description: "Turns Master Closet Downlight on when Master Closet Switch up button is pressed"
     trigger:
-      - platform: state
-        entity_id: event.master_closet_aurora_button_1
+      - platform: device
+        type: turned_off
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        entity_id: 2af3f039ab8dd7383c92eb0315d3f1b0
+        domain: light
     action:
-      - service: light.toggle
+      - service: light.turn_on
+        data: {}
+        target:
+          area_id: master_closet
+    mode: single
+
+  - id: '14cf4b1c-d8cd-44e4-8bf9-ac94203c6a16'
+    alias: "Master Closet Inovelli Smart 2-1 Switch Turns Light Off"
+    description: "Turns Master Closet Downlight off when Master Closet Switch down button is pressed"
+    trigger:
+      - platform: device
+        type: turned_off
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        entity_id: 2af3f039ab8dd7383c92eb0315d3f1b0
+        domain: light
+    action:
+      - service: light.turn_off
         data: {}
         target:
           area_id: master_closet
