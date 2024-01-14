@@ -5,7 +5,7 @@ automation:
       Master Bathroom Motion Sensor turns on ambient lights, schedules them to turn
       off, and dims them at night
     use_blueprint:
-      path: homeassistant/Blackshome/sensor-light.yaml
+      path: Blackshome/sensor-light.yaml
       input:
         motion_trigger:
           - binary_sensor.master_bathroom_motion_sensor_motion
