@@ -8,7 +8,7 @@ automation:
       path: Blackshome/sensor-light.yaml
       input:
         motion_trigger:
-          - binary_sensor.master_bathroom_motion_sensor_motion
+          - binary_sensor.master_bathroom_sensor_occupancy
         light_switch:
           entity_id: light.master_bathroom_lightstrip
         time_delay: 10
