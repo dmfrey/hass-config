@@ -1,0 +1,17 @@
+automation:
+  - id: '69139fbb-ad53-4b80-9944-56f12d8aa90f'
+    alias: "Molly is at school"
+    description: "She arrived at school, turn off the lights"
+    mode: single
+    trigger:
+      - platform: zone
+        entity_id: person.molly_frey
+        zone: zone.southern_lehigh_high_school
+        event: enter
+    condition: []
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          area_id: molly_s_room
