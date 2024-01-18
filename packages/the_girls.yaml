@@ -1,0 +1,20 @@
+automation:
+  - id: 'b7d8f59b-f3b2-4ddb-973e-76c474bff574'
+    alias: "The girls are away"
+    description: "Turn off the bathroom lights when the girls are away"
+    mode: single
+    initial_state: false
+    trigger:
+      platform: state
+      entity_id: group.girls
+      from: "home"
+      to: "not_home"
+      for:
+        minutes: 5
+    condition: []
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          area_id: bathroom
