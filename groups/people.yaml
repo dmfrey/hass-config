@@ -7,6 +7,13 @@ family:
     - person.camdyn_frey
     - person.molly_frey
 
+girls:
+  name: Camdyn & Molly
+  icon: mdi:account-group
+  entities:
+    - person.camdyn_frey
+    - person.molly_frey
+
 pets:
   name: Pets
   icon: mdi:paw
