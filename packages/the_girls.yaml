@@ -3,7 +3,7 @@ automation:
     alias: "The girls are away"
     description: "Turn off the bathroom lights when the girls are away"
     mode: single
-    initial_state: false
+    initial_state: true
     trigger:
       platform: state
       entity_id: group.girls
