@@ -1,4 +1,5 @@
-parent_devices:
+- name: parent_devices
+  platform: group
   services:
     - service: mobile_app_pixel_8_pro
     - service: mobile_app_pixel_7
