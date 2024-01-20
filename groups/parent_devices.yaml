@@ -1,0 +1,6 @@
+parent_devices:
+  name: Parent Devices Notification Group
+  icon: mdi:phone
+  services:
+    - service: notify.mobile_app_pixel_8_pro
+    - service: notify.mobile_app_pixel_7
