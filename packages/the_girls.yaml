@@ -32,12 +32,16 @@ automation:
       - condition: template
         value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
     action:
-      - service: notify.mobile_app_pixel_8_pro
+      - service: >
+          notify.mobile_app_pixel_8_pro
+          notify.mobile_app_pixel_7
         data:
           message: clear_notification
           data:
             tag: location
-      - service: notify.mobile_app_pixel_8_pro
+      - service: >
+          notify.mobile_app_pixel_8_pro
+          notify.mobile_app_pixel_7
         metadata: {}
         data_template:
           title: "{{ trigger.to_state.attributes.friendly_name }} is on the Move"
