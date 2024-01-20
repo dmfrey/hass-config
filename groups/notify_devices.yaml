@@ -1,6 +1,4 @@
-notify:
-  - name: Parent Devices
-    platform: group
-    services:
-      - service: mobile_app_pixel_8_pro
-      - service: mobile_app_pixel_7
+parent_devices:
+  services:
+    - service: mobile_app_pixel_8_pro
+    - service: mobile_app_pixel_7
