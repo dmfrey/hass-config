@@ -4,7 +4,7 @@ security_lights:
   entities:
     - light.back_yard_security_light_1
     - light.back_yard_security_light_2
-    - light.barnd_door
+    - light.barn_door
     - light.driveway_security_light
     - light.front_yard_security_light_1
     - light.front_yard_security_light_2
