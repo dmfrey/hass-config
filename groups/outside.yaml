@@ -6,7 +6,7 @@ security_lights:
     - light.back_door_light
     - light.back_yard_security_light_1
     - light.back_yard_security_light_2
-    - light.barn_door
+    - light.barn_door_light
     - light.driveway_security_light
     - light.front_door_light
     - light.front_yard_security_light_1
