@@ -1,0 +1,16 @@
+security_lights:
+  name: Security Lights
+  all: true
+  entities:
+    - light.back_yard_security_light_1
+    - light.back_yard_security_light_2
+    - light.barnd_door
+    - light.driveway_security_light
+    - light.front_yard_security_light_1
+    - light.front_yard_security_light_2
+    - light.garden_security_light_1
+    - light.garden_security_light_2
+    - light.side_yard_security_light_1
+    - light.side_yard_security_light_2
+    - light.side_yard_security_light_3
+    - light.side_yard_security_light_4
