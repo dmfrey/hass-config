@@ -76,10 +76,6 @@ automation:
     action:
       - service: light.turn_on
         metadata: {}
-        data:
-          transition: 5
-          kelvin: 2237
-          brightness_pct: 60
         target:
           area_id:
             - camdyn_s_room
@@ -93,6 +89,10 @@ automation:
             - master_bedroom
             - molly_s_room
             - patio
+        data:
+          transition: 5
+          kelvin: 2237
+          brightness_pct: 60
 
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
     alias: "Turn off the House"
@@ -109,7 +109,6 @@ automation:
         enabled: true
     action:
       - service: light.turn_off
-        data: {}
         target:
           area_id:
             - basement
@@ -133,8 +132,8 @@ automation:
             - office
             - patio
             - workshop
-      - service: switch.turn_off
         data: {}
+      - service: switch.turn_off
         target:
           area_id:
             - master_bathroom
@@ -144,14 +143,15 @@ automation:
           entity_id:
             - switch.outside_holiday_switches
             - switch.holiday_lights
+        data: {}
       - service: light.turn_on
-        data:
-          brightness_pct: 50
         target:
-          area_id:
-            - driveway
-            - front_porch
-            - garden
+          entity_id:
+            - group.security_lights
+        data:
+          transition: 5
+          kelvin: 2237
+          brightness_pct: 60
         metadata: {}
       - service: fan.turn_on
         data:
