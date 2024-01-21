@@ -68,65 +68,31 @@ automation:
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
     alias: "It's time to Relax"
     description: "The relax scene is activated"
+    mode: single
     trigger:
       - platform: time
         at: "20:15:00"
     condition: []
     action:
-      - service: scene.turn_on
-        target:
-          entity_id: scene.back_yard_dimmed
+      - service: light.turn_on
         metadata: {}
-      - service: scene.turn_on
+        data:
+          transition: 5
+          kelvin: 2237
+          brightness_pct: 60
         target:
-          entity_id: scene.camdyn_s_room_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.molly_s_room_dimmed
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.hallway_dimmed
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.master_bedroom_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.foyer_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.living_room_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.den_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.side_yard_dimmed
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.kitchen_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.dining_room_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.family_room_relax
-        metadata: {}
-      - service: scene.turn_on
-        target:
-          entity_id: scene.patio_relax
-        metadata: {}
-        enabled: false
-    mode: single
+          area_id:
+            - camdyn_s_room
+            - den
+            - dining_room
+            - family_room
+            - family_room_ambient
+            - hallway
+            - kitchen
+            - living_room
+            - master_bedroom
+            - molly_s_room
+            - patio
 
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
     alias: "Turn off the House"
