@@ -32,6 +32,7 @@ automation:
 
   - id: '3f4c0fdf-d9ef-468e-a973-8e7fa82c7483'
     alias: "Turn on the House at Sunset"
+    mode: single
     description: "Lights will turn on 45 minutes before sunset"
     trigger:
       - platform: sun
@@ -41,6 +42,8 @@ automation:
     action:
       - service: light.turn_on
         data:
+          transition: 10
+          kelvin: 2700
           brightness_pct: 100
         target:
           area_id:
@@ -63,7 +66,6 @@ automation:
             - molly_s_room
             - patio
             - side_yard
-    mode: single
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
     alias: "It's time to Relax"
@@ -94,24 +96,24 @@ automation:
           kelvin: 2237
           brightness_pct: 60
 
-  - id: 'test'
-    alias: "Test"
-    description: "Test"
-    mode: single
-    trigger:
-      - platform: time
-        at: "20:15:00"
-    condition: []
-    action:
-      - service: light.turn_on
-        target:
-          entity_id:
-            - group.security_lights
-        data:
-          transition: 5
-          kelvin: 2237
-          brightness_pct: 60
-        metadata: {}
+  # - id: 'test'
+  #   alias: "Test"
+  #   description: "Test"
+  #   mode: single
+  #   trigger:
+  #     - platform: time
+  #       at: "20:15:00"
+  #   condition: []
+  #   action:
+  #     - service: light.turn_on
+  #       target:
+  #         entity_id:
+  #           - group.security_lights
+  #       data:
+  #         transition: 5
+  #         kelvin: 2237
+  #         brightness_pct: 60
+  #       metadata: {}
 
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
     alias: "Turn off the House"
@@ -199,3 +201,24 @@ automation:
             - side_yard
             - front_yard
     mode: single
+
+  - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
+    alias: 'Security Sensor Lights'
+    description: ""
+    use_blueprint:
+      path: Blackshome/sensor-light.yaml
+      input:
+        motion_trigger:
+          - binary_sensor.front_yard_sensor_occupancy
+          - binary_sensor.side_yard_sensor_occupancy
+        light_switch:
+          entity_id: group.security_lights
+        include_light_control:
+          - use_brightness
+          - use_colour_temperature
+          - use_transition
+        light_colour_temperature: 2700
+        include_time: time_enabled
+        after_time: "23:00:00"
+        before_time: "07:00:00"
+        light_transition_off: 2
