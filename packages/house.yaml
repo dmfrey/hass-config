@@ -94,6 +94,25 @@ automation:
           kelvin: 2237
           brightness_pct: 60
 
+  - id: 'test'
+    alias: "Test"
+    description: "Test"
+    mode: single
+    trigger:
+      - platform: time
+        at: "20:15:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - group.security_lights
+        data:
+          transition: 5
+          kelvin: 2237
+          brightness_pct: 60
+        metadata: {}
+
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
     alias: "Turn off the House"
     description: ""
