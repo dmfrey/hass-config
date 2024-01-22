@@ -32,7 +32,7 @@ automation:
     alias: "Basement Aurora"
     description: ""
     use_blueprint:
-      path: docternick/legacy-zigbee2mqtt-lutron-aurora-dimmer-control.yaml
+      path: drinfernoo/zigbee2mqtt-lutron-aurora-dimmer-control.yaml
       input:
         aurora: sensor.basement_switch_brightness
         light:
