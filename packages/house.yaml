@@ -221,4 +221,5 @@ automation:
         include_time: time_enabled
         after_time: "23:00:00"
         before_time: "07:00:00"
-        light_transition_off: 2
+        light_transition_on: 2
+        light_transition_off: 4
