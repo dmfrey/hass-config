@@ -161,6 +161,7 @@ automation:
             - bathroom
             - front_yard_holiday
             - hallway
+            - workshop
           entity_id:
             - switch.outside_holiday_switches
             - switch.holiday_lights
