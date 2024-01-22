@@ -8,9 +8,10 @@ automation:
     condition: []
     action:
       - service: light.turn_on
-        data: {}
         target:
           area_id: basement
+        data: 
+          brightness_pct: 100
     mode: single
 
   - id: '92bb115c-a192-40bc-9e0d-0443787cab0f'
@@ -22,7 +23,7 @@ automation:
     condition: []
     action:
       - service: light.turn_off
-        data: {}
         target:
           area_id: basement
+        data: {}
     mode: single
