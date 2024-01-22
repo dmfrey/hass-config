@@ -13,18 +13,25 @@ automation:
           entity_id: light.master_bathroom_lightstrip
         time_delay: 10
         include_light_control:
+          - use_colour_temperature
           - use_brightness
           - use_transition
         light_transition_on: 2
-        light_transition_off: 2
+        light_transition_off: 4
+        light_colour_temperature: 2700
         include_night_lights: night_lights_enabled
         night_lights:
           entity_id: light.master_bathroom_lightstrip
         night_time_delay: 3
         include_night_light_control:
+          - use_colour_temperature
           - use_brightness
           - use_transition
         night_lights_conditions:
           - time_enabled
         night_lights_after_time: "23:00:00"
-        night_lights_before_time: "08:00:00"
+        night_lights_before_time: "07:00:00"
+        night_light_brightness: 30
+        night_light_colour_temperature: 2700
+        night_light_transition_on: 2
+        night_light_transition_off: 4
