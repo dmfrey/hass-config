@@ -185,22 +185,20 @@ automation:
         metadata: {}
     mode: single
 
-  # - id: '4770ac3a-35d7-4cf0-8ab8-750f8710341f'
-  #   alias: "Turn off the outside yard lights"
-  #   description: "Lights turn off at midnight"
-  #   trigger:
-  #     - platform: time
-  #       at: "00:00:00"
-  #   condition: []
-  #   action:
-  #     - service: light.turn_off
-  #       data: {}
-  #       target:
-  #         area_id:
-  #           - back_yard
-  #           - side_yard
-  #           - front_yard
-  #   mode: single
+  - id: '4770ac3a-35d7-4cf0-8ab8-750f8710341f'
+    alias: "Turn off the Security Lights"
+    description: "Lights turn off 45 minutes after sunrise"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunrize
+        offset: "00:45:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: group.security_lights
 
   - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
     alias: 'Security Sensor Lights'
