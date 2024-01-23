@@ -191,7 +191,7 @@ automation:
     mode: single
     trigger:
       - platform: sun
-        event: sunrize
+        event: sunrise
         offset: "00:45:00"
     condition: []
     action:
