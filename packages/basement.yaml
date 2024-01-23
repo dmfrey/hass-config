@@ -17,6 +17,7 @@ automation:
   - id: '92bb115c-a192-40bc-9e0d-0443787cab0f'
     alias: "Workout is done"
     description: ""
+    mode: single
     trigger:
       - platform: time
         at: "08:30:00"
@@ -26,15 +27,16 @@ automation:
         target:
           area_id: basement
         data: {}
-    mode: single
 
   - id: 'ffacf7ad-eaa8-4c59-a1fc-324ebba3c759'
     alias: "Basement Light Switch Automation"
     description: "Turn the Basement Lights On or Off"
     trigger:
-    - platform: state
-      entity_id: switch.basement_light_switch
+      - platform: state
+        entity_id: switch.basement_light_switch
+    condition: []
     action:
-    - service: "light.turn_{{ trigger.to_state.state }}"
-      target:
-        area_id: basement
+      - service: "light.turn_{{ trigger.to_state.state }}"
+        target:
+          area_id: basement
+        data: {}
