@@ -29,11 +29,12 @@ automation:
     mode: single
 
   - id: 'ffacf7ad-eaa8-4c59-a1fc-324ebba3c759'
-    alias: "Basement Aurora"
-    description: ""
-    use_blueprint:
-      path: drinfernoo/zigbee2mqtt-lutron-aurora-dimmer-control.yaml
-      input:
-        aurora: sensor.basement_switch_brightness
-        light:
-          area_id: basement
+    alias: "Basement Light Switch Automation"
+    description: "Turn the Basement Lights On or Off"
+    trigger:
+    - platform: state
+      entity_id: switch.basement_light_switch
+    action:
+    - service: "light.turn_{{ trigger.to_state.state }}"
+      target:
+        area_id: basement
