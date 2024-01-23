@@ -1,5 +1,5 @@
 security_lights:
-  # id: '00c02144-644e-47d8-b770-fd1b171a2bcd'
+  unique_id: '00c02144-644e-47d8-b770-fd1b171a2bcd'
   name: Security Lights
   all: true
   entities:
