@@ -213,6 +213,8 @@ automation:
           - binary_sensor.side_yard_sensor_occupancy
         light_switch:
           entity_id: group.security_lights
+        end_scenes:
+          - scene.security_lights_on
         include_light_control:
           - use_brightness
           - use_colour_temperature
