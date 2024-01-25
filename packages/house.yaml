@@ -66,6 +66,14 @@ automation:
             - molly_s_room
             - patio
             - side_yard
+      - service: light.turn_on
+        data:
+          transition: 10
+          kelvin: 2700
+          brightness_pct: 70
+        target:
+          entity_id:
+            - group.security_lights
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
     alias: "It's time to Relax"
@@ -95,25 +103,6 @@ automation:
           transition: 5
           kelvin: 2237
           brightness_pct: 60
-
-  # - id: 'test'
-  #   alias: "Test"
-  #   description: "Test"
-  #   mode: single
-  #   trigger:
-  #     - platform: time
-  #       at: "20:15:00"
-  #   condition: []
-  #   action:
-  #     - service: light.turn_on
-  #       target:
-  #         entity_id:
-  #           - group.security_lights
-  #       data:
-  #         transition: 5
-  #         kelvin: 2237
-  #         brightness_pct: 60
-  #       metadata: {}
 
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
     alias: "Turn off the House"
@@ -172,7 +161,7 @@ automation:
         data:
           transition: 5
           kelvin: 2237
-          brightness_pct: 60
+          brightness_pct: 50
         metadata: {}
       - service: fan.turn_on
         data:
