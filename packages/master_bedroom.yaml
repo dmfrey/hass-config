@@ -5,8 +5,9 @@ automation:
     description: 'Master Bedroom turns off when Dan and Stephanie are out of bed for at least 5 minutes'
     mode: single
     trigger:
-      - platform: time
-        enabled: false
+      - platform: sun
+        event: sunrise
+        offset: "-01:00"
     condition:
       - condition: time
         after: "06:30:00"
