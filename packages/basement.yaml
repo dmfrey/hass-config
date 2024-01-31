@@ -28,7 +28,7 @@ automation:
           area_id: basement
         data: {}
 
-  - id: 'ffacf7ad-eaa8-4c59-a1fc-324ebba3c759'
+  - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
     alias: "Basement Light Switch Automation"
     description: "Turn the Basement Lights On or Off"
     trigger:
