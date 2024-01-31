@@ -47,8 +47,6 @@ automation:
           brightness_pct: 100
         target:
           area_id:
-            - back_yard
-            - barn
             - camdyn_s_room
             - den
             - dining_room
@@ -57,23 +55,23 @@ automation:
             - family_room_ambient
             - foyer
             - front_porch
-            - front_yard
-            - garden
             - hallway
             - kitchen
             - living_room
             - master_bedroom
             - molly_s_room
             - patio
-            - side_yard
       - service: light.turn_on
         data:
           transition: 10
           kelvin: 2700
           brightness_pct: 70
         target:
-          entity_id:
-            - group.security_lights
+          area_id:
+            - back_yard
+            - front_yard
+            - garden
+            - side_yard
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
     alias: "It's time to Relax"
@@ -93,6 +91,7 @@ automation:
             - dining_room
             - family_room
             - family_room_ambient
+            - foyer
             - hallway
             - kitchen
             - living_room
@@ -121,6 +120,7 @@ automation:
       - service: light.turn_off
         target:
           area_id:
+            - back_yard
             - basement
             - bathroom
             - camdyn_s_room
@@ -132,6 +132,7 @@ automation:
             - foyer
             - front_yard
             - front_yard_holiday
+            - garden
             - hallway
             - living_room
             - kitchen
@@ -140,15 +141,23 @@ automation:
             - molly_s_room
             - office
             - patio
+            - side_yard
             - workshop
         data: {}
       - service: switch.turn_off
         target:
           area_id:
-            - master_bathroom
             - bathroom
+            - camdyn_s_room
+            - family_room_ambient
+            - family_room_holiday
+            - front_yard
             - front_yard_holiday
             - hallway
+            - living_room
+            - master_bathroom
+            - molly_s_room
+            - office
             - workshop
           entity_id:
             - switch.outside_holiday_switches
@@ -157,7 +166,7 @@ automation:
       - service: light.turn_on
         target:
           entity_id:
-            - group.security_lights
+            - light.barn_door_light
         data:
           transition: 5
           kelvin: 2237
@@ -173,45 +182,6 @@ automation:
           entity_id: scene.turn_on_diffuser
         metadata: {}
     mode: single
-
-  - id: '4770ac3a-35d7-4cf0-8ab8-750f8710341f'
-    alias: "Turn off the Security Lights"
-    description: "Lights turn off 45 minutes after sunrise"
-    mode: single
-    trigger:
-      - platform: sun
-        event: sunrise
-        offset: "00:45:00"
-    condition: []
-    action:
-      - service: light.turn_off
-        data: {}
-        target:
-          entity_id: group.security_lights
-
-  - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
-    alias: 'Security Sensor Lights'
-    description: ""
-    use_blueprint:
-      path: Blackshome/sensor-light.yaml
-      input:
-        motion_trigger:
-          - binary_sensor.front_yard_sensor_occupancy
-          - binary_sensor.side_yard_sensor_occupancy
-        light_switch:
-          entity_id: group.security_lights
-        end_scenes:
-          - scene.security_lights_on
-        include_light_control:
-          - use_brightness
-          - use_colour_temperature
-          - use_transition
-        light_colour_temperature: 2700
-        include_time: time_enabled
-        after_time: "23:00:00"
-        before_time: "07:00:00"
-        light_transition_on: 2
-        light_transition_off: 4
 
   - id: '9b6de636-370c-4e4f-9059-23a03de6b41c'
     alias: 'Water Leak Notification'
