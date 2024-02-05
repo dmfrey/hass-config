@@ -45,6 +45,7 @@ automation:
       path: Blackshome/sensor-light.yaml
       input:
         motion_trigger:
+          - binary_sensor.back_yard_sensor_occupancy
           - binary_sensor.side_yard_sensor_occupancy
         light_switch:
           entity_id:
