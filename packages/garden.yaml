@@ -1,0 +1,22 @@
+automation:
+  - id: '3d9f5be1-782c-4194-a13a-d25ab0477e11'
+    alias: 'Garden Motion Sensor'
+    description: "Garden Security Lights are triggered when there's motion in the garden"
+    use_blueprint:
+      path: Blackshome/sensor-light.yaml
+      input:
+        motion_trigger:
+          - binary_sensor.garden_sensor_occupancy
+        light_switch:
+          area_id: garden
+        include_light_control:
+          - use_brightness
+          - use_colour_temperature
+          - use_transition
+        light_brightness: 80
+        light_colour_temperature: 2700
+        light_transition_on: 2
+        light_transition_off: 4
+        include_sun: sun_disabled
+        include_ambient: ambient_enabled
+        ambient_light_sensor: sensor.garden_sensor_illuminance_lux
