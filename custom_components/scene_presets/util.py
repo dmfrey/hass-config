@@ -60,8 +60,28 @@ def resolve_entity_ids(hass, entity_id, depth=0):
 
         if not nested_entity_ids: # It's just a plain old light
             resolved_ids.append(entity_id)
+
         else: # It's a group possibly pretending to be a light
-            for nested_entity_id in nested_entity_ids:
-                resolved_ids.extend(resolve_entity_ids(hass, nested_entity_id, depth + 1))
+            conf_entry = get_config_entry(hass, entity_id)
+
+            if conf_entry is not None and conf_entry.options.get("hide_members", False):
+                # Assume that by enabling hide_members, the user intended to have a single logical light consisting of multiple physical ones
+                # => Don't resolve further to not make a single fixture light up with different settings
+                resolved_ids.append(entity_id)
+            else:
+                for nested_entity_id in nested_entity_ids:
+                    # Assume that by not hiding the individual members, the user uses this group to organize multiple things
+                    # => Resolve further until we've arrived at the individual light entities
+                    resolved_ids.extend(resolve_entity_ids(hass, nested_entity_id, depth + 1))
 
     return resolved_ids
+
+
+def get_config_entry(hass, entity_id):
+    entity_reg = entity_registry.async_get(hass)
+
+    if entity_reg_entry := entity_reg.async_get(entity_id):
+        if conf_entry := hass.config_entries.async_get_entry(entity_reg_entry.config_entry_id):
+            return conf_entry
+
+    return None
