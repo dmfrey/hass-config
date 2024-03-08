@@ -1,37 +1,50 @@
 automation:
   - id: '8e954b7f-6483-495e-918a-651e12b1a501'
-    alias: "Master Closet Motion Sensor Triggered"
+    alias: "Master Closet Motion Sensor Actions"
     description: "Turn on Master Closet Downlight when Master Closet Motion Sensor is triggered"
-    use_blueprint:
-      path: Blackshome/sensor-light.yaml
-      input:
-        motion_trigger:
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
           - binary_sensor.master_closet_sensor_occupancy
-        light_switch:
-          entity_id: light.master_closet_downlight
-        include_light_control:
-          - use_colour_temperature
-          - use_brightness
-          - use_transition
-        light_transition_on: 2
-        light_transition_off: 4
-        light_colour_temperature: 2700
-        include_night_lights: night_lights_enabled
-        night_lights:
-          entity_id: light.master_closet_downlight
-        night_time_delay: 3
-        include_night_light_control:
-          - use_colour_temperature
-          - use_brightness
-          - use_transition
-        night_lights_after_time: "23:00:00"
-        night_lights_before_time: "08:00:00"
-        night_lights_conditions:
-          - time_enabled
-        night_light_brightness: 30
-        night_light_colour_temperature: 2700
-        night_light_transition_on: 2
-        night_light_transition_off: 4
+        to: "on"
+        id: master_closet_sensor_motion_detected
+      - platform: state
+        entity_id:
+          - binary_sensor.master_closet_sensor_occupancy
+        to: "off"
+        id: master_closet_sensor_area_cleared
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_sensor_motion_detected
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  kelvin: 2700
+                  brightness_pct: 100
+                target:
+                  entity_id: light.master_closet_downlight
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_sensor_area_cleared
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id: light.master_closet_downlight
           
   # - id: '9997e2eb-b0d2-4c49-8a68-67727e6a0f48'
   #   alias: "Master Closet Inovelli Smart 2-1 Switch Turns Light On"
