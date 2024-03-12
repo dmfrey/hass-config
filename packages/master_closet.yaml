@@ -45,35 +45,46 @@ automation:
                   transition: 4
                 target:
                   entity_id: light.master_closet_downlight
-          
-  # - id: '9997e2eb-b0d2-4c49-8a68-67727e6a0f48'
-  #   alias: "Master Closet Inovelli Smart 2-1 Switch Turns Light On"
-  #   description: "Turns Master Closet Downlight on when Master Closet Switch up button is pressed"
-  #   trigger:
-  #     - platform: device
-  #       type: turned_off
-  #       device_id: 4d36702c12c013b50f5519e7583c4024
-  #       entity_id: 2af3f039ab8dd7383c92eb0315d3f1b0
-  #       domain: light
-  #   action:
-  #     - service: light.turn_on
-  #       data: {}
-  #       target:
-  #         area_id: master_closet
-  #   mode: single
-
-  # - id: '14cf4b1c-d8cd-44e4-8bf9-ac94203c6a16'
-  #   alias: "Master Closet Inovelli Smart 2-1 Switch Turns Light Off"
-  #   description: "Turns Master Closet Downlight off when Master Closet Switch down button is pressed"
-  #   trigger:
-  #     - platform: device
-  #       type: turned_off
-  #       device_id: 4d36702c12c013b50f5519e7583c4024
-  #       entity_id: 2af3f039ab8dd7383c92eb0315d3f1b0
-  #       domain: light
-  #   action:
-  #     - service: light.turn_off
-  #       data: {}
-  #       target:
-  #         area_id: master_closet
-  #   mode: single
+  
+  - id: 'a7c07869-0aaa-4264-b10f-12f098302c00'
+    alias: "Master Closet Switch turns the Light on or off"
+    description: ""
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - light.master_closet_switch
+        to: "on"
+        id: master_closet_switch_on
+      - platform: state
+        entity_id:
+          - light.master_closet_switch
+        to: "off"
+        id: master_closet_switch_off
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_switch_on
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  kelvin: 2700
+                  brightness_pct: 100
+                  transition: 2
+                target:
+                  entity_id: light.master_closet_downlight
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_switch_off
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id: light.master_closet_downlight
