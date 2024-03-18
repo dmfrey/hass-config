@@ -1,0 +1,110 @@
+automation:
+  - id: 'b125bfff-740b-40d8-8c81-4e22254f5841'
+    alias: 'Back Yard Motion Sensor'
+    description: "Back Yard Security Lights Automations"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:45"
+        id: just_before_sunset
+      - platform: state
+        entity_id:
+          - binary_sensor.back_yard_sensor_occupancy
+        to: "on"
+        id: back_yard_sensor_motion_detected
+      - platform: state
+        entity_id:
+          - binary_sensor.back_yard_sensor_occupancy
+        to: "off"
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+        id: back_yard_sensor_area_cleared
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  brightness_pct: 80
+                target:
+                  entity_id:
+                    - light.back_yard_security_light_1
+                    - light.back_yard_security_light_2
+          - conditions:
+              - condition: trigger
+                id:
+                  - back_yard_sensor_motion_detected
+              - condition: time
+                after: "23:00:00"
+                weekday:
+                  - sun
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+                  - sat
+                before: "07:00:00"
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  brightness_pct: 50
+                target:
+                  entity_id:
+                    - light.back_yard_security_light_1
+                    - light.back_yard_security_light_2
+          - conditions:
+              - condition: trigger
+                id:
+                  - back_yard_sensor_area_cleared
+              - condition: time
+                after: "23:00:00"
+                before: "07:00:00"
+                weekday:
+                  - sun
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+                  - sat
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.back_yard_security_light_1
+                    - light.back_yard_security_light_2
+
+    # use_blueprint:
+    #   path: Blackshome/sensor-light.yaml
+    #   input:
+    #     motion_trigger:
+    #       - binary_sensor.front_yard_sensor_occupancy
+    #     light_switch:
+    #       entity_id:
+    #         - light.front_yard_security_light_1
+    #         - light.front_yard_security_light_2
+    #     include_light_control:
+    #       - use_brightness
+    #       - use_colour_temperature
+    #       - use_transition
+    #     light_colour_temperature: 2700
+    #     include_time: time_enabled
+    #     after_time: "18:00:00"
+    #     before_time: "07:00:00"
+    #     light_transition_on: 2
+    #     light_transition_off: 4
+
