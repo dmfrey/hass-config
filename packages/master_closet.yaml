@@ -209,6 +209,9 @@ automation:
               - condition: trigger
                 id:
                   - master_closet_switch_local_dimming
+              - condition: template
+                value_template: >-
+                  {{ states.light.master_closet_switch.last_updated > states.light.master_closet_downlight.last_changed }}
             sequence:
               - service: light.turn_on
                 entity_id: light.master_closet_downlight
