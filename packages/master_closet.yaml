@@ -1,7 +1,7 @@
 automation:
   - id: '8e954b7f-6483-495e-918a-651e12b1a501'
-    alias: "Master Closet Motion Sensor Actions"
-    description: "Turn on Master Closet Downlight when Master Closet Motion Sensor is triggered"
+    alias: "Motion Sensor | Automation | Master Closet"
+    description: "Turn Master Closet Downlight on or off when Master Closet Motion Sensor is detected or cleared"
     mode: single
     trigger:
       - platform: state
@@ -47,44 +47,209 @@ automation:
                   entity_id: light.master_closet_downlight
   
   - id: 'a7c07869-0aaa-4264-b10f-12f098302c00'
-    alias: "Master Closet Switch turns the Light on or off"
-    description: ""
+    alias: "Switch | Automation | Master Closet"
+    description: "Master Closet Switch turns Master Closet Downlight on or off, dimming capable"
     mode: single
     trigger:
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: config_single
+        id: master_closet_switch_config_single
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: config_double
+        id: master_closet_switch_config_double
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: config_triple
+        id: master_closet_switch_config_triple
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: up_single
+        id: master_closet_switch_up_single
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: down_single
+        id: master_closet_switch_down_single
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: up_double
+        id: master_closet_switch_up_double
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: down_double
+        id: master_closet_switch_down_double
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: up_held
+        id: master_closet_switch_up_held
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: down_held
+        id: master_closet_switch_down_held
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: up_release
+        id: master_closet_switch_up_release
+      - platform: device
+        domain: mqtt
+        device_id: 4d36702c12c013b50f5519e7583c4024
+        type: action
+        subtype: down_release
+        id: master_closet_switch_down_release
       - platform: state
         entity_id:
-          - light.master_closet_switch
+          - light.master_closet_downlight
         to: "on"
-        id: master_closet_switch_on
+        id: master_closet_downlight_turns_on
+      - platform: state
+        entity_id:
+          - light.master_closet_downlight
+        to: "off"
+        id: master_closet_downlight_turns_off
       - platform: state
         entity_id:
           - light.master_closet_switch
-        to: "off"
-        id: master_closet_switch_off
+        id: master_closet_switch_local_dimming
+        enabled: true
     condition: []
     action:
       - choose:
           - conditions:
               - condition: trigger
                 id:
-                  - master_closet_switch_on
+                  - master_closet_switch_up_single
             sequence:
               - service: light.turn_on
                 metadata: {}
                 data:
+                  transition: 2
                   kelvin: 2700
                   brightness_pct: 100
-                  transition: 2
                 target:
-                  entity_id: light.master_closet_downlight
+                  area_id: master_closet
           - conditions:
               - condition: trigger
                 id:
-                  - master_closet_switch_off
+                  - master_closet_switch_down_single
             sequence:
               - service: light.turn_off
                 metadata: {}
                 data:
                   transition: 4
                 target:
-                  entity_id: light.master_closet_downlight
+                  area_id: master_closet
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_switch_up_double
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  brightness_pct: 100
+                target:
+                  area_id: master_closet
+                alias: Light 'Turn on' on Master Closet to Bright
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_switch_down_double
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  brightness_pct: 30
+                target:
+                  area_id: master_closet
+                alias: Light 'Turn on' on Master Closet to Nightlight
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_downlight_turns_on
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                target:
+                  device_id: 4d36702c12c013b50f5519e7583c4024
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_downlight_turns_off
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  device_id: 4d36702c12c013b50f5519e7583c4024
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_switch_local_dimming
+            sequence:
+              - service: light.turn_on
+                entity_id: light.master_closet_downlight
+                data_template: >-
+                  brightness > {{ state_attr('light.master_closet_switch', 'brightness') | default(0, true) }}
+
+    # trigger:
+    #   - platform: state
+    #     entity_id:
+    #       - light.master_closet_switch
+    #     to: "on"
+    #     id: master_closet_switch_on
+    #   - platform: state
+    #     entity_id:
+    #       - light.master_closet_switch
+    #     to: "off"
+    #     id: master_closet_switch_off
+    # condition: []
+    # action:
+    #   - choose:
+    #       - conditions:
+    #           - condition: trigger
+    #             id:
+    #               - master_closet_switch_on
+    #         sequence:
+    #           - service: light.turn_on
+    #             metadata: {}
+    #             data:
+    #               kelvin: 2700
+    #               brightness_pct: 100
+    #               transition: 2
+    #             target:
+    #               entity_id: light.master_closet_downlight
+    #       - conditions:
+    #           - condition: trigger
+    #             id:
+    #               - master_closet_switch_off
+    #         sequence:
+    #           - service: light.turn_off
+    #             metadata: {}
+    #             data:
+    #               transition: 4
+    #             target:
+    #               entity_id: light.master_closet_downlight
