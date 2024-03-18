@@ -41,7 +41,7 @@ automation:
             sequence:
               - service: light.turn_off
                 metadata: {}
-                # data:
+                data: {}
                 #   transition: 4
                 target:
                   entity_id: light.master_closet_downlight
@@ -155,7 +155,7 @@ automation:
             sequence:
               - service: light.turn_off
                 metadata: {}
-                # data:
+                data: {}
                 #   transition: 4
                 target:
                   area_id: master_closet
@@ -190,7 +190,7 @@ automation:
             sequence:
               - service: light.turn_on
                 metadata: {}
-                # data:
+                data: {}
                 #   transition: 2
                 target:
                   device_id: 4d36702c12c013b50f5519e7583c4024
@@ -201,7 +201,7 @@ automation:
             sequence:
               - service: light.turn_off
                 metadata: {}
-                # data: 
+                data: {} 
                 #   transition: 4
                 target:
                   device_id: 4d36702c12c013b50f5519e7583c4024
