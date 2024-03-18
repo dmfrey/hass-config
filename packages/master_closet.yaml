@@ -143,7 +143,6 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
-                  # transition: 2
                   kelvin: 2700
                   brightness_pct: 100
                 target:
@@ -154,11 +153,9 @@ automation:
                   - master_closet_switch_down_single
             sequence:
               - service: light.turn_off
-                metadata: {}
-                data: {}
-                #   transition: 4
                 target:
-                  area_id: master_closet
+                  entity_id: light.master_closet_downlight
+                data: {}
           - conditions:
               - condition: trigger
                 id:
@@ -189,22 +186,18 @@ automation:
                   - master_closet_downlight_turns_on
             sequence:
               - service: light.turn_on
-                metadata: {}
-                data: {}
-                #   transition: 2
                 target:
                   device_id: 4d36702c12c013b50f5519e7583c4024
+                data: {}
           - conditions:
               - condition: trigger
                 id:
                   - master_closet_downlight_turns_off
             sequence:
               - service: light.turn_off
-                metadata: {}
-                data: {} 
-                #   transition: 4
                 target:
                   device_id: 4d36702c12c013b50f5519e7583c4024
+                data: {}
           - conditions:
               - condition: trigger
                 id:
