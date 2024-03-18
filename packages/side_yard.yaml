@@ -1,6 +1,6 @@
 automation:
   - id: '94a804a6-9105-42db-84bc-745b571aeba3'
-    alias: 'Side Yard Motion Sensor'
+    alias: 'Motion Sensor | Security Lights | Side Yard'
     description: "Side Yard Security Lights Automations"
     mode: single
     trigger:

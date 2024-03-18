@@ -1,6 +1,6 @@
 automation:
   - id: '3d9f5be1-782c-4194-a13a-d25ab0477e11'
-    alias: 'Garden Motion Sensor'
+    alias: 'Motion Sensor | Security Lights | Garden'
     description: "Garden Security Lights automations"
     mode: single
     trigger:

@@ -1,6 +1,6 @@
 automation:
   - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
-    alias: 'Front Yard Motion Sensor'
+    alias: 'Motion Sensor | Security Lights | Front Yard'
     description: "Front Yard Security Lights Automations"
     mode: single
     trigger:
