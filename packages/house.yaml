@@ -70,7 +70,7 @@ automation:
           area_id:
             - back_yard
             - front_yard
-            - garden
+            # - garden
             - side_yard
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
