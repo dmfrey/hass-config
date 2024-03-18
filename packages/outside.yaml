@@ -15,29 +15,6 @@ automation:
         target:
           entity_id: group.security_lights
 
-  - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
-    alias: 'Front Yard Security Sensor Lights'
-    description: ""
-    use_blueprint:
-      path: Blackshome/sensor-light.yaml
-      input:
-        motion_trigger:
-          - binary_sensor.front_yard_sensor_occupancy
-        light_switch:
-          entity_id:
-            - light.front_yard_security_light_1
-            - light.front_yard_security_light_2
-        include_light_control:
-          - use_brightness
-          - use_colour_temperature
-          - use_transition
-        light_colour_temperature: 2700
-        include_time: time_enabled
-        after_time: "18:00:00"
-        before_time: "07:00:00"
-        light_transition_on: 2
-        light_transition_off: 4
-
   - id: '94a804a6-9105-42db-84bc-745b571aeba3'
     alias: 'Side Yard Security Sensor Lights'
     description: ""

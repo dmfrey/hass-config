@@ -69,7 +69,7 @@ automation:
         target:
           area_id:
             - back_yard
-            - front_yard
+            # - front_yard
             # - garden
             - side_yard
 

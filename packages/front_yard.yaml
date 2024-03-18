@@ -1,7 +1,7 @@
 automation:
-  - id: '3d9f5be1-782c-4194-a13a-d25ab0477e11'
-    alias: 'Garden Motion Sensor'
-    description: "Garden Security Lights automations"
+  - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
+    alias: 'Front Yard Security Sensor'
+    description: "Front Yard Security Lights Automations"
     mode: single
     trigger:
       - platform: sun
@@ -10,18 +10,18 @@ automation:
         id: just_before_sunset
       - platform: state
         entity_id:
-          - binary_sensor.garden_sensor_occupancy
+          - binary_sensor.front_yard_sensor_occupancy
         to: "on"
-        id: garden_sensor_motion_detected
+        id: front_yard_sensor_motion_detected
       - platform: state
         entity_id:
-          - binary_sensor.garden_sensor_occupancy
+          - binary_sensor.front_yard_sensor_occupancy
         to: "off"
         for:
           hours: 0
           minutes: 10
           seconds: 0
-        id: garden_sensor_area_cleared
+        id: front_yard_sensor_area_cleared
     condition: []
     action:
       - choose:
@@ -36,12 +36,12 @@ automation:
                   brightness_pct: 80
                 target:
                   entity_id:
-                    - light.garden_security_light_1
-                    - light.garden_security_light_2
+                    - light.front_yard_security_light_1
+                    - light.front_yard_security_light_2
           - conditions:
               - condition: trigger
                 id:
-                  - garden_sensor_motion_detected
+                  - front_yard_sensor_motion_detected
               - condition: time
                 after: "23:00:00"
                 weekday:
@@ -61,12 +61,12 @@ automation:
                   brightness_pct: 50
                 target:
                   entity_id:
-                    - light.garden_security_light_1
-                    - light.garden_security_light_2
+                    - light.front_yard_security_light_1
+                    - light.front_yard_security_light_2
           - conditions:
               - condition: trigger
                 id:
-                  - garden_sensor_area_cleared
+                  - front_yard_sensor_area_cleared
               - condition: time
                 after: "23:00:00"
                 before: "07:00:00"
@@ -85,24 +85,26 @@ automation:
                   transition: 4
                 target:
                   entity_id:
-                    - light.garden_security_light_1
-                    - light.garden_security_light_2
-    
+                    - light.front_yard_security_light_1
+                    - light.front_yard_security_light_2
+
     # use_blueprint:
     #   path: Blackshome/sensor-light.yaml
     #   input:
     #     motion_trigger:
-    #       - binary_sensor.garden_sensor_occupancy
+    #       - binary_sensor.front_yard_sensor_occupancy
     #     light_switch:
-    #       area_id: garden
+    #       entity_id:
+    #         - light.front_yard_security_light_1
+    #         - light.front_yard_security_light_2
     #     include_light_control:
     #       - use_brightness
     #       - use_colour_temperature
     #       - use_transition
-    #     light_brightness: 80
     #     light_colour_temperature: 2700
+    #     include_time: time_enabled
+    #     after_time: "18:00:00"
+    #     before_time: "07:00:00"
     #     light_transition_on: 2
     #     light_transition_off: 4
-    #     include_sun: sun_disabled
-    #     include_ambient: ambient_enabled
-    #     ambient_light_sensor: sensor.garden_sensor_illuminance_lux
+
