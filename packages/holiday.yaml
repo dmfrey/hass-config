@@ -1,7 +1,7 @@
 automation:
   - id: '938f642d-3e9f-44fa-9e2f-ccecc958e094'
-    alias: "Turn on the Holiday Lights"
-    description: ""
+    alias: "Routine | Holiday | Inside Holiday Lights"
+    description: "Turn on the Holiday Lights"
     trigger:
       - platform: time
         at: "06:00:00"
@@ -14,8 +14,8 @@ automation:
     mode: single
 
   - id: 'd0f1d9d3-f4d9-4845-ae37-824244d6d9af'
-    alias: "Turn on the Outside Holiday Lights before Sunset"
-    description: ""
+    alias: "Routine | Holiday | Outside Holiday Lights"
+    description: "Turn on the Outside Holiday Lights before Sunset"
     trigger:
       - platform: sun
         event: sunset
