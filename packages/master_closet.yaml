@@ -50,6 +50,7 @@ automation:
     alias: "Switch | Automation | Master Closet"
     description: "Master Closet Switch turns Master Closet Downlight on or off, dimming capable"
     mode: queued
+    max: 10
     trigger:
       - platform: device
         domain: mqtt
@@ -208,7 +209,7 @@ automation:
             sequence:
               - service: light.turn_on
                 entity_id: light.master_closet_downlight
-                data_template: >-
+                data: >-
                   brightness > {{ state_attr('light.master_closet_switch', 'brightness') | default(0, true) }}
 
     # trigger:
