@@ -32,88 +32,6 @@ automation:
           area_id: office
     mode: single
 
-  # - id: '9a0d7561-ae4c-409c-aa82-aa615f1efe08'
-  #   alias: "Office Switch - On"
-  #   description: ""
-  #   trigger:
-  #     - platform: device
-  #       domain: mqtt
-  #       device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
-  #       type: action
-  #       subtype: on_press
-  #       discovery_id: 0x0017880104e5ab52 action_on_press
-  #   condition: []
-  #   action:
-  #     - service: light.turn_on
-  #       metadata: {}
-  #       data:
-  #         transition: 10
-  #         color_temp: 400
-  #         brightness_pct: 100
-  #       target:
-  #         area_id: office
-  #   mode: single
-
-  # - id: 'ce4b4261-eec9-4224-b8be-5bb24281af49'
-  #   alias: "Office Switch - Off"
-  #   description: ""
-  #   trigger:
-  #     - platform: device
-  #       domain: mqtt
-  #       device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
-  #       type: action
-  #       subtype: off_press
-  #       discovery_id: 0x0017880104e5ab52 action_off_press
-  #   condition: []
-  #   action:
-  #     - service: light.turn_off
-  #       metadata: {}
-  #       data:
-  #         transition: 5
-  #       target:
-  #         area_id: office
-  #   mode: single
-
-  # - id: '4989a5d9-3fb3-4b62-a5d0-63077c957d25'
-  #   alias: "Office Switch - Dimmer - Increase Brightness"
-  #   description: ""
-  #   trigger:
-  #     - platform: device
-  #       domain: mqtt
-  #       device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
-  #       type: action
-  #       subtype: up_press
-  #       discovery_id: 0x0017880104e5ab52 action_up_press
-  #   condition: []
-  #   action:
-  #     - service: light.turn_on
-  #       metadata: {}
-  #       data:
-  #         brightness_step_pct: 10
-  #       target:
-  #         area_id: office
-  #   mode: single
-
-  # - id: '1c98a193-d77b-42c7-bb55-606ead3c2e33'
-  #   alias: "Office Switch - Dimmer - Decrease Brightness"
-  #   description: ""
-  #   trigger:
-  #     - platform: device
-  #       domain: mqtt
-  #       device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
-  #       type: action
-  #       subtype: down_press
-  #       discovery_id: 0x0017880104e5ab52 action_down_press
-  #   condition: []
-  #   action:
-  #     - service: light.turn_on
-  #       metadata: {}
-  #       data:
-  #         brightness_step_pct: -10
-  #       target:
-  #         area_id: office
-  #   mode: single
-
   - id: 'c9759972-32b1-4b2d-bc11-d695273c1aff'
     alias: "Switch | Automation | Office"
     description: "Office Switch turns Office Lights on or off, dimming capable"
@@ -156,7 +74,7 @@ automation:
                 target:
                   area_id: office
                 data:
-                  transition: 2
+                  transition: 1
                   kelvin: 2700
                   brightness_pct: 100
           - conditions:
@@ -168,7 +86,7 @@ automation:
                 target:
                   area_id: office
                 data:
-                  transition: 2
+                  transition: 1
           - conditions:
               - condition: trigger
                 id:
@@ -176,9 +94,8 @@ automation:
             sequence:
               - service: light.turn_on
                 target:
-                  area_id: office
+                  entity_id: light.office_light_1
                 data:
-                  transition: 1
                   brightness_step_pct: 10
                   kelvin: 2700
           - conditions:
@@ -188,8 +105,7 @@ automation:
             sequence:
               - service: light.turn_on
                 target:
-                  area_id: office
+                  entity_id: light.office_light_1
                 data:
                   brightness_step_pct: -10
                   kelvin: 2700
-                  transition: 1
