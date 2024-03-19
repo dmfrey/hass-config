@@ -1,0 +1,232 @@
+  - id: ''
+    alias: "Switch | Automation | "
+    description: " turns  on or off, dimming capable"
+    mode: queued
+    max: 10
+    trigger:
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: config_single
+        id: _switch_config_single
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: config_double
+        id: _switch_config_double
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: config_triple
+        id: _switch_config_triple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: config_quadruple
+        id: _switch_config_quadruple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: config_quintuple
+        id: _switch_config_quintuple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: config_release
+        id: _switch_config_release
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: config_held
+        id: _switch_config_held
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_single
+        id: _switch_up_single
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_single
+        id: _switch_down_single
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_double
+        id: _switch_up_double
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_double
+        id: _switch_down_double
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_triple
+        id: _switch_up_triple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_triple
+        id: _switch_down_triple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_quadruple
+        id: _switch_up_quadruple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_quadruple
+        id: _switch_down_quadruple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_quintuple
+        id: _switch_up_quintuple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_quintuple
+        id: _switch_down_quintuple
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_held
+        id: _switch_up_held
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_held
+        id: _switch_down_held
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_release
+        id: _switch_up_release
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_release
+        id: _switch_down_release
+      - platform: state
+        entity_id:
+          - light._downlight
+        to: "on"
+        id: _downlight_turns_on
+      - platform: state
+        entity_id:
+          - light._downlight
+        to: "off"
+        id: _downlight_turns_off
+      - platform: state
+        entity_id:
+          - light._switch
+        id: _switch_local_dimming
+        enabled: true
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - _switch_up_single
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  kelvin: 2700
+                  brightness_pct: 100
+                target:
+                  area_id: 
+          - conditions:
+              - condition: trigger
+                id:
+                  - _switch_down_single
+            sequence:
+              - service: light.turn_off
+                target:
+                  entity_id: light._downlight
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - _switch_up_double
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  kelvin: 2700
+                  brightness_pct: 100
+                target:
+                  area_id: 
+                alias: Light 'Turn on' on  to Bright
+          - conditions:
+              - condition: trigger
+                id:
+                  - _switch_down_double
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  kelvin: 2700
+                  brightness_pct: 30
+                target:
+                  area_id: 
+                alias: Light 'Turn on' on  to Nightlight
+          - conditions:
+              - condition: trigger
+                id:
+                  - _downlight_turns_on
+            sequence:
+              - service: light.turn_on
+                target:
+                  device_id: 
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - _downlight_turns_off
+            sequence:
+              - service: light.turn_off
+                target:
+                  device_id: 
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - _switch_local_dimming
+              - condition: template
+                value_template: >-
+                  {{ states.light._switch.last_updated > states.light._downlight.last_changed }}
+            sequence:
+              - service: light.turn_on
+                entity_id: light._downlight
+                data:
+                  transition: 2
+                  kelvin: 2700
+                  brightness: "{{ state_attr('light._switch', 'brightness') | default(0, true) }}"
