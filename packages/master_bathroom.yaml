@@ -1,6 +1,6 @@
 automation:
   - id: '23edfdb2-f2f6-4df2-9879-7c83856d1820'
-    alias: "Master Bathroom Motion Sensor Turns On Ambient Lights"
+    alias: "Motion Sensor | Ambient | Master Bathroom"
     description: >-
       Master Bathroom Motion Sensor turns on ambient lights, schedules them to turn
       off, and dims them at night
@@ -31,7 +31,7 @@ automation:
           - time_enabled
         night_lights_after_time: "23:00:00"
         night_lights_before_time: "07:00:00"
-        night_light_brightness: 30
+        night_light_brightness: 20
         night_light_colour_temperature: 2700
         night_light_transition_on: 2
         night_light_transition_off: 4
