@@ -1,6 +1,6 @@
 automation:
   - id: '8e854a44-6042-481b-bf0c-279e33e26e74'
-    alias: Dan's Office Cube
+    alias: Cube | Office | Dan's Office Cube
     description: ""
     trigger_variables:
       action_flip90: "flip90"
