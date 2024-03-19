@@ -1,0 +1,77 @@
+  - id: ''
+    alias: "Switch | Automation | "
+    description: " Switch turns  Lights on or off, dimming available"
+    mode: queued
+    max: 10
+    trigger:
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: on_press
+        id: _button_on_press
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: up_press
+        id: _button_up_press
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: down_press_release
+        id: _button_down_press
+      - platform: device
+        domain: mqtt
+        device_id: 
+        type: action
+        subtype: off_press
+        id: _button_off_press
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - _button_on_press
+            sequence:
+              - service: light.turn_on
+                target:
+                  area_id: 
+                data:
+                  transition: 1
+                  kelvin: 2700
+                  brightness_pct: 100
+          - conditions:
+              - condition: trigger
+                id:
+                  - _button_off_press
+            sequence:
+              - service: light.turn_off
+                target:
+                  area_id: 
+                data:
+                  transition: 1
+          - conditions:
+              - condition: trigger
+                id:
+                  - _button_up_press
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light._light_1
+                data:
+                  brightness_step_pct: 10
+                  kelvin: 2700
+          - conditions:
+              - condition: trigger
+                id:
+                  - _button_down_press
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light._light_1
+                data:
+                  brightness_step_pct: -10
+                  kelvin: 2700

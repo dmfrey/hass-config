@@ -43,32 +43,32 @@ automation:
         device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
         type: action
         subtype: on_press
-        id: button_on_press
+        id: office_button_on_press
       - platform: device
         domain: mqtt
         device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
         type: action
         subtype: up_press
-        id: button_up_press
+        id: office_button_up_press
       - platform: device
         domain: mqtt
         device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
         type: action
         subtype: down_press_release
-        id: button_down_press
+        id: office_button_down_press
       - platform: device
         domain: mqtt
         device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
         type: action
         subtype: off_press
-        id: button_off_press
+        id: office_button_off_press
     condition: []
     action:
       - choose:
           - conditions:
               - condition: trigger
                 id:
-                  - button_on_press
+                  - office_button_on_press
             sequence:
               - service: light.turn_on
                 target:
@@ -80,7 +80,7 @@ automation:
           - conditions:
               - condition: trigger
                 id:
-                  - button_off_press
+                  - office_button_off_press
             sequence:
               - service: light.turn_off
                 target:
@@ -90,7 +90,7 @@ automation:
           - conditions:
               - condition: trigger
                 id:
-                  - button_up_press
+                  - office_button_up_press
             sequence:
               - service: light.turn_on
                 target:
@@ -101,7 +101,7 @@ automation:
           - conditions:
               - condition: trigger
                 id:
-                  - button_down_press
+                  - office_button_down_press
             sequence:
               - service: light.turn_on
                 target:
