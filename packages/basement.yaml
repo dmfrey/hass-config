@@ -1,7 +1,8 @@
 automation:
   - id: 'd3cfe7e4-6a8d-48e4-bbcd-1891f303339f'
-    alias: "It's time to workout"
-    description: ""
+    alias: "Routine | Basement | Workout Start"
+    description: "It's time to workout"
+    mode: single
     trigger:
       - platform: time
         at: "05:40:00"
@@ -12,11 +13,10 @@ automation:
           area_id: basement
         data: 
           brightness_pct: 100
-    mode: single
 
   - id: '92bb115c-a192-40bc-9e0d-0443787cab0f'
-    alias: "Workout is done"
-    description: ""
+    alias: "Routine | Basement | Workout Complete"
+    description: "Workout is done for the day"
     mode: single
     trigger:
       - platform: time
@@ -29,14 +29,43 @@ automation:
         data: {}
 
   - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
-    alias: "Basement Light Switch Automation"
+    alias: "Switch | Automation | Basement"
     description: "Turn the Basement Lights On or Off"
+    mode: single
     trigger:
-      - platform: state
-        entity_id: switch.basement_light_switch
+      - platform: device
+        domain: mqtt
+        device_id: 03f68ea963496bb54b3560074e165a5e
+        type: action
+        subtype: "on"
+        id: basement_button_on_press
+      - platform: device
+        domain: mqtt
+        device_id: 03f68ea963496bb54b3560074e165a5e
+        type: action
+        subtype: "off"
+        id: basement_button_off_press
     condition: []
     action:
-      - service: "light.turn_{{ trigger.to_state.state }}"
-        target:
-          area_id: basement
-        data: {}
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_button_on_press
+            sequence:
+              - service: light.turn_on
+                target:
+                  area_id: basement
+                data:
+                  transition: 1
+                  brightness_pct: 100
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_button_off_press
+            sequence:
+              - service: light.turn_off
+                target:
+                  area_id: basement
+                data:
+                  transition: 1
