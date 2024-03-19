@@ -1,0 +1,63 @@
+automation:
+  - id: '9b6de636-370c-4e4f-9059-23a03de6b41c'
+    alias: 'Notification | Moisture Sensor | Water Leak Detected'
+    description: 'Send a notifcation to the Family if water is detected in any area'
+    mode: queued
+    max: 10
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.basement_water_leak_sensor_water_leak
+        to: "on"
+        id: basement_water_leak_sensor_wet
+      - platform: state
+        entity_id:
+          - binary_sensor.kitchen_sink_water_leak_sensor_water_leak
+        to: "on"
+        id: kitchen_sink_water_leak_sensor_wet
+      - platform: state
+        entity_id:
+          - binary_sensor.bathroom_sink_water_leak_sensor_water_leak
+        to: "on"
+        id: bathroom_sink_water_leak_sensor_wet
+      - platform: state
+        entity_id:
+          - binary_sensor.bathroom_toilet_water_leak_sensor_water_leak
+        to: "on"
+        id: bathroom_toilet_water_leak_sensor_wet
+      - platform: state
+        entity_id:
+          - binary_sensor.master_bathroom_sink_water_leak_sensor_water_leak
+        to: "on"
+        id: master_bathroom_sink_water_leak_sensor_wet
+      - platform: state
+        entity_id:
+          - binary_sensor.master_bathroom_toilet_water_leak_sensor_water_leak
+        to: "on"
+        id: master_bathroom_toilet_water_leak_sensor_wet
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_water_leak_sensor_wet
+                  - kitchen_sink_water_leak_sensor_wet
+                  - bathroom_sink_water_leak_sensor_wet
+                  - bathroom_toilet_water_leak_sensor_wet
+                  - master_bathroom_sink_water_leak_sensor_wet
+                  - master_bathroom_toilet_water_leak_sensor_wet
+            sequence:
+              - service: notify.family_devices
+                data:
+                  message: clear_notification
+                  data:
+                    tag: water-leak-detected
+              - service: notify.family_devices
+                metadata: {}
+                data:
+                  title: Water Leak Detected!
+                  message: >-
+                    {{ trigger.to_state.attributes.friendly_name }} has detected a
+                    water leak!
+                  tag: water-leak-detected
