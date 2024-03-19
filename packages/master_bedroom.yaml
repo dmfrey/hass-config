@@ -1,39 +1,30 @@
 automation:
 
   - id: 'b1d2683a-f4a9-4b73-a915-1550141d2522'
-    alias: 'Turn Off Master Bedroom'
-    description: 'Master Bedroom turns off when Dan and Stephanie are out of bed for at least 5 minutes'
+    alias: 'Routine | Master Bedroom | Turn Off Master Bedroom'
+    description: "Master Bedroom turns off when it's morning and Dan and Stephanie are out of bed for at least 2 minutes"
     mode: single
     trigger:
-      - platform: time
-        at: "06:30:00"
+      - platform: numeric_state
+        entity_id:
+          - sun.sun
+        attribute: elevation
+        below: 10
     condition:
-      - condition: time
-        after: "06:30:00"
-        weekday:
-          - sun
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-          - sat
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed
-            state: "off"
-            for:
-              hours: 0
-              minutes: 5
-              seconds: 0
-          - condition: state
-            entity_id: binary_sensor.sleepnumber_our_bed_daniel_is_in_bed
-            state: "off"
-            for:
-              hours: 0
-              minutes: 5
-              seconds: 0
+      - condition: state
+        entity_id: binary_sensor.sleepnumber_our_bed_daniel_is_in_bed
+        state: "off"
+        for:
+          hours: 0
+          minutes: 2
+          seconds: 0
+      - condition: state
+        entity_id: binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed
+        state: "off"
+        for:
+          hours: 0
+          minutes: 2
+          seconds: 0
     action:
       - service: fan.turn_off
         metadata: {}
