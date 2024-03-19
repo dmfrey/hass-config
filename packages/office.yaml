@@ -33,7 +33,7 @@ automation:
           area_id: office
 
   - id: 'c9759972-32b1-4b2d-bc11-d695273c1aff'
-    alias: "Switch | Automation | Office"
+    alias: "Switch | Lights | Office"
     description: "Office Switch turns Office Lights on or off, dimming capable"
     mode: queued
     max: 10

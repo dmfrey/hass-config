@@ -29,7 +29,7 @@ automation:
         data: {}
 
   - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
-    alias: "Switch | Automation | Basement"
+    alias: "Switch | Lights | Basement"
     description: "Turn the Basement Lights On or Off"
     mode: single
     trigger:
