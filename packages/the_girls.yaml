@@ -1,28 +1,9 @@
 automation:
-  - id: 'b7d8f59b-f3b2-4ddb-973e-76c474bff574'
-    alias: "The girls are away"
-    description: "Turn off the bathroom lights when the girls are away"
-    mode: single
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: group.girls
-      from: "home"
-      to: "not_home"
-      for:
-        minutes: 5
-    condition: []
-    action:
-      - service: light.turn_off
-        metadata: {}
-        data: {}
-        target:
-          area_id: bathroom
-
   - id: '673495f1-92b3-41f8-a363-b55b95034589'
-    alias: 'The Girls have left or arrived at a zone'
-    description: ''
-    mode: single
+    alias: 'Notification | People | The Girls are on the move'
+    description: 'The Girls have left or arrived at a zone'
+    mode: queued
+    max: 10
     trigger:
       - platform: state
         entity_id:
