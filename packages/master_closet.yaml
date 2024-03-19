@@ -49,7 +49,7 @@ automation:
   - id: 'a7c07869-0aaa-4264-b10f-12f098302c00'
     alias: "Switch | Automation | Master Closet"
     description: "Master Closet Switch turns Master Closet Downlight on or off, dimming capable"
-    mode: single
+    mode: queued
     trigger:
       - platform: device
         domain: mqtt
