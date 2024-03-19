@@ -210,7 +210,7 @@ automation:
               - service: light.turn_on
                 entity_id: light.master_closet_downlight
                 data: >-
-                  brightness: '{{ state_attr('light.master_closet_switch', 'brightness') | default(0, true) }}'
+                  brightness: "{{ state_attr('light.master_closet_switch', 'brightness') | default(0, true) }}""
 
     # trigger:
     #   - platform: state
