@@ -61,17 +61,6 @@ automation:
             - master_bedroom
             - molly_s_room
             - patio
-      - service: light.turn_on
-        data:
-          transition: 10
-          kelvin: 2700
-          brightness_pct: 70
-        target:
-          area_id:
-            - back_yard
-            # - front_yard
-            # - garden
-            - side_yard
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
     alias: "It's time to Relax"

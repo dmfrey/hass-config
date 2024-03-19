@@ -33,7 +33,7 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
-                  brightness_pct: 80
+                  brightness_pct: 70
                 target:
                   entity_id:
                     - light.garden_security_light_1
@@ -76,22 +76,3 @@ automation:
                   entity_id:
                     - light.garden_security_light_1
                     - light.garden_security_light_2
-    
-    # use_blueprint:
-    #   path: Blackshome/sensor-light.yaml
-    #   input:
-    #     motion_trigger:
-    #       - binary_sensor.garden_sensor_occupancy
-    #     light_switch:
-    #       area_id: garden
-    #     include_light_control:
-    #       - use_brightness
-    #       - use_colour_temperature
-    #       - use_transition
-    #     light_brightness: 80
-    #     light_colour_temperature: 2700
-    #     light_transition_on: 2
-    #     light_transition_off: 4
-    #     include_sun: sun_disabled
-    #     include_ambient: ambient_enabled
-    #     ambient_light_sensor: sensor.garden_sensor_illuminance_lux
