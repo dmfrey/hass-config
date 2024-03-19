@@ -100,7 +100,7 @@ automation:
       - platform: device
         type: turned_on
         device_id: 27e9816fa86b7c98dd9c642d9353fbc3
-        # entity_id: switch.trigger
+        entity_id: switch.trigger
         domain: switch
     condition:
       - condition: sun
