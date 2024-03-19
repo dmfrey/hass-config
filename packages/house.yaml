@@ -1,7 +1,8 @@
 automation:
   - id: 'ca4989f4-23c1-48d6-8178-fbad657a07b0'
-    alias: "It's time to get ready for school"
-    description: ""
+    alias: "Routine | House | School Day"
+    description: "Turn on the lights to get ready for school"
+    mode: single
     trigger:
       - platform: time
         at: "05:45:00"
@@ -25,15 +26,14 @@ automation:
             - kitchen
       - service: light.turn_on
         data:
-          brightness_pct: 40
+          brightness_pct: 30
         target:
           area_id: bathroom
-    mode: single
 
   - id: '3f4c0fdf-d9ef-468e-a973-8e7fa82c7483'
-    alias: "Turn on the House at Sunset"
+    alias: "Routine | House | Sunset"
+    description: "Turn on the lights 45 minutes before sunset"
     mode: single
-    description: "Lights will turn on 45 minutes before sunset"
     trigger:
       - platform: sun
         event: sunset
@@ -63,8 +63,8 @@ automation:
             - patio
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
-    alias: "It's time to Relax"
-    description: "The relax scene is activated"
+    alias: "Routine | House | Relax"
+    description: "It's time to relax"
     mode: single
     trigger:
       - platform: time
@@ -93,13 +93,14 @@ automation:
           brightness_pct: 60
 
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
-    alias: "Turn off the House"
-    description: ""
+    alias: "Routine | House | Goodnight"
+    description: "Turn off the House"
+    mode: single
     trigger:
       - platform: device
         type: turned_on
         device_id: 27e9816fa86b7c98dd9c642d9353fbc3
-        entity_id: switch.trigger
+        # entity_id: switch.trigger
         domain: switch
     condition:
       - condition: sun
@@ -170,4 +171,3 @@ automation:
         target:
           entity_id: scene.turn_on_diffuser
         metadata: {}
-    mode: single
