@@ -1,6 +1,6 @@
 automation:
   - id: '69139fbb-ad53-4b80-9944-56f12d8aa90f'
-    alias: "Molly is at school"
+    alias: "Routines | Molly's Room | Molly is at school"
     description: "She arrived at school, turn off the lights"
     mode: single
     trigger:

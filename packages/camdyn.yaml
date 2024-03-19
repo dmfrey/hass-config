@@ -1,6 +1,6 @@
 automation:
   - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
-    alias: "Camdyn is at school"
+    alias: "Routines | Camdyn's Room | Camdyn is at school"
     description: "She arrived at school, turn off the lights"
     mode: single
     trigger:
