@@ -144,6 +144,7 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
+                  transition: 2
                   kelvin: 2700
                   brightness_pct: 100
                 target:
@@ -165,6 +166,8 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
+                  transition: 2
+                  kelvin: 2700
                   brightness_pct: 100
                 target:
                   area_id: master_closet
@@ -177,6 +180,8 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
+                  transition: 2
+                  kelvin: 2700
                   brightness_pct: 30
                 target:
                   area_id: master_closet
@@ -210,6 +215,8 @@ automation:
               - service: light.turn_on
                 entity_id: light.master_closet_downlight
                 data:
+                  transition: 2
+                  kelvin: 2700
                   brightness: "{{ state_attr('light.master_closet_switch', 'brightness') | default(0, true) }}"
 
     # trigger:
