@@ -1,7 +1,8 @@
 automation:
   - id: 'ea14801e-829f-4b4c-8f2f-fd653116528e'
-    alias: "Open for Business"
-    description: ""
+    alias: "Routine | Office | Open for Business"
+    description: "It's time to start the workday"
+    mode: single
     trigger:
       - platform: time
         at: "08:10:00"
@@ -10,16 +11,16 @@ automation:
       - service: light.turn_on
         metadata: {}
         data:
-          transition: 10
-          color_temp: 400
+          transition: 1
+          kelvin: 2700
           brightness_pct: 100
         target:
           area_id: office
-    mode: single
 
   - id: '49cb1865-323a-4211-8298-cafcd33ccd9b'
-    alias: "Close the Office"
-    description: ""
+    alias: "Routine | Office | Close the Office"
+    description: "The Office is closed"
+    mode: single
     trigger:
       - platform: time
         at: "18:00:00"
@@ -30,7 +31,6 @@ automation:
         data: {}
         target:
           area_id: office
-    mode: single
 
   - id: 'c9759972-32b1-4b2d-bc11-d695273c1aff'
     alias: "Switch | Automation | Office"
