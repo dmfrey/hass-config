@@ -1,27 +1,17 @@
 automation:
-  - id: 'b125bfff-740b-40d8-8c81-4e22254f5841'
-    alias: 'Motion Sensor | Security Lights | Back Yard'
-    description: "Back Yard Security Lights Automations"
+  - id: 'eb376f46-cbe0-49de-8bc3-2f1ba8e695a6'
+    alias: 'Routine | Security Lights | Back Yard'
+    description: "Back Yard Security Lights turn on or off"
     mode: single
     trigger:
       - platform: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: state
-        entity_id:
-          - binary_sensor.back_yard_sensor_occupancy
-        to: "on"
-        id: back_yard_sensor_motion_detected
-      - platform: state
-        entity_id:
-          - binary_sensor.back_yard_sensor_occupancy
-        to: "off"
-        for:
-          hours: 0
-          minutes: 10
-          seconds: 0
-        id: back_yard_sensor_area_cleared
+      - platform: sun
+        event: sunrise
+        offset: "00:20:00"
+        id: just_after_sunrise
     condition: []
     action:
       - choose:
@@ -41,18 +31,58 @@ automation:
           - conditions:
               - condition: trigger
                 id:
+                  - just_after_sunrise
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.back_yard_security_light_1
+                    - light.back_yard_security_light_2
+
+  - id: 'b125bfff-740b-40d8-8c81-4e22254f5841'
+    alias: 'Motion Sensor | Security Lights | Back Yard'
+    description: "Back Yard Security Lights Automations"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.back_yard_sensor_occupancy
+        to: "on"
+        id: back_yard_sensor_motion_detected
+      - platform: state
+        entity_id:
+          - binary_sensor.back_yard_sensor_occupancy
+        to: "off"
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+        id: back_yard_sensor_area_cleared
+    condition:
+      condition: or
+      conditions:      
+        - condition: time
+          after: "23:00:00"
+          weekday:
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+            - sat
+        - condition: sun
+          after: sunrise
+          after_offset: '00:15:00'
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
                   - back_yard_sensor_motion_detected
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -67,17 +97,6 @@ automation:
               - condition: trigger
                 id:
                   - back_yard_sensor_area_cleared
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_off
                 metadata: {}
