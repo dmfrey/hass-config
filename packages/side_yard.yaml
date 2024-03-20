@@ -1,27 +1,17 @@
 automation:
-  - id: '94a804a6-9105-42db-84bc-745b571aeba3'
-    alias: 'Motion Sensor | Security Lights | Side Yard'
-    description: "Side Yard Security Lights Automations"
+  - id: 'eb376f46-cbe0-49de-8bc3-2f1ba8e695a6'
+    alias: 'Routine | Security Lights | Side Yard'
+    description: "Side Yard Security Lights turn on or off"
     mode: single
     trigger:
       - platform: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: state
-        entity_id:
-          - binary_sensor.side_yard_sensor_occupancy
-        to: "on"
-        id: side_yard_sensor_motion_detected
-      - platform: state
-        entity_id:
-          - binary_sensor.side_yard_sensor_occupancy
-        to: "off"
-        for:
-          hours: 0
-          minutes: 10
-          seconds: 0
-        id: side_yard_sensor_area_cleared
+      - platform: sun
+        event: sunrise
+        offset: "00:15"
+        id: just_after_sunrise
     condition: []
     action:
       - choose:
@@ -38,21 +28,65 @@ automation:
                   entity_id:
                     - light.side_yard_security_light_1
                     - light.side_yard_security_light_2
+                    - light.side_yard_security_light_3
+                    - light.side_yard_security_light_4
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_after_sunrise
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.side_yard_security_light_1
+                    - light.side_yard_security_light_2
+                    - light.side_yard_security_light_3
+                    - light.side_yard_security_light_4
+
+  - id: '94a804a6-9105-42db-84bc-745b571aeba3'
+    alias: 'Motion Sensor | Security Lights | Side Yard'
+    description: "Side Yard Security Lights Automations"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.side_yard_sensor_occupancy
+        to: "on"
+        id: side_yard_sensor_motion_detected
+      - platform: state
+        entity_id:
+          - binary_sensor.side_yard_sensor_occupancy
+        to: "off"
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+        id: side_yard_sensor_area_cleared
+    condition:
+      condition: or
+      conditions:      
+        - condition: time
+          after: "23:00:00"
+          weekday:
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+            - sat
+        - condition: sun
+          after: sunrise
+          after_offset: '00:15:00'
+    action:
+      - choose:
           - conditions:
               - condition: trigger
                 id:
                   - side_yard_sensor_motion_detected
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -69,17 +103,6 @@ automation:
               - condition: trigger
                 id:
                   - side_yard_sensor_area_cleared
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_off
                 metadata: {}
