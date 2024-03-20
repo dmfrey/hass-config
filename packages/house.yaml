@@ -43,7 +43,6 @@ automation:
         metadata: {}
         target:
           area_id:
-            - camdyn_s_room
             - den
             - dining_room
             - family_room
@@ -53,7 +52,6 @@ automation:
             - kitchen
             - living_room
             - master_bedroom
-            - molly_s_room
             - patio
         data:
           transition: 5
