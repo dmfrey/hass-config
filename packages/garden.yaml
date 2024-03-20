@@ -78,7 +78,7 @@ automation:
                   - fri
                   - sat
                 before: "07:00:00"
-           sequence:
+            sequence:
               - service: light.turn_off
                 metadata: {}
                 data:
