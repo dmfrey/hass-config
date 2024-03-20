@@ -1,7 +1,7 @@
 automation:
 
   - id: 'b957b9e4-e1d2-438e-95f7-e73a286e31e4'
-    alias: "Routine | Sunset | Halway"
+    alias: "Routine | Sunset | Hallway"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
