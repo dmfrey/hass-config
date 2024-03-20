@@ -1,5 +1,5 @@
 automation:
-  - id: 'eb376f46-cbe0-49de-8bc3-2f1ba8e695a6'
+  - id: 'b2bc356e-2eb1-41c1-a7bf-6327e58dcf19'
     alias: 'Routine | Security Lights | Back Yard'
     description: "Back Yard Security Lights turn on or off"
     mode: single
