@@ -1,27 +1,17 @@
 automation:
-  - id: '3d9f5be1-782c-4194-a13a-d25ab0477e11'
-    alias: 'Motion Sensor | Security Lights | Garden'
-    description: "Garden Security Lights automations"
+  - id: 'b8fb99db-5d6f-4bbd-b320-6624e3729e62'
+    alias: 'Routine | Security Lights | Garden'
+    description: "Garden Security Lights turn on or off"
     mode: single
     trigger:
       - platform: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: state
-        entity_id:
-          - binary_sensor.garden_sensor_occupancy
-        to: "on"
-        id: garden_sensor_motion_detected
-      - platform: state
-        entity_id:
-          - binary_sensor.garden_sensor_occupancy
-        to: "off"
-        for:
-          hours: 0
-          minutes: 10
-          seconds: 0
-        id: garden_sensor_area_cleared
+      - platform: sun
+        event: sunrise
+        offset: "00:15"
+        id: just_after_sunrise
     condition: []
     action:
       - choose:
@@ -41,18 +31,59 @@ automation:
           - conditions:
               - condition: trigger
                 id:
+                  - just_after_sunrise
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.garden_security_light_1
+                    - light.garden_security_light_2
+
+  - id: '3d9f5be1-782c-4194-a13a-d25ab0477e11'
+    alias: 'Motion Sensor | Security Lights | Garden'
+    description: "Garden Security Lights automations"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.garden_sensor_occupancy
+        to: "on"
+        id: garden_sensor_motion_detected
+      - platform: state
+        entity_id:
+          - binary_sensor.garden_sensor_occupancy
+        to: "off"
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+        id: garden_sensor_area_cleared
+    condition:
+      condition: or
+      conditions:      
+        - condition: time
+          after: "23:00:00"
+          weekday:
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+            - sat
+          before: "07:00:00"
+        - condition: sun
+          after: sunrise
+          after_offset: '00:30:00'
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
                   - garden_sensor_motion_detected
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -67,17 +98,6 @@ automation:
               - condition: trigger
                 id:
                   - garden_sensor_area_cleared
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_off
                 metadata: {}
