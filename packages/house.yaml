@@ -31,7 +31,7 @@ automation:
           area_id: bathroom
 
   - id: '3f4c0fdf-d9ef-468e-a973-8e7fa82c7483'
-    alias: "Routine | House | Sunset"
+    alias: "Routine | Sunset | Inside"
     description: "Turn on the lights 45 minutes before sunset"
     mode: single
     trigger:
