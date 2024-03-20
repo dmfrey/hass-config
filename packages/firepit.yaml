@@ -1,0 +1,41 @@
+automation:
+  - id: '33054812-ad0f-4412-af49-9aae78c484bd'
+    alias: 'Routine | Security Lights | Firepit'
+    description: "Firepit Security Lights turn on or off"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:45"
+        id: just_before_sunset
+      - platform: sun
+        event: sunrise
+        offset: "00:20:00"
+        id: just_after_sunrise
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  brightness_pct: 100
+                target:
+                  entity_id:
+                    - light.barn_door_light
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_after_sunrise
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.barn_door_light

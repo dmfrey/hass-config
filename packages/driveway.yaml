@@ -1,0 +1,43 @@
+automation:
+  - id: '3896b676-61fa-4da6-a12d-5ad00b12de43'
+    alias: 'Routine | Security Lights | Driveway'
+    description: "Driveway Security Lights turn on or off"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:45"
+        id: just_before_sunset
+      - platform: sun
+        event: sunrise
+        offset: "00:20:00"
+        id: just_after_sunrise
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  brightness_pct: 100
+                target:
+                  entity_id:
+                    - light.back_door_light
+                    - light.driveway_security_light
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_after_sunrise
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.back_door_light
+                    - light.driveway_security_light
