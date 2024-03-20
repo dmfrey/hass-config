@@ -1,0 +1,20 @@
+automation:
+
+  - id: 'b957b9e4-e1d2-438e-95f7-e73a286e31e4'
+    alias: "Routine | Sunset | Halway"
+    description: "Turn on the lights 30 minutes before sunset"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:30:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 100
+        target:
+          area_id:
+            - hallway

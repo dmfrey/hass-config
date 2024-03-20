@@ -1,0 +1,20 @@
+automation:
+
+  - id: 'e5f16484-525e-4e1f-92fc-b73cf9cab8f2'
+    alias: "Routine | Sunset | Foyer"
+    description: "Turn on the lights 30 minutes before sunset"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:30:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 100
+        target:
+          area_id:
+            - foyer

@@ -1,0 +1,20 @@
+automation:
+
+  - id: '0e7b26f8-d2f6-439b-bde6-ca100d8570e7'
+    alias: "Routine | Sunset | Living Room"
+    description: "Turn on the lights 30 minutes before sunset"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:30:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 100
+        target:
+          area_id:
+            - living_room

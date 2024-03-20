@@ -1,4 +1,25 @@
 automation:
+
+  - id: 'e75e2a71-c66d-4db8-bcc2-dd856e373c1f'
+    alias: "Routine | Sunset | Kitchen"
+    description: "Turn on the lights 30 minutes before sunset"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:30:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 100
+        target:
+          area_id:
+            - dining_room
+            - kitchen
+
   - id: '03ced7e8-00d7-445a-8efb-5c16815c0bbb'
     alias: "Routine | House | Dinner Time"
     description: "Turn the lights on in the kitchen to start making dinner"

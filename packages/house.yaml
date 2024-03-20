@@ -30,38 +30,6 @@ automation:
         target:
           area_id: bathroom
 
-  - id: '3f4c0fdf-d9ef-468e-a973-8e7fa82c7483'
-    alias: "Routine | Sunset | Inside"
-    description: "Turn on the lights 45 minutes before sunset"
-    mode: single
-    trigger:
-      - platform: sun
-        event: sunset
-        offset: "-00:45"
-    condition: []
-    action:
-      - service: light.turn_on
-        data:
-          transition: 10
-          kelvin: 2700
-          brightness_pct: 100
-        target:
-          area_id:
-            - camdyn_s_room
-            - den
-            - dining_room
-            - driveway
-            - family_room
-            - family_room_ambient
-            - foyer
-            - front_porch
-            - hallway
-            - kitchen
-            - living_room
-            - master_bedroom
-            - molly_s_room
-            - patio
-
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
     alias: "Routine | House | Relax"
     description: "It's time to relax"

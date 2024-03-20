@@ -1,4 +1,24 @@
 automation:
+  
+  - id: 'dde44bf2-bf0d-4d46-8a3e-b74ea8c59564'
+    alias: "Routine | Sunset | Camdyn's Room"
+    description: "Turn on the lights 30 minutes before sunset"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:30:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 100
+        target:
+          area_id:
+            - camdyn_s_room
+
   - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
     alias: "Routine | Camdyn's Room | Camdyn is at school"
     description: "She arrived at school, turn off the lights"

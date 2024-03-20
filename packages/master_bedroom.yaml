@@ -1,4 +1,23 @@
 automation:
+  
+  - id: '0fbc2f32-4ac7-432d-a3dc-98dc15f48e5c'
+    alias: "Routine | Sunset | Master Bedroom"
+    description: "Turn on the lights 30 minutes before sunset"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:30:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 100
+        target:
+          area_id:
+            - master_bedroom
 
   - id: 'b1d2683a-f4a9-4b73-a915-1550141d2522'
     alias: 'Routine | Master Bedroom | Turn Off Master Bedroom'
