@@ -67,6 +67,17 @@ automation:
               - condition: trigger
                 id:
                   - front_yard_sensor_area_cleared
+              - condition: time
+                after: "23:00:00"
+                weekday:
+                  - sun
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+                  - sat
+                before: "07:00:00"
             sequence:
               - service: light.turn_off
                 metadata: {}
