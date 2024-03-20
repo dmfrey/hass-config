@@ -1,27 +1,17 @@
 automation:
-  - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
-    alias: 'Motion Sensor | Security Lights | Front Yard'
-    description: "Front Yard Security Lights Automations"
+  - id: 'ecf2ed39-f371-4d3b-812d-2a4b3dc4992d'
+    alias: 'Routine | Security Lights | Front Yard'
+    description: "Front Yard Security Lights turn on or off"
     mode: single
     trigger:
       - platform: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: state
-        entity_id:
-          - binary_sensor.front_yard_sensor_occupancy
-        to: "on"
-        id: front_yard_sensor_motion_detected
-      - platform: state
-        entity_id:
-          - binary_sensor.front_yard_sensor_occupancy
-        to: "off"
-        for:
-          hours: 0
-          minutes: 10
-          seconds: 0
-        id: front_yard_sensor_area_cleared
+      - platform: sun
+        event: sunrise
+        offset: "00:15"
+        id: just_after_sunrise
     condition: []
     action:
       - choose:
@@ -41,18 +31,58 @@ automation:
           - conditions:
               - condition: trigger
                 id:
+                  - just_after_sunrise
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.front_yard_security_light_1
+                    - light.front_yard_security_light_2
+
+  - id: '0743426e-a630-48af-9d91-9728e3ecfff7'
+    alias: 'Motion Sensor | Security Lights | Front Yard'
+    description: "Front Yard Security Lights Automations"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.front_yard_sensor_occupancy
+        to: "on"
+        id: front_yard_sensor_motion_detected
+      - platform: state
+        entity_id:
+          - binary_sensor.front_yard_sensor_occupancy
+        to: "off"
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+        id: front_yard_sensor_area_cleared
+    condition:
+      condition: or
+      conditions:      
+        - condition: time
+          after: "23:00:00"
+          weekday:
+            - sun
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+            - sat
+        - condition: sun
+          after: sunrise
+          after_offset: '00:15:00'
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
                   - front_yard_sensor_motion_detected
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -67,17 +97,6 @@ automation:
               - condition: trigger
                 id:
                   - front_yard_sensor_area_cleared
-              - condition: time
-                after: "23:00:00"
-                weekday:
-                  - sun
-                  - mon
-                  - tue
-                  - wed
-                  - thu
-                  - fri
-                  - sat
-                before: "07:00:00"
             sequence:
               - service: light.turn_off
                 metadata: {}
