@@ -1,5 +1,57 @@
 automation:
   - id: 'ecf2ed39-f371-4d3b-812d-2a4b3dc4992d'
+    alias: 'Routine | Sunset | Front Yard'
+    description: "fb86e6f6-e22e-447b-b32f-18bd71266a24"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: "-00:45"
+        id: just_before_sunset
+      - platform: sun
+        event: sunrise
+        offset: "00:20:00"
+        id: just_after_sunrise
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  kelvin: 2700
+                  brightness_pct: 100
+                target:
+                  entity_id:
+                    - light.front_yard_bollard_1
+                    - light.front_yard_bollard_2
+                    - light.front_yard_bollard_3
+                    - light.front_yard_bollard_4
+                    - light.front_yard_spot_1
+                    - light.front_yard_spot_2
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_after_sunrise
+            sequence:
+              - service: light.turn_off
+                metadata: {}
+                data:
+                  transition: 4
+                target:
+                  entity_id:
+                    - light.front_yard_bollard_1
+                    - light.front_yard_bollard_2
+                    - light.front_yard_bollard_3
+                    - light.front_yard_bollard_4
+                    - light.front_yard_spot_1
+                    - light.front_yard_spot_2
+
+  - id: 'ecf2ed39-f371-4d3b-812d-2a4b3dc4992d'
     alias: 'Routine | Security Lights | Front Yard'
     description: "Front Yard Security Lights turn on or off"
     mode: single
@@ -75,8 +127,8 @@ automation:
             - fri
             - sat
         - condition: sun
-          after: sunrise
-          after_offset: '00:15:00'
+          before: sunrise
+          before_offset: '00:15:00'
     action:
       - choose:
           - conditions:

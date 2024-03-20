@@ -75,8 +75,8 @@ automation:
             - fri
             - sat
         - condition: sun
-          after: sunrise
-          after_offset: '00:15:00'
+          before: sunrise
+          before_offset: '00:15:00'
     action:
       - choose:
           - conditions:
