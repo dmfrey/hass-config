@@ -5,34 +5,94 @@ automation:
     description: >-
       Master Bathroom Motion Sensor turns on ambient lights, schedules them to turn
       off, and dims them at night
-    use_blueprint:
-      path: Blackshome/sensor-light.yaml
-      input:
-        motion_trigger:
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
           - binary_sensor.master_bathroom_sensor_occupancy
-        light_switch:
-          entity_id: light.master_bathroom_lightstrip
-        time_delay: 10
-        include_light_control:
-          - use_colour_temperature
-          - use_brightness
-          - use_transition
-        light_transition_on: 2
-        light_transition_off: 4
-        light_colour_temperature: 2700
-        include_night_lights: night_lights_enabled
-        night_lights:
-          entity_id: light.master_bathroom_lightstrip
-        night_time_delay: 3
-        include_night_light_control:
-          - use_colour_temperature
-          - use_brightness
-          - use_transition
-        night_lights_conditions:
-          - time_enabled
-        night_lights_after_time: "23:00:00"
-        night_lights_before_time: "07:00:00"
-        night_light_brightness: 20
-        night_light_colour_temperature: 2700
-        night_light_transition_on: 2
-        night_light_transition_off: 4
+        to: "on"
+        id: master_bathroom_sensor_detected
+      - platform: state
+        entity_id:
+          - binary_sensor.master_bathroom_sensor_occupancy
+        to: "off"
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+        id: master_bathroom_sensor_area_cleared
+    condition: []
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_bathroom_sensor_area_cleared
+            sequence:
+              - service: light.turn_off
+                target:
+                  entity_id: light.master_bathroom_lightstrip
+                data:
+                  transition: 2
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_bathroom_sensor_detected
+              - condition: state
+                entity_id: schedule.daytime
+                state: "on"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.master_bathroom_lightstrip
+                data:
+                  transition: 2
+                  kelvin: 2700
+                  brightness_pct: 100
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_bathroom_sensor_detected
+              - condition: state
+                entity_id: schedule.daytime
+                state: "off"
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id: light.master_bathroom_lightstrip
+                data:
+                  transition: 2
+                  brightness_pct: 30
+                  kelvin: 2237
+
+    # use_blueprint:
+    #   path: Blackshome/sensor-light.yaml
+    #   input:
+    #     motion_trigger:
+    #       - binary_sensor.master_bathroom_sensor_occupancy
+    #     light_switch:
+    #       entity_id: light.master_bathroom_lightstrip
+    #     time_delay: 10
+    #     include_light_control:
+    #       - use_colour_temperature
+    #       - use_brightness
+    #       - use_transition
+    #     light_transition_on: 2
+    #     light_transition_off: 4
+    #     light_colour_temperature: 2700
+    #     include_night_lights: night_lights_enabled
+    #     night_lights:
+    #       entity_id: light.master_bathroom_lightstrip
+    #     night_time_delay: 3
+    #     include_night_light_control:
+    #       - use_colour_temperature
+    #       - use_brightness
+    #       - use_transition
+    #     night_lights_conditions:
+    #       - time_enabled
+    #     night_lights_after_time: "23:00:00"
+    #     night_lights_before_time: "07:00:00"
+    #     night_light_brightness: 20
+    #     night_light_colour_temperature: 2700
+    #     night_light_transition_on: 2
+    #     night_light_transition_off: 4
