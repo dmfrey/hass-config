@@ -19,3 +19,24 @@ automation:
           area_id:
             - family_room
             - family_room_ambient
+
+  - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
+    alias: "Routine | Relax | Family Room"
+    description: "It's time to relax"
+    mode: single
+    trigger:
+      - platform: time
+        at: "20:15:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        metadata: {}
+        target:
+          area_id:
+            - family_room
+            - family_room_ambient
+        data:
+          transition: 5
+          kelvin: 2237
+          brightness_pct: 60
+

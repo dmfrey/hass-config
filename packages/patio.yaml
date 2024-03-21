@@ -1,7 +1,7 @@
 automation:
 
-  - id: 'b7b19a14-efe6-48ef-b257-1a1d8478b6b6'
-    alias: "Routine | Sunset | Den"
+  - id: 'd1e5d21c-a46d-48ed-b2e0-9a35d1d2ad24'
+    alias: "Routine | Sunset | Patio"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -17,10 +17,10 @@ automation:
           brightness_pct: 100
         target:
           area_id:
-            - den
+            - patio
 
-  - id: 'f0563edc-f36c-4c35-9ad3-6b7c55bfdfa6'
-    alias: "Routine | Relax | Den"
+  - id: '1ab71119-81b3-4b1c-ae7d-803c79446bd1'
+    alias: "Routine | Relax | Patio"
     description: "It's time to relax"
     mode: single
     trigger:
@@ -32,8 +32,9 @@ automation:
         metadata: {}
         target:
           area_id:
-            - den
+            - patio
         data:
           transition: 5
           kelvin: 2237
           brightness_pct: 60
+

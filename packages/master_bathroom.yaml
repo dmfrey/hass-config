@@ -1,4 +1,5 @@
 automation:
+
   - id: '23edfdb2-f2f6-4df2-9879-7c83856d1820'
     alias: "Motion Sensor | Ambient | Master Bathroom"
     description: >-

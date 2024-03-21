@@ -30,34 +30,6 @@ automation:
         target:
           area_id: bathroom
 
-  - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
-    alias: "Routine | House | Relax"
-    description: "It's time to relax"
-    mode: single
-    trigger:
-      - platform: time
-        at: "20:15:00"
-    condition: []
-    action:
-      - service: light.turn_on
-        metadata: {}
-        target:
-          area_id:
-            - den
-            - dining_room
-            - family_room
-            - family_room_ambient
-            - foyer
-            - hallway
-            - kitchen
-            - living_room
-            - master_bedroom
-            - patio
-        data:
-          transition: 5
-          kelvin: 2237
-          brightness_pct: 60
-
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
     alias: "Routine | House | Goodnight"
     description: "Turn off the House"
