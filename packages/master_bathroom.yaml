@@ -18,7 +18,7 @@ automation:
         to: "off"
         for:
           hours: 0
-          minutes: 10
+          minutes: 3
           seconds: 0
         id: master_bathroom_sensor_area_cleared
     condition: []
@@ -44,7 +44,7 @@ automation:
             sequence:
               - service: light.turn_on
                 target:
-                  entity_id: light.master_bathroom_lightstrip
+                  area_id: master_bathroom
                 data:
                   transition: 2
                   kelvin: 2700
@@ -62,7 +62,7 @@ automation:
                   entity_id: light.master_bathroom_lightstrip
                 data:
                   transition: 2
-                  brightness_pct: 30
+                  brightness_pct: 20
                   kelvin: 2237
 
     # use_blueprint:

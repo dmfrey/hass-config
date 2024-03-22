@@ -16,7 +16,7 @@ automation:
         id: master_closet_sensor_area_cleared
         for:
           hours: 0
-          minutes: 10
+          minutes: 3
           seconds: 0
     condition: []
     action:
