@@ -37,7 +37,7 @@ automation:
     trigger:
       - platform: device
         type: turned_on
-        device_id: 27e9816fa86b7c98dd9c642d9353fbc3
+        device_id: 51f98991a3ce61c57320e4815da12a7d
         entity_id: switch.trigger
         domain: switch
     condition:
