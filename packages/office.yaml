@@ -40,25 +40,25 @@ automation:
     trigger:
       - platform: device
         domain: mqtt
-        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        device_id: 1cedae21877c5db501217cf2b5de0c28
         type: action
         subtype: on_press
         id: office_button_on_press
       - platform: device
         domain: mqtt
-        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        device_id: 1cedae21877c5db501217cf2b5de0c28
         type: action
         subtype: up_press
         id: office_button_up_press
       - platform: device
         domain: mqtt
-        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        device_id: 1cedae21877c5db501217cf2b5de0c28
         type: action
         subtype: down_press_release
         id: office_button_down_press
       - platform: device
         domain: mqtt
-        device_id: 5d9b84a9ff8a24af51ff01e75e3a293b
+        device_id: 1cedae21877c5db501217cf2b5de0c28
         type: action
         subtype: off_press
         id: office_button_off_press

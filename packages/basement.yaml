@@ -35,13 +35,13 @@ automation:
     trigger:
       - platform: device
         domain: mqtt
-        device_id: 03f68ea963496bb54b3560074e165a5e
+        device_id: d83a7dac2ded7c567bde7cdd8cb88eff
         type: action
         subtype: "on"
         id: basement_button_on_press
       - platform: device
         domain: mqtt
-        device_id: 03f68ea963496bb54b3560074e165a5e
+        device_id: d83a7dac2ded7c567bde7cdd8cb88eff
         type: action
         subtype: "off"
         id: basement_button_off_press
