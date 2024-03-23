@@ -1,11 +1,11 @@
-relax_schedule:
-  name: Relax Schedule
-  monday: &schedule
-    - from: "20:15:00"
-      to: "20:15:59"
-  tuesday: *schedule
-  wednesday: *schedule
-  thursday: *schedule
-  friday: *schedule
-  saturday: *schedule
-  sunday: *schedule
+# relax_schedule:
+#   name: Relax Schedule
+#   monday: &schedule
+#     - from: "20:15:00"
+#       to: "20:15:59"
+#   tuesday: *schedule
+#   wednesday: *schedule
+#   thursday: *schedule
+#   friday: *schedule
+#   saturday: *schedule
+#   sunday: *schedule
