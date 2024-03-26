@@ -1,4 +1,4 @@
-daytime_schedule_test:
+daytime:
   name: "Daytime Schedule"
   monday: &daytimeSchedule
     - from: "07:00:00"
@@ -11,7 +11,7 @@ daytime_schedule_test:
     - from: "08:00:00"
       to: "23:00:00"
   sunday: *weekendDaytimeSchedule
-nighttime_schedule_test:
+nighttime:
   name: "Nighttime Schedule"
   monday: &nighttimeSchedule
     - from: "23:00:00"
