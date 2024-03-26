@@ -1,0 +1,20 @@
+automation:
+- id: 'a54f6e03-4ce2-4fe0-8cb3-923cba043e23'
+  alias: Mail Box
+  description: "Send a notification when the mailbox is opened"
+  mode: queued
+  max: 10
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.mailbox
+      to: "on"
+  condition: []
+  action:
+    - service: notify.parent_devices
+      data:
+        message: You have mail!
+    - service: mqtt.publish
+      data:
+        topic: homeassistant/binary_sensor/mailbox/state
+        payload: empty
+        retain: true
