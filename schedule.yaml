@@ -1,11 +1,23 @@
   daytime_schedule_test:
     name: "Daytime Schedule"
-    monday: &schedule
+    monday:
       - from: "07:00:00"
         to: "23:00:00"
-    tuesday: *schedule
-    wednesday: *schedule
-    thursday: *schedule
-    friday: *schedule
-    saturday: *schedule
-    sunday: *schedule
+    tuesday:
+      - from: "07:00:00"
+        to: "23:00:00"
+    wednesday:
+      - from: "07:00:00"
+        to: "23:00:00"
+    thursday:
+      - from: "07:00:00"
+        to: "23:00:00"
+    friday:
+      - from: "07:00:00"
+        to: "23:00:00"
+    saturday:
+      - from: "08:00:00"
+        to: "23:00:00"
+    sunday:
+      - from: "08:00:00"
+        to: "23:00:00"
