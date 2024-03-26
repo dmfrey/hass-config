@@ -7,5 +7,5 @@
     wednesday: *schedule
     thursday: *schedule
     friday: *schedule
-    saturday: *schedule"
+    saturday: *schedule
     sunday: *schedule
