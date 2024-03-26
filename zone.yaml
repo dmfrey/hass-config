@@ -34,8 +34,8 @@
   radius: 30
   icon: mdi:cart
 - name: Wawa
-  latitude: 40.52300
-  longitude: -75.38884
+  latitude: 40.52272474745209
+  longitude: -75.38880999942117
   radius: 10
   icon: mdi:gas-pump
 - name: Starbucks
