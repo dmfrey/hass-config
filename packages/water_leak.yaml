@@ -48,16 +48,17 @@ automation:
                   - master_bathroom_sink_water_leak_sensor_wet
                   - master_bathroom_toilet_water_leak_sensor_wet
             sequence:
-              - service: notify.family_devices
-                data:
-                  message: clear_notification
-                  data:
-                    tag: water-leak-detected
+              # - service: notify.family_devices
+              #   data:
+              #     message: clear_notification
+              #     data:
+              #       tag: water-leak-detected
               - service: notify.family_devices
                 metadata: {}
-                data:
+                data_template:
                   title: Water Leak Detected!
                   message: >-
                     {{ trigger.to_state.attributes.friendly_name }} has detected a
                     water leak!
-                  tag: water-leak-detected
+                  data:
+                    tag: water-leak-detected
