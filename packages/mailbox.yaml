@@ -1,6 +1,6 @@
 automation:
 - id: 'a54f6e03-4ce2-4fe0-8cb3-923cba043e23'
-  alias: Mail Box
+  alias: Notification | Mail Box | Mailbox Opened
   description: "Send a notification when the mailbox is opened"
   mode: queued
   max: 10
