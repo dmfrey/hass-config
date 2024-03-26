@@ -1,22 +1,22 @@
 - name: Home
   latitude: !env_var HASS_LATITUDE
   longitude: !env_var  HASS_LONGITUDE
-  radius: 100
+  radius: 50
   icon: mdi:home
 - name: Frey Home
   latitude: !env_var HASS_LATITUDE_FREY
   longitude: !env_var  HASS_LONGITUDE_FREY
-  radius: 100
+  radius: 50
   icon: mdi:home
 - name: Clemmer Home
   latitude: !env_var HASS_LATITUDE_CLEMMER
   longitude: !env_var  HASS_LONGITUDE_CLEMMER
-  radius: 100
+  radius: 50
   icon: mdi:home
 - name: Southern Lehigh High School
   latitude: !env_var HASS_LATITUDE_SCHOOL
   longitude: !env_var HASS_LONGITUDE_SCHOOL
-  radius: 150
+  radius: 135
   icon: mdi:school
 - name: West Chester University
   latitude: !env_var HASS_LATITUDE_WU
