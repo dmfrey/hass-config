@@ -4,5 +4,5 @@ template:
         event: start
         entity_id: calendar.school_calendar
     binary_sensor:
-      - name: School Day
-        state: {{ trigger.calendar_event.all_day and 'School Day' in trigger.calendar_event.summary }}
+      - name: "School Day"
+        state: "{{ trigger.calendar_event.all_day and 'School Day' in trigger.calendar_event.summary }}"
