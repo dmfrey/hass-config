@@ -6,12 +6,12 @@
 - name: Frey Home
   latitude: !env_var HASS_LATITUDE_FREY
   longitude: !env_var  HASS_LONGITUDE_FREY
-  radius: 50
+  radius: 40
   icon: mdi:home
 - name: Clemmer Home
   latitude: !env_var HASS_LATITUDE_CLEMMER
   longitude: !env_var  HASS_LONGITUDE_CLEMMER
-  radius: 50
+  radius: 30
   icon: mdi:home
 - name: Southern Lehigh High School
   latitude: !env_var HASS_LATITUDE_SCHOOL
