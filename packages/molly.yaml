@@ -1,5 +1,36 @@
 automation:
   
+  - id: 'a78f01c0-53af-4703-89d3-c04fb55bd6c5'
+    alias: "Routine | Wake Up | Molly's Room"
+    description: "Turn on Molly's Room Lights if it's a School Day and not a Holiday or Snow Day"
+    mode: queued
+    max: 10
+    trigger:
+      - platform: time
+        at: "05:25:00"
+    condition:
+      - condition: state
+        entity_id: binary_sensor.school_day
+        state: "on"
+      - condition: not
+        conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.holiday
+                state: "on"
+              - condition: state
+                entity_id: binary_sensor.snow_day
+                state: "on"
+    action:
+      - service: light.turn_on
+        target:
+          area_id: molly_s_room
+        data:
+          transition: 300
+          kelvin: 2700
+          brightness_pct: 100
+
   - id: '68890773-dafe-4248-824f-83efc7591979'
     alias: "Routine | Sunset | Molly's Room"
     description: "Turn on the lights 30 minutes before sunset"
