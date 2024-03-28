@@ -129,14 +129,14 @@ automation:
         id: molly_s_room_switch_down_release
       - platform: state
         entity_id:
-          - light.molly_s_room_lamp_1
+          - light.molly_s_desk_lamp
         to: "on"
-        id: molly_s_room_lamp_1_turns_on
+        id: molly_s_desk_lamp_turns_on
       - platform: state
         entity_id:
-          - light.molly_s_room_lamp_1
+          - light.molly_s_desk_lamp
         to: "off"
-        id: molly_s_room_lamp_1_turns_off
+        id: molly_s_desk_lamp_turns_off
       - platform: state
         entity_id:
           - light.molly_s_room_switch
@@ -214,7 +214,7 @@ automation:
           - conditions:
               - condition: trigger
                 id:
-                  - molly_s_room_lamp_1_turns_on
+                  - molly_s_desk_lamp_turns_on
             sequence:
               - service: light.turn_on
                 target:
@@ -223,7 +223,7 @@ automation:
           - conditions:
               - condition: trigger
                 id:
-                  - molly_s_room_lamp_1_turns_off
+                  - molly_s_desk_lamp_turns_off
             sequence:
               - service: light.turn_off
                 target:
@@ -235,10 +235,10 @@ automation:
                   - molly_s_room_switch_local_dimming
               - condition: template
                 value_template: >-
-                  {{ states.light.molly_s_room_switch.last_updated > states.light.molly_s_room_lamp_1.last_changed }}
+                  {{ states.light.molly_s_room_switch.last_updated > states.light.molly_s_desk_lamp.last_changed }}
             sequence:
               - service: light.turn_on
-                entity_id: light.molly_s_room_lamp_1
+                entity_id: light.molly_s_desk_lamp
                 data:
                   transition: 2
                   kelvin: 2700
