@@ -168,7 +168,7 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
-                  transition: 2
+                  # transition: 2
                   # kelvin: 2700
                   brightness_pct: 100
                 target:
@@ -198,7 +198,7 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
-                  transition: 2
+                  # transition: 2
                   # kelvin: 2700
                   brightness_pct: 100
                 target:
@@ -216,7 +216,7 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
-                  transition: 2
+                  # transition: 2
                   # kelvin: 2700
                   brightness_pct: 30
                 target:
@@ -255,7 +255,7 @@ automation:
               - service: light.turn_on
                 entity_id: light.basement_light_1
                 data:
-                  transition: 2
+                  # transition: 2
                   # kelvin: 2700
                   brightness: "{{ state_attr('light.basement_switch', 'brightness') | default(0, true) }}"
 
