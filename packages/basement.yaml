@@ -28,44 +28,234 @@ automation:
           area_id: basement
         data: {}
 
-  - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
+  # - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
+  #   alias: "Switch | Lights | Basement"
+  #   description: "Turn the Basement Lights On or Off"
+  #   mode: single
+  #   trigger:
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: d83a7dac2ded7c567bde7cdd8cb88eff
+  #       type: action
+  #       subtype: "on"
+  #       id: basement_button_on_press
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: d83a7dac2ded7c567bde7cdd8cb88eff
+  #       type: action
+  #       subtype: "off"
+  #       id: basement_button_off_press
+  #   condition: []
+  #   action:
+  #     - choose:
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - basement_button_on_press
+  #           sequence:
+  #             - service: light.turn_on
+  #               target:
+  #                 area_id: basement
+  #               data:
+  #                 transition: 1
+  #                 brightness_pct: 100
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - basement_button_off_press
+  #           sequence:
+  #             - service: light.turn_off
+  #               target:
+  #                 area_id: basement
+  #               data:
+  #                 transition: 1
+
+  - id: 'ea56734e-2bdb-4003-b7e0-4a1e441547fb'
     alias: "Switch | Lights | Basement"
-    description: "Turn the Basement Lights On or Off"
-    mode: single
+    description: "Basement Switch turns Basement Lights on or off, dimming capable"
+    mode: queued
+    max: 10
     trigger:
       - platform: device
         domain: mqtt
-        device_id: d83a7dac2ded7c567bde7cdd8cb88eff
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
         type: action
-        subtype: "on"
-        id: basement_button_on_press
+        subtype: config_single
+        id: basement_switch_config_single
       - platform: device
         domain: mqtt
-        device_id: d83a7dac2ded7c567bde7cdd8cb88eff
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
         type: action
-        subtype: "off"
-        id: basement_button_off_press
+        subtype: config_double
+        id: basement_switch_config_double
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: config_triple
+        id: basement_switch_config_triple
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: up_single
+        id: basement_switch_up_single
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: down_single
+        id: basement_switch_down_single
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: up_double
+        id: basement_switch_up_double
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: down_double
+        id: basement_switch_down_double
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: up_held
+        id: basement_switch_up_held
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: down_held
+        id: basement_switch_down_held
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: up_release
+        id: basement_switch_up_release
+      - platform: device
+        domain: mqtt
+        device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+        type: action
+        subtype: down_release
+        id: basement_switch_down_release
+      - platform: state
+        entity_id:
+          - light.basement_light_1
+        to: "on"
+        id: basement_light_1_turns_on
+      - platform: state
+        entity_id:
+          - light.basement_light_1
+        to: "off"
+        id: basement_light_1_turns_off
+      - platform: state
+        entity_id:
+          - light.basement_switch
+        id: basement_switch_local_dimming
+        enabled: true
     condition: []
     action:
       - choose:
           - conditions:
               - condition: trigger
                 id:
-                  - basement_button_on_press
+                  - basement_switch_up_single
             sequence:
               - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  # kelvin: 2700
+                  brightness_pct: 100
                 target:
                   area_id: basement
-                data:
-                  transition: 1
-                  brightness_pct: 100
+              - service: switch.turn_on
+                target:
+                  area_id: basement
+                data: {}
           - conditions:
               - condition: trigger
                 id:
-                  - basement_button_off_press
+                  - basement_switch_down_single
             sequence:
               - service: light.turn_off
                 target:
                   area_id: basement
+                data: {}
+              - service: switch.turn_off
+                target:
+                  area_id: basement
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_switch_up_double
+            sequence:
+              - service: light.turn_on
+                metadata: {}
                 data:
-                  transition: 1
+                  transition: 2
+                  # kelvin: 2700
+                  brightness_pct: 100
+                target:
+                  area_id: basement
+                alias: Light 'Turn on' on Molly's Room to Bright
+              - service: switch.turn_on
+                target:
+                  area_id: basement
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_switch_down_double
+            sequence:
+              - service: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  # kelvin: 2700
+                  brightness_pct: 30
+                target:
+                  area_id: basement
+                alias: Light 'Turn on' on Molly's Room to Nightlight
+              - service: switch.turn_off
+                target:
+                  area_id: basement
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_light_1_turns_on
+            sequence:
+              - service: light.turn_on
+                target:
+                  device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_light_1_turns_off
+            sequence:
+              - service: light.turn_off
+                target:
+                  device_id: 97be9ee7d4b5d133662d0af4cc15d4e1
+                data: {}
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_switch_local_dimming
+              - condition: template
+                value_template: >-
+                  {{ states.light.basement_switch.last_updated > states.light.basement_light_1.last_changed }}
+            sequence:
+              - service: light.turn_on
+                entity_id: light.basement_light_1
+                data:
+                  transition: 2
+                  # kelvin: 2700
+                  brightness: "{{ state_attr('light.basement_switch', 'brightness') | default(0, true) }}"
+
