@@ -22,13 +22,11 @@
       auto_off:
         hours: 14
         minutes: 20
-  binary_sensor:
     - name: "Holiday"
       state: "{{ 'Holiday' in events }}"
       auto_off:
         hours: 23
         minutes: 59
-  binary_sensor:
     - name: "Snow Day"
       state: "{{ 'Snow Day' in events }}"
       auto_off:
