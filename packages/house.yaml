@@ -55,11 +55,11 @@ automation:
             - den
             - dining_room
             - family_room
-            - family_room_ambient
-            - family_room_holiday
+            # - family_room_ambient
+            # - family_room_holiday
             - foyer
             - front_yard
-            - front_yard_holiday
+            # - front_yard_holiday
             - garden
             - hallway
             - living_room
@@ -77,10 +77,10 @@ automation:
           area_id:
             - bathroom
             - camdyn_s_room
-            - family_room_ambient
-            - family_room_holiday
+            # - family_room_ambient
+            # - family_room_holiday
             - front_yard
-            - front_yard_holiday
+            # - front_yard_holiday
             - hallway
             - living_room
             - master_bathroom
