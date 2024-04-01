@@ -1,32 +1,32 @@
 automation:
-  # - id: 'd3cfe7e4-6a8d-48e4-bbcd-1891f303339f'
-  #   alias: "Routine | Basement | Workout Start"
-  #   description: "It's time to workout"
-  #   mode: single
-  #   trigger:
-  #     - platform: time
-  #       at: "05:40:00"
-  #   condition: []
-  #   action:
-  #     - service: light.turn_on
-  #       target:
-  #         area_id: basement
-  #       data: 
-  #         brightness_pct: 100
+  - id: 'd3cfe7e4-6a8d-48e4-bbcd-1891f303339f'
+    alias: "Routine | Basement | Workout Start"
+    description: "It's time to workout"
+    mode: single
+    trigger:
+      - platform: time
+        at: "05:40:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        target:
+          area_id: basement
+        data: 
+          brightness_pct: 100
 
-  # - id: '92bb115c-a192-40bc-9e0d-0443787cab0f'
-  #   alias: "Routine | Basement | Workout Complete"
-  #   description: "Workout is done for the day"
-  #   mode: single
-  #   trigger:
-  #     - platform: time
-  #       at: "08:30:00"
-  #   condition: []
-  #   action:
-  #     - service: light.turn_off
-  #       target:
-  #         area_id: basement
-  #       data: {}
+  - id: '92bb115c-a192-40bc-9e0d-0443787cab0f'
+    alias: "Routine | Basement | Workout Complete"
+    description: "Workout is done for the day"
+    mode: single
+    trigger:
+      - platform: time
+        at: "08:30:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        target:
+          area_id: basement
+        data: {}
 
   - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
     alias: "Switch | Lights | Basement"
@@ -35,7 +35,9 @@ automation:
     trigger:
       - platform: mqtt
         topic: zigbee2mqtt/Basement Aurora Switch
-    condition: []
+    condition:
+      - condition: template
+        value_template: "{{ trigger.payload_json.action_transition_time == 0.07 }}"
     action:
       - service: light.toggle
         target:
