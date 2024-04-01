@@ -28,11 +28,22 @@ automation:
   #         area_id: basement
   #       data: {}
 
-  # - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
-  #   alias: "Switch | Lights | Basement"
-  #   description: "Turn the Basement Lights On or Off"
-  #   mode: single
-  #   trigger:
+  - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
+    alias: "Switch | Lights | Basement"
+    description: "Turn the Basement Lights On or Off"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - update.basement_aurora_switch
+        to: null
+    condition: []
+    action:
+      - service: light.toggle
+        target:
+          area_id: basement
+        data:
+          transition: 2
   #     - platform: device
   #       domain: mqtt
   #       device_id: d83a7dac2ded7c567bde7cdd8cb88eff
