@@ -85,7 +85,7 @@ automation:
             - living_room
             - master_bathroom
             - molly_s_room
-            - office
+            # - office
             - workshop
           entity_id:
             - switch.outside_holiday_switches
