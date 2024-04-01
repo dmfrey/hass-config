@@ -33,10 +33,8 @@ automation:
     description: "Turn the Basement Lights On or Off"
     mode: single
     trigger:
-      - platform: state
-        entity_id:
-          - update.basement_aurora_switch
-        to: null
+      - platform: mqtt
+        topic: zigbee2mqtt/Basement Aurora Switch
     condition: []
     action:
       - service: light.toggle
