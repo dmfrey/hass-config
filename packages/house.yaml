@@ -24,11 +24,6 @@ automation:
             - family_room
             - foyer
             - kitchen
-      - service: light.turn_on
-        data:
-          brightness_pct: 30
-        target:
-          area_id: bathroom
 
   - id: '92c8fbbb-3b63-4408-95db-82587a3e704b'
     alias: "Routine | House | Goodnight"
@@ -85,7 +80,6 @@ automation:
             - living_room
             - master_bathroom
             - molly_s_room
-            # - office
             - workshop
           entity_id:
             - switch.outside_holiday_switches
