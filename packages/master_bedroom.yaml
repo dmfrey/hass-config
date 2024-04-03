@@ -43,24 +43,27 @@ automation:
     description: "Master Bedroom devices turn off when it's morning and Dan and Stephanie are out of bed for at least 2 minutes"
     mode: single
     trigger:
-      - platform: state
-        entity_id:
-          - binary_sensor.sleepnumber_our_bed_daniel_is_in_bed
-        to: "off"
-        for:
-          hours: 0
-          minutes: 2
-          seconds: 0
-        id: out-of-bed-dan
-      - platform: state
-        entity_id:
-          - binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed
-        to: "off"
-        for:
-          hours: 0
-          minutes: 2
-          seconds: 0
-        id: out-of-bed-steph
+      - platform: template
+        value_template: >-
+          {{ expand('binary_sensor.sleepnumber_our_bed_daniel_is_in_bed', 'binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed') | selectattr('state', 'eq', 'off') | list | count == 2 }}
+      # - platform: state
+      #   entity_id:
+      #     - binary_sensor.sleepnumber_our_bed_daniel_is_in_bed
+      #   to: "off"
+      #   for:
+      #     hours: 0
+      #     minutes: 2
+      #     seconds: 0
+      #   id: out-of-bed-dan
+      # - platform: state
+      #   entity_id:
+      #     - binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed
+      #   to: "off"
+      #   for:
+      #     hours: 0
+      #     minutes: 2
+      #     seconds: 0
+      #   id: out-of-bed-steph
     condition:
       - condition: sun
         after: sunrise
