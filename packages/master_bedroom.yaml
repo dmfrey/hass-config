@@ -16,8 +16,9 @@ automation:
           kelvin: 2700
           brightness_pct: 100
         target:
-          area_id:
-            - master_bedroom
+          entity_id: 
+            - light.master_bedroom_light_1
+            - light.master_bedroom_light_2
 
   - id: 'c03a9f48-2c98-4d19-a10c-64b3bef2a9bd'
     alias: "Routine | Relax | Master Bedroom"
@@ -31,8 +32,9 @@ automation:
       - service: light.turn_on
         metadata: {}
         target:
-          area_id:
-            - master_bedroom
+          entity_id: 
+            - light.master_bedroom_light_1
+            - light.master_bedroom_light_2
         data:
           transition: 5
           kelvin: 2237
@@ -256,6 +258,6 @@ automation:
                   - light.master_bedroom_light_1
                   - light.master_bedroom_light_2
                 data:
-                  transition: 2
+                  transition: 1
                   kelvin: 2700
                   brightness: "{{ state_attr('light.master_bedroom_light_switch', 'brightness') | default(0, true) }}"
