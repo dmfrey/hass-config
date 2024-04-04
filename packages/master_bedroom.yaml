@@ -179,7 +179,9 @@ automation:
                   kelvin: 2700
                   brightness_pct: 100
                 target:
-                  area_id: master_bedroom
+                  entity_id: 
+                    - light.master_bedroom_light_1
+                    - light.master_bedroom_light_2
           - conditions:
               - condition: trigger
                 id:
@@ -187,7 +189,9 @@ automation:
             sequence:
               - service: light.turn_off
                 target:
-                  entity_id: light.master_light_1
+                  entity_id: 
+                    - light.master_bedroom_light_1
+                    - light.master_bedroom_light_2
                 data: {}
           - conditions:
               - condition: trigger
@@ -201,7 +205,9 @@ automation:
                   kelvin: 2700
                   brightness_pct: 100
                 target:
-                  area_id: master_bedroom
+                  entity_id: 
+                    - light.master_bedroom_light_1
+                    - light.master_bedroom_light_2
                 alias: Light 'Turn on' on Master Bedroom to Bright
           - conditions:
               - condition: trigger
@@ -215,7 +221,9 @@ automation:
                   kelvin: 2700
                   brightness_pct: 30
                 target:
-                  area_id: master_bedroom
+                  entity_id: 
+                    - light.master_bedroom_light_1
+                    - light.master_bedroom_light_2
                 alias: Light 'Turn on' on Master Bedroom to Nightlight
           - conditions:
               - condition: trigger
