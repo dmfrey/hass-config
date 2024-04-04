@@ -355,6 +355,49 @@ automation:
           - conditions:
               - condition: trigger
                 id:
+                  - master_bedroom_fan_switch_config_single
+            sequence:
+              - service: fan.turn_on
+                metadata: {}
+                data:
+                  percentage: 50
+                target:
+                  entity_id: fan.master_bedroom_ceiling_fan
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_bedroom_fan_switch_config_double
+            sequence:
+              - service: fan.turn_on
+                metadata: {}
+                data:
+                  percentage: 75
+                target:
+                  entity_id: fan.master_bedroom_ceiling_fan
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_bedroom_fan_switch_config_triple
+            sequence:
+              - service: fan.turn_on
+                metadata: {}
+                data:
+                  percentage: 100
+                target:
+                  entity_id: fan.master_bedroom_ceiling_fan
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_bedroom_fan_switch_config_quadruple
+            sequence:
+              - service: fan.turn_off
+                metadata: {}
+                data: {}
+                target:
+                  entity_id: fan.master_bedroom_ceiling_fan
+          - conditions:
+              - condition: trigger
+                id:
                   - master_bedroom_fan_switch_up_single
             sequence:
               - service: light.turn_on
