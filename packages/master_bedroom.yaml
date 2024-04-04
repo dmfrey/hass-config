@@ -290,6 +290,12 @@ automation:
         domain: mqtt
         device_id: 5743b7e4b0c6f285a636e49d0f472138
         type: action
+        subtype: config_quadruple
+        id: master_bedroom_fan_switch_config_quadruple
+      - platform: device
+        domain: mqtt
+        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        type: action
         subtype: up_single
         id: master_bedroom_fan_switch_up_single
       - platform: device
