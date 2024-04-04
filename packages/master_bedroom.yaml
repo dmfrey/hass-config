@@ -338,12 +338,12 @@ automation:
         entity_id:
           - light.master_bedroom_ceiling_fan
         to: "on"
-        id: .master_bedroom_ceiling_fan_light_turns_on
+        id: master_bedroom_ceiling_fan_light_turns_on
       - platform: state
         entity_id:
           - light.master_bedroom_ceiling_fan
         to: "off"
-        id: .master_bedroom_ceiling_fan_light_turns_off
+        id: master_bedroom_ceiling_fan_light_turns_off
       - platform: state
         entity_id:
           - light.master_bedroom_ceiling_fan
@@ -399,7 +399,7 @@ automation:
           - conditions:
               - condition: trigger
                 id:
-                  - .master_bedroom_ceiling_fan_turns_on
+                  - master_bedroom_ceiling_fan_turns_on
             sequence:
               - service: light.turn_on
                 target:
@@ -408,7 +408,7 @@ automation:
           - conditions:
               - condition: trigger
                 id:
-                  - .master_bedroom_ceiling_fan_turns_off
+                  - master_bedroom_ceiling_fan_turns_off
             sequence:
               - service: light.turn_off
                 target:
@@ -423,6 +423,6 @@ automation:
                   {{ states.light.master_bedroom_fan_switch.last_updated > states.light.master_bedroom_ceiling_fan.last_changed }}
             sequence:
               - service: light.turn_on
-                entity_id: light..master_bedroom_ceiling_fan
+                entity_id: light.master_bedroom_ceiling_fan
                 data:
                   brightness: "{{ state_attr('light.master_bedroom_fan_switch', 'brightness') | default(0, true) }}"
