@@ -88,82 +88,122 @@ automation:
 
   - id: '48aa24e0-cc57-4923-9061-efa2cbdfedda'
     alias: "Switch | Lights | Molly's Room"
-    description: "Molly's Room Dimmer Switch turns Molly's Room Lights on or off, dimming capable"
-    mode: queued
-    max: 10
+    description: "Molly's Room Switch turns Molly's Room Lights on or off"
+    mode: single
     trigger:
       - platform: device
         domain: mqtt
-        device_id: c7343bb67fd77e58872ebabf8a65a784
+        device_id: 8bc4751dc9c3e1bb53af70428cf17e10
         type: action
-        subtype: on_press
-        id: molly_s_room_button_on_press
+        subtype: single
+        id: molly_s_room_switch_single
       - platform: device
         domain: mqtt
-        device_id: c7343bb67fd77e58872ebabf8a65a784
+        device_id: 8bc4751dc9c3e1bb53af70428cf17e10
         type: action
-        subtype: up_press
-        id: molly_s_room_button_up_press
-      - platform: device
-        domain: mqtt
-        device_id: c7343bb67fd77e58872ebabf8a65a784
-        type: action
-        subtype: down_press_release
-        id: molly_s_room_button_down_press
-      - platform: device
-        domain: mqtt
-        device_id: c7343bb67fd77e58872ebabf8a65a784
-        type: action
-        subtype: off_press
-        id: molly_s_room_button_off_press
+        subtype: double
+        id: molly_s_room_switch_double
     condition: []
     action:
       - choose:
           - conditions:
               - condition: trigger
                 id:
-                  - molly_s_room_button_on_press
+                  - molly_s_room_switch_single
             sequence:
               - service: light.turn_on
                 target:
                   area_id: molly_s_room
                 data:
-                  transition: 1
+                  transition: 2
                   kelvin: 2700
                   brightness_pct: 100
           - conditions:
               - condition: trigger
                 id:
-                  - molly_s_room_button_off_press
+                  - molly_s_room_switch_double
             sequence:
               - service: light.turn_off
                 target:
                   area_id: molly_s_room
                 data:
-                  transition: 1
-          - conditions:
-              - condition: trigger
-                id:
-                  - molly_s_room_button_up_press
-            sequence:
-              - service: light.turn_on
-                target:
-                  entity_id: 
-                    - light.molly_s_room_light_1
-                    - light.molly_s_desk_light
-                data:
-                  brightness_step_pct: 10
-                  kelvin: 2700
-          - conditions:
-              - condition: trigger
-                id:
-                  - molly_s_room_button_down_press
-            sequence:
-              - service: light.turn_on
-                target:
-                  entity_id: 
-                    - light.molly_s_room_light_1
-                    - light.molly_s_desk_light
-                data:
-                  brightness_step_pct: -10
-                  kelvin: 2700
+                  transition: 2
+    # description: "Molly's Room Dimmer Switch turns Molly's Room Lights on or off, dimming capable"
+    # mode: queued
+    # max: 10
+    # trigger:
+    #   - platform: device
+    #     domain: mqtt
+    #     device_id: c7343bb67fd77e58872ebabf8a65a784
+    #     type: action
+    #     subtype: on_press
+    #     id: molly_s_room_button_on_press
+    #   - platform: device
+    #     domain: mqtt
+    #     device_id: c7343bb67fd77e58872ebabf8a65a784
+    #     type: action
+    #     subtype: up_press
+    #     id: molly_s_room_button_up_press
+    #   - platform: device
+    #     domain: mqtt
+    #     device_id: c7343bb67fd77e58872ebabf8a65a784
+    #     type: action
+    #     subtype: down_press_release
+    #     id: molly_s_room_button_down_press
+    #   - platform: device
+    #     domain: mqtt
+    #     device_id: c7343bb67fd77e58872ebabf8a65a784
+    #     type: action
+    #     subtype: off_press
+    #     id: molly_s_room_button_off_press
+    # condition: []
+    # action:
+    #   - choose:
+    #       - conditions:
+    #           - condition: trigger
+    #             id:
+    #               - molly_s_room_button_on_press
+    #         sequence:
+    #           - service: light.turn_on
+    #             target:
+    #               area_id: molly_s_room
+    #             data:
+    #               transition: 1
+    #               kelvin: 2700
+    #               brightness_pct: 100
+    #       - conditions:
+    #           - condition: trigger
+    #             id:
+    #               - molly_s_room_button_off_press
+    #         sequence:
+    #           - service: light.turn_off
+    #             target:
+    #               area_id: molly_s_room
+    #             data:
+    #               transition: 1
+    #       - conditions:
+    #           - condition: trigger
+    #             id:
+    #               - molly_s_room_button_up_press
+    #         sequence:
+    #           - service: light.turn_on
+    #             target:
+    #               entity_id: 
+    #                 - light.molly_s_room_light_1
+    #                 - light.molly_s_desk_light
+    #             data:
+    #               brightness_step_pct: 10
+    #               kelvin: 2700
+    #       - conditions:
+    #           - condition: trigger
+    #             id:
+    #               - molly_s_room_button_down_press
+    #         sequence:
+    #           - service: light.turn_on
+    #             target:
+    #               entity_id: 
+    #                 - light.molly_s_room_light_1
+    #                 - light.molly_s_desk_light
+    #             data:
+    #               brightness_step_pct: -10
+    #               kelvin: 2700
