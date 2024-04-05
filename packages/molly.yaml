@@ -111,7 +111,7 @@ automation:
                 id:
                   - molly_s_room_switch_single
             sequence:
-              - service: light.turn_on
+              - service: light.toggle
                 target:
                   area_id: molly_s_room
                 data:
@@ -123,11 +123,14 @@ automation:
                 id:
                   - molly_s_room_switch_double
             sequence:
-              - service: light.turn_off
+              - service: light.turn_on
                 target:
                   area_id: molly_s_room
                 data:
                   transition: 2
+                  kelvin: 2237
+                  brightness_pct: 100
+   
     # description: "Molly's Room Dimmer Switch turns Molly's Room Lights on or off, dimming capable"
     # mode: queued
     # max: 10
