@@ -54,67 +54,67 @@ automation:
     trigger:
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: config_single
         id: master_closet_switch_config_single
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: config_double
         id: master_closet_switch_config_double
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: config_triple
         id: master_closet_switch_config_triple
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: up_single
         id: master_closet_switch_up_single
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: down_single
         id: master_closet_switch_down_single
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: up_double
         id: master_closet_switch_up_double
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: down_double
         id: master_closet_switch_down_double
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: up_held
         id: master_closet_switch_up_held
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: down_held
         id: master_closet_switch_down_held
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: up_release
         id: master_closet_switch_up_release
       - platform: device
         domain: mqtt
-        device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+        device_id: eb902746fa28cd3f45ddf033f8b89e76
         type: action
         subtype: down_release
         id: master_closet_switch_down_release
@@ -193,7 +193,7 @@ automation:
             sequence:
               - service: light.turn_on
                 target:
-                  device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+                  device_id: eb902746fa28cd3f45ddf033f8b89e76
                 data: {}
           - conditions:
               - condition: trigger
@@ -202,7 +202,7 @@ automation:
             sequence:
               - service: light.turn_off
                 target:
-                  device_id: a387f8fef0a64b3d51be7d30fb7f80f5
+                  device_id: eb902746fa28cd3f45ddf033f8b89e76
                 data: {}
           - conditions:
               - condition: trigger
