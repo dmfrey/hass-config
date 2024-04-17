@@ -270,73 +270,73 @@ automation:
     trigger:
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: config_single
         id: master_bedroom_fan_switch_config_single
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: config_double
         id: master_bedroom_fan_switch_config_double
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: config_triple
         id: master_bedroom_fan_switch_config_triple
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: config_quadruple
         id: master_bedroom_fan_switch_config_quadruple
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: up_single
         id: master_bedroom_fan_switch_up_single
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: down_single
         id: master_bedroom_fan_switch_down_single
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: up_double
         id: master_bedroom_fan_switch_up_double
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: down_double
         id: master_bedroom_fan_switch_down_double
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: up_held
         id: master_bedroom_fan_switch_up_held
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: down_held
         id: master_bedroom_fan_switch_down_held
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: up_release
         id: master_bedroom_fan_switch_up_release
       - platform: device
         domain: mqtt
-        device_id: 5743b7e4b0c6f285a636e49d0f472138
+        device_id: ab66300b8e84063c201e334566f93091
         type: action
         subtype: down_release
         id: master_bedroom_fan_switch_down_release
@@ -452,7 +452,7 @@ automation:
             sequence:
               - service: light.turn_on
                 target:
-                  device_id: 5743b7e4b0c6f285a636e49d0f472138
+                  device_id: ab66300b8e84063c201e334566f93091
                 data: {}
           - conditions:
               - condition: trigger
@@ -461,7 +461,7 @@ automation:
             sequence:
               - service: light.turn_off
                 target:
-                  device_id: 5743b7e4b0c6f285a636e49d0f472138
+                  device_id: ab66300b8e84063c201e334566f93091
                 data: {}
           - conditions:
               - condition: trigger
