@@ -81,9 +81,9 @@ automation:
             - master_bathroom
             - molly_s_room
             - workshop
-          entity_id:
-            - switch.outside_holiday_switches
-            - switch.holiday_lights
+          # entity_id:
+          #   - switch.outside_holiday_switches
+          #   - switch.holiday_lights
         data: {}
       - service: light.turn_on
         target:
