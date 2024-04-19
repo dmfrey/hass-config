@@ -33,17 +33,59 @@ automation:
     description: "Turn the Basement Lights On or Off"
     mode: single
     trigger:
-      - platform: mqtt
-        topic: zigbee2mqtt/Basement Aurora Switch
-    condition:
-      - condition: template
-        value_template: "{{ trigger.payload_json.action_transition_time == 0.07 }}"
+      - platform: device
+        domain: mqtt
+        device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
+        type: action
+        subtype: single
+        id: basement_switch_single
+      - platform: device
+        domain: mqtt
+        device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
+        type: action
+        subtype: double
+        id: basement_switch_double
+    condition: []
     action:
-      - service: light.toggle
-        target:
-          area_id: basement
-        data:
-          transition: 2
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_switch_single
+            sequence:
+              - service: light.toggle
+                target:
+                  area_id: basement
+                data:
+                  transition: 2
+                  kelvin: 2700
+                  brightness_pct: 100
+          - conditions:
+              - condition: trigger
+                id:
+                  - basement_switch_double
+            sequence:
+              - service: light.turn_on
+                target:
+                  area_id: basement
+                data:
+                  transition: 2
+                  kelvin: 2237
+                  brightness_pct: 100
+
+    # trigger:
+    #   - platform: mqtt
+    #     topic: zigbee2mqtt/Basement Aurora Switch
+    # condition:
+    #   - condition: template
+    #     value_template: "{{ trigger.payload_json.action_transition_time == 0.07 }}"
+    # action:
+    #   - service: light.toggle
+    #     target:
+    #       area_id: basement
+    #     data:
+    #       transition: 2
+
   #     - platform: device
   #       domain: mqtt
   #       device_id: d83a7dac2ded7c567bde7cdd8cb88eff
