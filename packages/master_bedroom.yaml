@@ -56,6 +56,8 @@ automation:
     condition: 
       - condition: sun
         after: sunrise
+      - condition: time
+        before: "10:00:00"
     action:
       - service: humidifier.turn_off
         target:
