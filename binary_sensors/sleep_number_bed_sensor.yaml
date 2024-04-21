@@ -1,5 +1,4 @@
 - platform: template
-  name: We Are Awake
   sensors:
     dan_bed:
       friendly_name: Dan is out of bed
