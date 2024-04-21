@@ -42,12 +42,34 @@ automation:
 
   - id: 'b1d2683a-f4a9-4b73-a915-1550141d2522'
     alias: 'Routine | Wake Up | Master Bedroom'
-    description: "Master Bedroom devices turn off when it's morning and Dan and Stephanie are out of bed for at least 2 minutes"
+    description: "Master Bedroom devices turn off when it's morning and Dan and Stephanie are out of bed for at least 5 minutes"
     mode: single
     trigger:
-      - platform: template
-        value_template: >-
-          {{ expand('binary_sensor.sleepnumber_our_bed_daniel_is_in_bed', 'binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed') | selectattr('state', 'eq', 'off') | list | count == 2 }}
+      - platform: state
+        entity_id:
+          - binary_sensor.we_are_out_of_bed
+        to: "on"
+        for:
+          hours: 0
+          minutes: 5
+          seconds: 0
+    condition: 
+      - condition: sun
+        after: sunrise
+    action:
+      - service: humidifier.turn_off
+        target:
+          entity_id: humidifier.master_bedroom_diffuser
+        data: {}
+      - service: fan.turn_off
+        target:
+          entity_id: fan.master_bedroom_tower_fan
+        data: {}
+
+    # trigger:
+    #   - platform: template
+    #     value_template: >-
+    #       {{ expand('binary_sensor.sleepnumber_our_bed_daniel_is_in_bed', 'binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed') | selectattr('state', 'eq', 'off') | list | count == 2 }}
       # - platform: state
       #   entity_id:
       #     - binary_sensor.sleepnumber_our_bed_daniel_is_in_bed
@@ -66,18 +88,18 @@ automation:
       #     minutes: 2
       #     seconds: 0
       #   id: out-of-bed-steph
-    condition:
-      - condition: sun
-        after: sunrise
-    action:
-      - service: fan.turn_off
-        target:
-          entity_id: fan.master_bedroom_tower_fan
-        data: {}
-      - service: humidifier.turn_off
-        target:
-          entity_id: humidifier.master_bedroom_diffuser
-        data: {}
+    # condition:
+    #   - condition: sun
+    #     after: sunrise
+    # action:
+    #   - service: fan.turn_off
+    #     target:
+    #       entity_id: fan.master_bedroom_tower_fan
+    #     data: {}
+    #   - service: humidifier.turn_off
+    #     target:
+    #       entity_id: humidifier.master_bedroom_diffuser
+    #     data: {}
 
   - id: '5deb15f3-7639-42fb-a069-7235643c3408'
     alias: "Switch | Lights | Master Bedroom"
