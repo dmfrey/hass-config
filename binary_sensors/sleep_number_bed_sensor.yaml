@@ -1,10 +1,6 @@
 - platform: template
   sensors:
-    dan_bed:
-      friendly_name: Dan is out of bed
+    we_are_out_of_bed:
+      friendly_name: We are out of bed
       value_template: >
-        {{ is_state('binary_sensor.sleepnumber_our_bed_daniel_is_in_bed', 'off') }}
-    steph_bed:
-      friendly_name: Steph is out of bed
-      value_template: >
-        {{ is_state('binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed', 'off') }}
+        {{ is_state('binary_sensor.sleepnumber_our_bed_daniel_is_in_bed', 'off')  and is_state('binary_sensor.sleepnumber_our_bed_stephanie_is_in_bed', 'off') }}
