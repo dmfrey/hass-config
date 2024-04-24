@@ -42,7 +42,7 @@ automation:
 
   - id: 'b1d2683a-f4a9-4b73-a915-1550141d2522'
     alias: 'Routine | Wake Up | Master Bedroom'
-    description: "Master Bedroom devices turn off when it's morning and Dan and Stephanie are out of bed for at least 5 minutes"
+    description: "Master Bedroom devices turn off when it's morning and Dan and Stephanie are out of bed for at least 3 minutes"
     mode: single
     trigger:
       - platform: state
@@ -51,7 +51,7 @@ automation:
         to: "on"
         for:
           hours: 0
-          minutes: 5
+          minutes: 3
           seconds: 0
     condition: 
       - condition: sun
