@@ -16,7 +16,7 @@
 - name: Southern Lehigh High School
   latitude: !env_var HASS_LATITUDE_SCHOOL
   longitude: !env_var HASS_LONGITUDE_SCHOOL
-  radius: 135
+  radius: 125
   icon: mdi:school
 - name: West Chester University
   latitude: !env_var HASS_LATITUDE_WU
