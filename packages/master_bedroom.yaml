@@ -307,6 +307,15 @@ automation:
                   transition: 1
                   kelvin: 2700
                   brightness: "{{ state_attr('light.master_bedroom_light_switch', 'brightness') | default(0, true) }}"
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_bedroom_light_switch_config_single
+            sequence:
+              - service: automation.turn_on
+                target:
+                  entity_id: automation.routine_house_goodnight
+                data: {}
 
   - id: '628bbde9-add9-4bf6-9d59-1a71c8216a9c'
     alias: "Switch | Fan | Master Bedroom"
