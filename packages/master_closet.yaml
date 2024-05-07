@@ -218,3 +218,12 @@ automation:
                   transition: 2
                   kelvin: 2700
                   brightness: "{{ state_attr('light.master_closet_switch', 'brightness') | default(0, true) }}"
+          - conditions:
+              - condition: trigger
+                id:
+                  - master_closet_switch_config_single
+            sequence:
+              - service: automation.turn_on
+                target:
+                  entity_id: automation.routine_house_goodnight
+                data: {}
