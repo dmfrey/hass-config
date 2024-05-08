@@ -73,10 +73,13 @@ automation:
     description: "Turn off the Master Bedroom, but only when Dan is at home"
     mode: single
     trigger:
+      # - platform: state
+      #   entity_id:
+      #     - switch.trigger
+      #   to: "on"
       - platform: state
         entity_id:
-          - switch.trigger
-        to: "on"
+          - input_button.goodnight
     condition:
       - condition: sun
         after: sunset
