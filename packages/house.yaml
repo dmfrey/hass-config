@@ -105,5 +105,6 @@ automation:
           entity_id: fan.master_bedroom_tower_fan
       - delay: 5
       - service: input_boolean.turn_off
-        entity_id:
-          - input_boolean.good_night
+        target:
+          entity_id:
+            - input_boolean.good_night
