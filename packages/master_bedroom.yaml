@@ -79,7 +79,8 @@ automation:
       #   to: "on"
       - platform: state
         entity_id:
-          - input_button.goodnight
+          - input_boolean.good_night
+        to: "on"
     condition:
       - condition: sun
         after: sunset
