@@ -1,0 +1,4 @@
+good_night:
+  name: Good Night
+  icon: mdi:moon-full
+  initial: off
