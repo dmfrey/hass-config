@@ -54,6 +54,80 @@ automation:
                   brightness_pct: 100
                 target:
                   area_id: office
+              - service: tts.speak
+                metadata: {}
+                data:
+                  cache: true
+                  media_player_entity_id: media_player.office
+                  message: It's time to start your work day. Have a great day!
+                target:
+                  entity_id: tts.google_en_com
+          - conditions:
+              - condition: trigger
+                id:
+                  - workday_mid_morning
+            sequence: 
+              - service: tts.speak
+                metadata: {}
+                data:
+                  cache: true
+                  media_player_entity_id: media_player.office
+                  message: It's time to stand up and stretch. Let's take a break for 10 minutes.
+                target:
+                  entity_id: tts.google_en_com
+          - conditions:
+              - condition: trigger
+                id:
+                  - workday_lunch
+            sequence: 
+              - service: tts.speak
+                metadata: {}
+                data:
+                  cache: true
+                  media_player_entity_id: media_player.office
+                  message: It's time for lunch! Remember to wash your hands!
+                target:
+                  entity_id: tts.google_en_com
+          - conditions:
+              - condition: trigger
+                id:
+                  - workday_after_lunch
+            sequence: 
+              - service: tts.speak
+                metadata: {}
+                data:
+                  cache: true
+                  media_player_entity_id: media_player.office
+                  message: Hope your having a good day! Wamt to go for a walk?
+                target:
+                  entity_id: tts.google_en_com
+          - conditions:
+              - condition: trigger
+                id:
+                  - workday_mid_afternoon
+            sequence: 
+              - service: tts.speak
+                metadata: {}
+                data:
+                  cache: true
+                  media_player_entity_id: media_player.office
+                  message: Let's go grab a glass of water. And why don't you go wash your hands?
+                target:
+                  entity_id: tts.google_en_com
+          - conditions:
+              - condition: trigger
+                id:
+                  - workday_evening
+            sequence: 
+              - service: tts.speak
+                metadata: {}
+                data:
+                  cache: true
+                  media_player_entity_id: media_player.office
+                  message: Time to start wrapping up your work day and plan for dinner!
+                target:
+                  entity_id: tts.google_en_com
+
 
   - id: '49cb1865-323a-4211-8298-cafcd33ccd9b'
     alias: "Routine | Office | Close the Office"
