@@ -27,7 +27,7 @@ automation:
         entity_id: person.daniel_frey
         zone: zone.home
       - condition: state
-        entity_id: binary_sensor.workday_day
+        entity_id: binary_sensor.work_day
         state: "on"
       - condition: not
         conditions:
