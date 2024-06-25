@@ -39,14 +39,14 @@ automation:
           brightness_pct: 60
 
   - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
-    alias: "Routine | Camdyn's Room | Camdyn is at school"
-    description: "She arrived at school, turn off the lights"
+    alias: "Routine | Camdyn's Room | Camdyn is not at home"
+    description: "Turn off Camdyn's Room Lights when she is not at home"
     mode: single
     trigger:
       - platform: zone
         entity_id: person.camdyn_frey
-        zone: zone.southern_lehigh_high_school
-        event: enter
+        zone: zone.home
+        event: leave
     condition: []
     action:
       - service: light.turn_off

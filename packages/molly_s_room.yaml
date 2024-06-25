@@ -70,14 +70,14 @@ automation:
           brightness_pct: 60
 
   - id: '69139fbb-ad53-4b80-9944-56f12d8aa90f'
-    alias: "Routine | Molly's Room | Molly is at school"
+    alias: "Routine | Molly's Room | Molly is not at home"
     description: "She arrived at school, turn off the lights"
     mode: single
     trigger:
       - platform: zone
         entity_id: person.molly_frey
-        zone: zone.southern_lehigh_high_school
-        event: enter
+        zone: zone.home
+        event: leave
     condition: []
     action:
       - service: light.turn_off
