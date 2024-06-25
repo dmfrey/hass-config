@@ -16,3 +16,4 @@ nest/
 *august.conf
 configuration.yaml
 **/__pycache__
+.bash_history
