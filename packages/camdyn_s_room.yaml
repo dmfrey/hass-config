@@ -8,7 +8,10 @@ automation:
       - platform: sun
         event: sunset
         offset: "-00:30:00"
-    condition: []
+    condition:
+      - condition: zone
+        entity_id: person.camdyn_frey
+        zone: zone.home
     action:
       - service: light.turn_on
         data:
@@ -26,7 +29,10 @@ automation:
     trigger:
       - platform: time
         at: "20:15:00"
-    condition: []
+    condition:
+      - condition: zone
+        entity_id: person.camdyn_frey
+        zone: zone.home
     action:
       - service: light.turn_on
         metadata: {}
@@ -52,5 +58,27 @@ automation:
       - service: light.turn_off
         metadata: {}
         data: {}
+        target:
+          area_id: camdyn_s_room
+
+  - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
+    alias: "Routine | Camdyn's Room | Camdyn is not at home"
+    description: "Turn on Camdyn's Room Lights when she arrives home and it's after sunset"
+    mode: single
+    trigger:
+      - platform: zone
+        entity_id: person.camdyn_frey
+        zone: zone.home
+        event: enter
+    condition:
+      - condition: sun
+        after: sunset
+    action:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 75
         target:
           area_id: camdyn_s_room
