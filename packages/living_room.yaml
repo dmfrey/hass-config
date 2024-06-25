@@ -1,7 +1,7 @@
 automation:
 
   - id: '0e7b26f8-d2f6-439b-bde6-ca100d8570e7'
-    alias: "Routine | Sunset | Living Room"
+    alias: "Routine | Living Room | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -20,7 +20,7 @@ automation:
             - living_room
 
   - id: '499a815a-3962-4d7b-9f91-90e0906ec376'
-    alias: "Routine | Relax | Living Room"
+    alias: "Routine | Living Room | Relax"
     description: "It's time to relax"
     mode: single
     trigger:

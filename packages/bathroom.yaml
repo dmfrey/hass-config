@@ -1,7 +1,7 @@
 automation:
 
   - id: '9d331eec-830d-4e25-bfc3-06facbfd28f0'
-    alias: "Routine | Wake Up | Bathroom"
+    alias: "Routine | Bathroom | Wake Up"
     description: "Turn on Bathroom Lights if it's a School Day and not a Holiday or Snow Day"
     mode: queued
     max: 10

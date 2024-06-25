@@ -1,7 +1,7 @@
 automation:
 
   - id: 'd1e5d21c-a46d-48ed-b2e0-9a35d1d2ad24'
-    alias: "Routine | Sunset | Patio"
+    alias: "Routine | Patio | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -20,7 +20,7 @@ automation:
             - patio
 
   - id: '1ab71119-81b3-4b1c-ae7d-803c79446bd1'
-    alias: "Routine | Relax | Patio"
+    alias: "Routine | Patio | Relax"
     description: "It's time to relax"
     mode: single
     trigger:

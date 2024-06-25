@@ -1,7 +1,7 @@
 automation:
 
   - id: '3f4c0fdf-d9ef-468e-a973-8e7fa82c7483'
-    alias: "Routine | Sunset | Family Room"
+    alias: "Routine | Family Room | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -21,7 +21,7 @@ automation:
             - family_room_ambient
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
-    alias: "Routine | Relax | Family Room"
+    alias: "Routine | Family Room | Relax"
     description: "It's time to relax"
     mode: single
     trigger:

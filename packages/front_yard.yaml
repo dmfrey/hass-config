@@ -1,6 +1,6 @@
 automation:
   - id: 'fb86e6f6-e22e-447b-b32f-18bd71266a24'
-    alias: 'Routine | Sunset | Front Yard'
+    alias: 'Routine | Front Yard | Sunset'
     description: "Front Yard Lights turn on or off"
     mode: single
     trigger:

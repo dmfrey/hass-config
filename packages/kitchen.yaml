@@ -1,7 +1,7 @@
 automation:
 
   - id: 'e75e2a71-c66d-4db8-bcc2-dd856e373c1f'
-    alias: "Routine | Sunset | Kitchen"
+    alias: "Routine | Kitchen | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -21,7 +21,7 @@ automation:
             - kitchen
 
   - id: 'f53f40a7-08e6-469c-8fe9-779e21ede6c3'
-    alias: "Routine | Relax | Kitchen"
+    alias: "Routine | Kitchen | Relax"
     description: "It's time to relax"
     mode: single
     trigger:

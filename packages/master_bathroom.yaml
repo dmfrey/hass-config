@@ -1,7 +1,7 @@
 automation:
 
   - id: '23edfdb2-f2f6-4df2-9879-7c83856d1820'
-    alias: "Motion Sensor | Ambient | Master Bathroom"
+    alias: "Motion Sensor | Master Bathroom | Ambient"
     description: >-
       Master Bathroom Motion Sensor turns on ambient lights, schedules them to turn
       off, and dims them at night
@@ -64,35 +64,3 @@ automation:
                   transition: 2
                   brightness_pct: 20
                   kelvin: 2237
-
-    # use_blueprint:
-    #   path: Blackshome/sensor-light.yaml
-    #   input:
-    #     motion_trigger:
-    #       - binary_sensor.master_bathroom_sensor_occupancy
-    #     light_switch:
-    #       entity_id: light.master_bathroom_lightstrip
-    #     time_delay: 10
-    #     include_light_control:
-    #       - use_colour_temperature
-    #       - use_brightness
-    #       - use_transition
-    #     light_transition_on: 2
-    #     light_transition_off: 4
-    #     light_colour_temperature: 2700
-    #     include_night_lights: night_lights_enabled
-    #     night_lights:
-    #       entity_id: light.master_bathroom_lightstrip
-    #     night_time_delay: 3
-    #     include_night_light_control:
-    #       - use_colour_temperature
-    #       - use_brightness
-    #       - use_transition
-    #     night_lights_conditions:
-    #       - time_enabled
-    #     night_lights_after_time: "23:00:00"
-    #     night_lights_before_time: "07:00:00"
-    #     night_light_brightness: 20
-    #     night_light_colour_temperature: 2700
-    #     night_light_transition_on: 2
-    #     night_light_transition_off: 4

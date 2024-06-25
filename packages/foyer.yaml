@@ -1,7 +1,7 @@
 automation:
 
   - id: 'e5f16484-525e-4e1f-92fc-b73cf9cab8f2'
-    alias: "Routine | Sunset | Foyer"
+    alias: "Routine | Foyer | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -20,7 +20,7 @@ automation:
             - foyer
 
   - id: 'cf9c7092-2806-48e7-b4e7-dfb20e8fb3e0'
-    alias: "Routine | Relax | Foyer"
+    alias: "Routine | Foyer | Relax"
     description: "It's time to relax"
     mode: single
     trigger:

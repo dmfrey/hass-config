@@ -30,11 +30,6 @@ automation:
     description: "Turn off the House"
     mode: single
     trigger:
-      # - platform: device
-      #   type: turned_on
-      #   device_id: 050e14de5a11adfb770f473c3ed6b540
-      #   entity_id: switch.trigger
-      #   domain: switch
       - platform: state
         entity_id:
           - input_boolean.good_night

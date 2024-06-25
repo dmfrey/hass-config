@@ -6,7 +6,10 @@ automation:
     trigger:
       - platform: time
         at: "05:40:00"
-    condition: []
+    condition:
+      - condition: zone
+        entity_id: person.daniel_frey
+        zone: zone.home
     action:
       - service: light.turn_on
         target:
@@ -21,57 +24,60 @@ automation:
     trigger:
       - platform: time
         at: "08:30:00"
-    condition: []
+    condition: 
+      - condition: zone
+        entity_id: person.daniel_frey
+        zone: zone.home
     action:
       - service: light.turn_off
         target:
           area_id: basement
         data: {}
 
-  - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
-    alias: "Switch | Lights | Basement"
-    description: "Turn the Basement Lights On or Off"
-    mode: single
-    trigger:
-      - platform: device
-        domain: mqtt
-        device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
-        type: action
-        subtype: single
-        id: basement_switch_single
-      - platform: device
-        domain: mqtt
-        device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
-        type: action
-        subtype: double
-        id: basement_switch_double
-    condition: []
-    action:
-      - choose:
-          - conditions:
-              - condition: trigger
-                id:
-                  - basement_switch_single
-            sequence:
-              - service: light.toggle
-                target:
-                  area_id: basement
-                data:
-                  transition: 2
-                  kelvin: 2700
-                  brightness_pct: 100
-          - conditions:
-              - condition: trigger
-                id:
-                  - basement_switch_double
-            sequence:
-              - service: light.turn_on
-                target:
-                  area_id: basement
-                data:
-                  transition: 2
-                  kelvin: 2237
-                  brightness_pct: 100
+  # - id: '6d4a7378-2e8c-4c3a-817a-6328bb8de01a'
+  #   alias: "Switch | Lights | Basement"
+  #   description: "Turn the Basement Lights On or Off"
+  #   mode: single
+  #   trigger:
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
+  #       type: action
+  #       subtype: single
+  #       id: basement_switch_single
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
+  #       type: action
+  #       subtype: double
+  #       id: basement_switch_double
+  #   condition: []
+  #   action:
+  #     - choose:
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - basement_switch_single
+  #           sequence:
+  #             - service: light.toggle
+  #               target:
+  #                 area_id: basement
+  #               data:
+  #                 transition: 2
+  #                 kelvin: 2700
+  #                 brightness_pct: 100
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - basement_switch_double
+  #           sequence:
+  #             - service: light.turn_on
+  #               target:
+  #                 area_id: basement
+  #               data:
+  #                 transition: 2
+  #                 kelvin: 2237
+  #                 brightness_pct: 100
 
     # trigger:
     #   - platform: mqtt

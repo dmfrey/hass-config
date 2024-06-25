@@ -1,7 +1,7 @@
 automation:
 
   - id: 'b7b19a14-efe6-48ef-b257-1a1d8478b6b6'
-    alias: "Routine | Sunset | Den"
+    alias: "Routine | Den | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -20,7 +20,7 @@ automation:
             - den
 
   - id: 'f0563edc-f36c-4c35-9ad3-6b7c55bfdfa6'
-    alias: "Routine | Relax | Den"
+    alias: "Routine | Den | Relax"
     description: "It's time to relax"
     mode: single
     trigger:
