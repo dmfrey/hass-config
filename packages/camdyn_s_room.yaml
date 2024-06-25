@@ -1,7 +1,7 @@
 automation:
   
   - id: 'dde44bf2-bf0d-4d46-8a3e-b74ea8c59564'
-    alias: "Routine | Sunset | Camdyn's Room"
+    alias: "Routine | Camdyn's Room | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
@@ -23,7 +23,7 @@ automation:
             - camdyn_s_room
 
   - id: 'bee92ca7-72cd-4b90-9e77-1d92960bc1f9'
-    alias: "Routine | Relax | Camdyn's Room"
+    alias: "Routine | Camdyn's Room | Relax"
     description: "It's time to relax"
     mode: single
     trigger:
@@ -45,7 +45,7 @@ automation:
           brightness_pct: 60
 
   - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
-    alias: "Routine | Camdyn's Room | Camdyn is not at home"
+    alias: "Routine | Camdyn's Room | Camdyn has left home"
     description: "Turn off Camdyn's Room Lights when she is not at home"
     mode: single
     trigger:
@@ -62,7 +62,7 @@ automation:
           area_id: camdyn_s_room
 
   - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
-    alias: "Routine | Camdyn's Room | Camdyn is not at home"
+    alias: "Routine | Camdyn's Room | Camdyn arrives at home"
     description: "Turn on Camdyn's Room Lights when she arrives home and it's after sunset"
     mode: single
     trigger:
