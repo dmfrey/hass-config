@@ -20,6 +20,36 @@ automation:
             - dining_room
             - kitchen
 
+  - id: '14bb3ffc-bbfa-404e-9d9c-cdfaa531e5d8'
+    alias: "Routine | Kitchen | Everyone is away"
+    description: "Everyone has left the house, turn off the Kitchen Lights if the time is before sunset"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.anyone_home
+        to: away
+    condition:
+      - condition: sun
+        before: sunset
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data:
+          transition: 2
+        target:
+          area_id: kitchen
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 5
+          milliseconds: 0
+      - service: notify.mobile_app_dan_s_pixel_8_pro
+        metadata: {}
+        data:
+          title: Everyone is away
+          message: The Kitchen Lights have turned off!
+
   - id: 'f53f40a7-08e6-469c-8fe9-779e21ede6c3'
     alias: "Routine | Kitchen | Relax"
     description: "It's time to relax"
