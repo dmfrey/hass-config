@@ -61,7 +61,7 @@ automation:
         target:
           area_id: camdyn_s_room
 
-  - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
+  - id: '53af2938-b66c-4226-a5e2-ac4bb455649e'
     alias: "Routine | Camdyn's Room | Camdyn arrives at home"
     description: "Turn on Camdyn's Room Lights when she arrives home and it's after sunset"
     mode: single

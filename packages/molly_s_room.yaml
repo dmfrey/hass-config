@@ -1,7 +1,7 @@
 automation:
   
   - id: 'a78f01c0-53af-4703-89d3-c04fb55bd6c5'
-    alias: "Routine | Wake Up | Molly's Room"
+    alias: "Routine | Molly's Room | Wake Up"
     description: "Turn on Molly's Room Lights if it's a School Day and not a Holiday or Snow Day"
     mode: queued
     max: 10
@@ -9,6 +9,9 @@ automation:
       - platform: time
         at: "05:25:00"
     condition:
+      - condition: zone
+        entity_id: person.molly_frey
+        zone: zone.home
       - condition: state
         entity_id: binary_sensor.school_day
         state: "on"
@@ -32,14 +35,17 @@ automation:
           brightness_pct: 100
 
   - id: '68890773-dafe-4248-824f-83efc7591979'
-    alias: "Routine | Sunset | Molly's Room"
+    alias: "Routine | Molly's Room | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
     mode: single
     trigger:
       - platform: sun
         event: sunset
         offset: "-00:30:00"
-    condition: []
+    condition:
+      - condition: zone
+        entity_id: person.molly_frey
+        zone: zone.home
     action:
       - service: light.turn_on
         data:
@@ -51,13 +57,16 @@ automation:
             - molly_s_room
 
   - id: 'c1f67ab1-d41b-4073-9a69-4345b4604260'
-    alias: "Routine | Relax | Molly's Room"
+    alias: "Routine | Molly's Room | Relax"
     description: "It's time to relax"
     mode: single
     trigger:
       - platform: time
         at: "20:15:00"
-    condition: []
+    condition:
+      - condition: zone
+        entity_id: person.molly_frey
+        zone: zone.home
     action:
       - service: light.turn_on
         metadata: {}
@@ -70,7 +79,7 @@ automation:
           brightness_pct: 60
 
   - id: '69139fbb-ad53-4b80-9944-56f12d8aa90f'
-    alias: "Routine | Molly's Room | Molly is not at home"
+    alias: "Routine | Molly's Room | Molly has left home"
     description: "She arrived at school, turn off the lights"
     mode: single
     trigger:
@@ -83,6 +92,28 @@ automation:
       - service: light.turn_off
         metadata: {}
         data: {}
+        target:
+          area_id: molly_s_room
+
+  - id: '3da19d05-6cdb-40d0-b324-b8ac8b10031b'
+    alias: "Routine | Molly's Room | Molly arrives at home"
+    description: "Turn on Molly's Room Lights when she arrives home and it's after sunset"
+    mode: single
+    trigger:
+      - platform: zone
+        entity_id: person.molly_frey
+        zone: zone.home
+        event: enter
+    condition:
+      - condition: sun
+        after: sunset
+    action:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          transition: 2
+          kelvin: 2700
+          brightness_pct: 75
         target:
           area_id: molly_s_room
 
