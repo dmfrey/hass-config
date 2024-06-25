@@ -144,80 +144,80 @@ automation:
         target:
           area_id: office
 
-  - id: 'c9759972-32b1-4b2d-bc11-d695273c1aff'
-    alias: "Switch | Lights | Office"
-    description: "Office Switch turns Office Lights on or off, dimming capable"
-    mode: queued
-    max: 10
-    trigger:
-      - platform: device
-        domain: mqtt
-        device_id: 1cedae21877c5db501217cf2b5de0c28
-        type: action
-        subtype: on_press
-        id: office_button_on_press
-      - platform: device
-        domain: mqtt
-        device_id: 1cedae21877c5db501217cf2b5de0c28
-        type: action
-        subtype: up_press
-        id: office_button_up_press
-      - platform: device
-        domain: mqtt
-        device_id: 1cedae21877c5db501217cf2b5de0c28
-        type: action
-        subtype: down_press_release
-        id: office_button_down_press
-      - platform: device
-        domain: mqtt
-        device_id: 1cedae21877c5db501217cf2b5de0c28
-        type: action
-        subtype: off_press
-        id: office_button_off_press
-    condition: []
-    action:
-      - choose:
-          - conditions:
-              - condition: trigger
-                id:
-                  - office_button_on_press
-            sequence:
-              - service: light.turn_on
-                target:
-                  area_id: office
-                data:
-                  transition: 1
-                  kelvin: 2700
-                  brightness_pct: 100
-          - conditions:
-              - condition: trigger
-                id:
-                  - office_button_off_press
-            sequence:
-              - service: light.turn_off
-                target:
-                  area_id: office
-                data:
-                  transition: 1
-          - conditions:
-              - condition: trigger
-                id:
-                  - office_button_up_press
-            sequence:
-              - service: light.turn_on
-                target:
-                  entity_id: light.office_light_1
-                data:
-                  brightness_step_pct: 10
-                  kelvin: 2700
-          - conditions:
-              - condition: trigger
-                id:
-                  - office_button_down_press
-            sequence:
-              - service: light.turn_on
-                target:
-                  entity_id: light.office_light_1
-                data:
-                  brightness_step_pct: -10
-                  kelvin: 2700
+  # - id: 'c9759972-32b1-4b2d-bc11-d695273c1aff'
+  #   alias: "Switch | Lights | Office"
+  #   description: "Office Switch turns Office Lights on or off, dimming capable"
+  #   mode: queued
+  #   max: 10
+  #   trigger:
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: 1cedae21877c5db501217cf2b5de0c28
+  #       type: action
+  #       subtype: on_press
+  #       id: office_button_on_press
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: 1cedae21877c5db501217cf2b5de0c28
+  #       type: action
+  #       subtype: up_press
+  #       id: office_button_up_press
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: 1cedae21877c5db501217cf2b5de0c28
+  #       type: action
+  #       subtype: down_press_release
+  #       id: office_button_down_press
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: 1cedae21877c5db501217cf2b5de0c28
+  #       type: action
+  #       subtype: off_press
+  #       id: office_button_off_press
+  #   condition: []
+  #   action:
+  #     - choose:
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - office_button_on_press
+  #           sequence:
+  #             - service: light.turn_on
+  #               target:
+  #                 area_id: office
+  #               data:
+  #                 transition: 1
+  #                 kelvin: 2700
+  #                 brightness_pct: 100
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - office_button_off_press
+  #           sequence:
+  #             - service: light.turn_off
+  #               target:
+  #                 area_id: office
+  #               data:
+  #                 transition: 1
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - office_button_up_press
+  #           sequence:
+  #             - service: light.turn_on
+  #               target:
+  #                 entity_id: light.office_light_1
+  #               data:
+  #                 brightness_step_pct: 10
+  #                 kelvin: 2700
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - office_button_down_press
+  #           sequence:
+  #             - service: light.turn_on
+  #               target:
+  #                 entity_id: light.office_light_1
+  #               data:
+  #                 brightness_step_pct: -10
+  #                 kelvin: 2700

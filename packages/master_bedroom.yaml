@@ -73,10 +73,6 @@ automation:
     description: "Turn off the Master Bedroom, but only when Dan is at home"
     mode: single
     trigger:
-      # - platform: state
-      #   entity_id:
-      #     - switch.trigger
-      #   to: "on"
       - platform: state
         entity_id:
           - input_boolean.good_night
@@ -129,408 +125,408 @@ automation:
     #       entity_id: humidifier.master_bedroom_diffuser
     #     data: {}
 
-  - id: '5deb15f3-7639-42fb-a069-7235643c3408'
-    alias: "Switch | Lights | Master Bedroom"
-    description: "Master Bedroom Switch turns Master Bedroom Lights on or off, dimming capable"
-    mode: queued
-    max: 10
-    trigger:
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: config_single
-        id: master_bedroom_light_switch_config_single
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: config_double
-        id: master_bedroom_light_switch_config_double
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: config_triple
-        id: master_bedroom_light_switch_config_triple
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: up_single
-        id: master_bedroom_light_switch_up_single
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: down_single
-        id: master_bedroom_light_switch_down_single
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: up_double
-        id: master_bedroom_light_switch_up_double
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: down_double
-        id: master_bedroom_light_switch_down_double
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: up_held
-        id: master_bedroom_light_switch_up_held
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: down_held
-        id: master_bedroom_light_switch_down_held
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: up_release
-        id: master_bedroom_light_switch_up_release
-      - platform: device
-        domain: mqtt
-        device_id: f690b3274841ec399ddcf537322a7bf4
-        type: action
-        subtype: down_release
-        id: master_bedroom_light_switch_down_release
-      - platform: state
-        entity_id:
-          - light.master_bedroom_light_1
-        to: "on"
-        id: master_bedroom_light_1_turns_on
-      - platform: state
-        entity_id:
-          - light.master_bedroom_light_1
-        to: "off"
-        id: master_bedroom_light_1_turns_off
-      - platform: state
-        entity_id:
-          - light.master_bedroom_light_switch
-        id: master_bedroom_light_switch_local_dimming
-        enabled: true
-    condition: []
-    action:
-      - choose:
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_switch_up_single
-            sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  transition: 2
-                  kelvin: 2700
-                  brightness_pct: 100
-                target:
-                  entity_id: 
-                    - light.master_bedroom_light_1
-                    - light.master_bedroom_light_2
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_switch_down_single
-            sequence:
-              - service: light.turn_off
-                target:
-                  entity_id: 
-                    - light.master_bedroom_light_1
-                    - light.master_bedroom_light_2
-                data: {}
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_switch_up_double
-            sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  transition: 2
-                  kelvin: 2700
-                  brightness_pct: 100
-                target:
-                  entity_id: 
-                    - light.master_bedroom_light_1
-                    - light.master_bedroom_light_2
-                alias: Light 'Turn on' on Master Bedroom to Bright
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_switch_down_double
-            sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  transition: 2
-                  kelvin: 2700
-                  brightness_pct: 30
-                target:
-                  entity_id: 
-                    - light.master_bedroom_light_1
-                    - light.master_bedroom_light_2
-                alias: Light 'Turn on' on Master Bedroom to Nightlight
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_1_turns_on
-            sequence:
-              - service: light.turn_on
-                target:
-                  device_id: f690b3274841ec399ddcf537322a7bf4
-                data: {}
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_1_turns_off
-            sequence:
-              - service: light.turn_off
-                target:
-                  device_id: f690b3274841ec399ddcf537322a7bf4
-                data: {}
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_switch_local_dimming
-              - condition: template
-                value_template: >-
-                  {{ states.light.master_bedroom_light_switch.last_updated > states.light.master_bedroom_light_1.last_changed }}
-            sequence:
-              - service: light.turn_on
-                entity_id: 
-                  - light.master_bedroom_light_1
-                  - light.master_bedroom_light_2
-                data:
-                  transition: 1
-                  kelvin: 2700
-                  brightness: "{{ state_attr('light.master_bedroom_light_switch', 'brightness') | default(0, true) }}"
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_light_switch_config_single
-            sequence:
-              - service: automation.turn_on
-                target:
-                  entity_id: automation.routine_house_goodnight
-                data: {}
+  # - id: '5deb15f3-7639-42fb-a069-7235643c3408'
+  #   alias: "Switch | Lights | Master Bedroom"
+  #   description: "Master Bedroom Switch turns Master Bedroom Lights on or off, dimming capable"
+  #   mode: queued
+  #   max: 10
+  #   trigger:
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: config_single
+  #       id: master_bedroom_light_switch_config_single
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: config_double
+  #       id: master_bedroom_light_switch_config_double
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: config_triple
+  #       id: master_bedroom_light_switch_config_triple
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: up_single
+  #       id: master_bedroom_light_switch_up_single
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: down_single
+  #       id: master_bedroom_light_switch_down_single
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: up_double
+  #       id: master_bedroom_light_switch_up_double
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: down_double
+  #       id: master_bedroom_light_switch_down_double
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: up_held
+  #       id: master_bedroom_light_switch_up_held
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: down_held
+  #       id: master_bedroom_light_switch_down_held
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: up_release
+  #       id: master_bedroom_light_switch_up_release
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: f690b3274841ec399ddcf537322a7bf4
+  #       type: action
+  #       subtype: down_release
+  #       id: master_bedroom_light_switch_down_release
+  #     - platform: state
+  #       entity_id:
+  #         - light.master_bedroom_light_1
+  #       to: "on"
+  #       id: master_bedroom_light_1_turns_on
+  #     - platform: state
+  #       entity_id:
+  #         - light.master_bedroom_light_1
+  #       to: "off"
+  #       id: master_bedroom_light_1_turns_off
+  #     - platform: state
+  #       entity_id:
+  #         - light.master_bedroom_light_switch
+  #       id: master_bedroom_light_switch_local_dimming
+  #       enabled: true
+  #   condition: []
+  #   action:
+  #     - choose:
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_switch_up_single
+  #           sequence:
+  #             - service: light.turn_on
+  #               metadata: {}
+  #               data:
+  #                 transition: 2
+  #                 kelvin: 2700
+  #                 brightness_pct: 100
+  #               target:
+  #                 entity_id: 
+  #                   - light.master_bedroom_light_1
+  #                   - light.master_bedroom_light_2
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_switch_down_single
+  #           sequence:
+  #             - service: light.turn_off
+  #               target:
+  #                 entity_id: 
+  #                   - light.master_bedroom_light_1
+  #                   - light.master_bedroom_light_2
+  #               data: {}
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_switch_up_double
+  #           sequence:
+  #             - service: light.turn_on
+  #               metadata: {}
+  #               data:
+  #                 transition: 2
+  #                 kelvin: 2700
+  #                 brightness_pct: 100
+  #               target:
+  #                 entity_id: 
+  #                   - light.master_bedroom_light_1
+  #                   - light.master_bedroom_light_2
+  #               alias: Light 'Turn on' on Master Bedroom to Bright
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_switch_down_double
+  #           sequence:
+  #             - service: light.turn_on
+  #               metadata: {}
+  #               data:
+  #                 transition: 2
+  #                 kelvin: 2700
+  #                 brightness_pct: 30
+  #               target:
+  #                 entity_id: 
+  #                   - light.master_bedroom_light_1
+  #                   - light.master_bedroom_light_2
+  #               alias: Light 'Turn on' on Master Bedroom to Nightlight
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_1_turns_on
+  #           sequence:
+  #             - service: light.turn_on
+  #               target:
+  #                 device_id: f690b3274841ec399ddcf537322a7bf4
+  #               data: {}
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_1_turns_off
+  #           sequence:
+  #             - service: light.turn_off
+  #               target:
+  #                 device_id: f690b3274841ec399ddcf537322a7bf4
+  #               data: {}
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_switch_local_dimming
+  #             - condition: template
+  #               value_template: >-
+  #                 {{ states.light.master_bedroom_light_switch.last_updated > states.light.master_bedroom_light_1.last_changed }}
+  #           sequence:
+  #             - service: light.turn_on
+  #               entity_id: 
+  #                 - light.master_bedroom_light_1
+  #                 - light.master_bedroom_light_2
+  #               data:
+  #                 transition: 1
+  #                 kelvin: 2700
+  #                 brightness: "{{ state_attr('light.master_bedroom_light_switch', 'brightness') | default(0, true) }}"
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_light_switch_config_single
+  #           sequence:
+  #             - service: automation.turn_on
+  #               target:
+  #                 entity_id: automation.routine_house_goodnight
+  #               data: {}
 
-  - id: '628bbde9-add9-4bf6-9d59-1a71c8216a9c'
-    alias: "Switch | Fan | Master Bedroom"
-    description: "Master Bedroom Fan Switch turns Master Bedroom Ceiling Fan and Light on or off, dimming capable"
-    mode: queued
-    max: 10
-    trigger:
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: config_single
-        id: master_bedroom_fan_switch_config_single
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: config_double
-        id: master_bedroom_fan_switch_config_double
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: config_triple
-        id: master_bedroom_fan_switch_config_triple
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: config_quadruple
-        id: master_bedroom_fan_switch_config_quadruple
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: up_single
-        id: master_bedroom_fan_switch_up_single
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: down_single
-        id: master_bedroom_fan_switch_down_single
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: up_double
-        id: master_bedroom_fan_switch_up_double
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: down_double
-        id: master_bedroom_fan_switch_down_double
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: up_held
-        id: master_bedroom_fan_switch_up_held
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: down_held
-        id: master_bedroom_fan_switch_down_held
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: up_release
-        id: master_bedroom_fan_switch_up_release
-      - platform: device
-        domain: mqtt
-        device_id: ab66300b8e84063c201e334566f93091
-        type: action
-        subtype: down_release
-        id: master_bedroom_fan_switch_down_release
-      - platform: state
-        entity_id:
-          - light.master_bedroom_ceiling_fan
-        to: "on"
-        id: master_bedroom_ceiling_fan_light_turns_on
-      - platform: state
-        entity_id:
-          - light.master_bedroom_ceiling_fan
-        to: "off"
-        id: master_bedroom_ceiling_fan_light_turns_off
-      - platform: state
-        entity_id:
-          - light.master_bedroom_ceiling_fan
-        id: master_bedroom_fan_switch_local_dimming
-        enabled: true
-    condition: []
-    action:
-      - choose:
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_config_single
-            sequence:
-              - service: fan.turn_on
-                metadata: {}
-                data:
-                  percentage: 50
-                target:
-                  entity_id: fan.master_bedroom_ceiling_fan
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_config_double
-            sequence:
-              - service: fan.turn_on
-                metadata: {}
-                data:
-                  percentage: 75
-                target:
-                  entity_id: fan.master_bedroom_ceiling_fan
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_config_triple
-            sequence:
-              - service: fan.turn_on
-                metadata: {}
-                data:
-                  percentage: 100
-                target:
-                  entity_id: fan.master_bedroom_ceiling_fan
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_config_quadruple
-            sequence:
-              - service: fan.turn_off
-                metadata: {}
-                data: {}
-                target:
-                  entity_id: fan.master_bedroom_ceiling_fan
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_up_single
-            sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  brightness_pct: 100
-                target:
-                  entity_id: light.master_bedroom_ceiling_fan
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_down_single
-            sequence:
-              - service: light.turn_off
-                target:
-                  entity_id: light.master_bedroom_ceiling_fan
-                data: {}
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_up_double
-            sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  brightness_pct: 100
-                target:
-                  entity_id: light.master_bedroom_ceiling_fan
-                alias: Light 'Turn on' on Master Bedroom Ceiling Light to Bright
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_down_double
-            sequence:
-              - service: light.turn_on
-                metadata: {}
-                data:
-                  brightness_pct: 30
-                target:
-                  entity_id: light.master_bedroom_ceiling_fan
-                alias: Light 'Turn on' on Master Bedroom Ceiling Light to Nightlight
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_ceiling_fan_turns_on
-            sequence:
-              - service: light.turn_on
-                target:
-                  device_id: ab66300b8e84063c201e334566f93091
-                data: {}
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_ceiling_fan_turns_off
-            sequence:
-              - service: light.turn_off
-                target:
-                  device_id: ab66300b8e84063c201e334566f93091
-                data: {}
-          - conditions:
-              - condition: trigger
-                id:
-                  - master_bedroom_fan_switch_local_dimming
-              - condition: template
-                value_template: >-
-                  {{ states.light.master_bedroom_fan_switch.last_updated > states.light.master_bedroom_ceiling_fan.last_changed }}
-            sequence:
-              - service: light.turn_on
-                entity_id: light.master_bedroom_ceiling_fan
-                data:
-                  brightness: "{{ state_attr('light.master_bedroom_fan_switch', 'brightness') | default(0, true) }}"
+  # - id: '628bbde9-add9-4bf6-9d59-1a71c8216a9c'
+  #   alias: "Switch | Fan | Master Bedroom"
+  #   description: "Master Bedroom Fan Switch turns Master Bedroom Ceiling Fan and Light on or off, dimming capable"
+  #   mode: queued
+  #   max: 10
+  #   trigger:
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: config_single
+  #       id: master_bedroom_fan_switch_config_single
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: config_double
+  #       id: master_bedroom_fan_switch_config_double
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: config_triple
+  #       id: master_bedroom_fan_switch_config_triple
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: config_quadruple
+  #       id: master_bedroom_fan_switch_config_quadruple
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: up_single
+  #       id: master_bedroom_fan_switch_up_single
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: down_single
+  #       id: master_bedroom_fan_switch_down_single
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: up_double
+  #       id: master_bedroom_fan_switch_up_double
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: down_double
+  #       id: master_bedroom_fan_switch_down_double
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: up_held
+  #       id: master_bedroom_fan_switch_up_held
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: down_held
+  #       id: master_bedroom_fan_switch_down_held
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: up_release
+  #       id: master_bedroom_fan_switch_up_release
+  #     - platform: device
+  #       domain: mqtt
+  #       device_id: ab66300b8e84063c201e334566f93091
+  #       type: action
+  #       subtype: down_release
+  #       id: master_bedroom_fan_switch_down_release
+  #     - platform: state
+  #       entity_id:
+  #         - light.master_bedroom_ceiling_fan
+  #       to: "on"
+  #       id: master_bedroom_ceiling_fan_light_turns_on
+  #     - platform: state
+  #       entity_id:
+  #         - light.master_bedroom_ceiling_fan
+  #       to: "off"
+  #       id: master_bedroom_ceiling_fan_light_turns_off
+  #     - platform: state
+  #       entity_id:
+  #         - light.master_bedroom_ceiling_fan
+  #       id: master_bedroom_fan_switch_local_dimming
+  #       enabled: true
+  #   condition: []
+  #   action:
+  #     - choose:
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_config_single
+  #           sequence:
+  #             - service: fan.turn_on
+  #               metadata: {}
+  #               data:
+  #                 percentage: 50
+  #               target:
+  #                 entity_id: fan.master_bedroom_ceiling_fan
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_config_double
+  #           sequence:
+  #             - service: fan.turn_on
+  #               metadata: {}
+  #               data:
+  #                 percentage: 75
+  #               target:
+  #                 entity_id: fan.master_bedroom_ceiling_fan
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_config_triple
+  #           sequence:
+  #             - service: fan.turn_on
+  #               metadata: {}
+  #               data:
+  #                 percentage: 100
+  #               target:
+  #                 entity_id: fan.master_bedroom_ceiling_fan
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_config_quadruple
+  #           sequence:
+  #             - service: fan.turn_off
+  #               metadata: {}
+  #               data: {}
+  #               target:
+  #                 entity_id: fan.master_bedroom_ceiling_fan
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_up_single
+  #           sequence:
+  #             - service: light.turn_on
+  #               metadata: {}
+  #               data:
+  #                 brightness_pct: 100
+  #               target:
+  #                 entity_id: light.master_bedroom_ceiling_fan
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_down_single
+  #           sequence:
+  #             - service: light.turn_off
+  #               target:
+  #                 entity_id: light.master_bedroom_ceiling_fan
+  #               data: {}
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_up_double
+  #           sequence:
+  #             - service: light.turn_on
+  #               metadata: {}
+  #               data:
+  #                 brightness_pct: 100
+  #               target:
+  #                 entity_id: light.master_bedroom_ceiling_fan
+  #               alias: Light 'Turn on' on Master Bedroom Ceiling Light to Bright
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_down_double
+  #           sequence:
+  #             - service: light.turn_on
+  #               metadata: {}
+  #               data:
+  #                 brightness_pct: 30
+  #               target:
+  #                 entity_id: light.master_bedroom_ceiling_fan
+  #               alias: Light 'Turn on' on Master Bedroom Ceiling Light to Nightlight
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_ceiling_fan_turns_on
+  #           sequence:
+  #             - service: light.turn_on
+  #               target:
+  #                 device_id: ab66300b8e84063c201e334566f93091
+  #               data: {}
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_ceiling_fan_turns_off
+  #           sequence:
+  #             - service: light.turn_off
+  #               target:
+  #                 device_id: ab66300b8e84063c201e334566f93091
+  #               data: {}
+  #         - conditions:
+  #             - condition: trigger
+  #               id:
+  #                 - master_bedroom_fan_switch_local_dimming
+  #             - condition: template
+  #               value_template: >-
+  #                 {{ states.light.master_bedroom_fan_switch.last_updated > states.light.master_bedroom_ceiling_fan.last_changed }}
+  #           sequence:
+  #             - service: light.turn_on
+  #               entity_id: light.master_bedroom_ceiling_fan
+  #               data:
+  #                 brightness: "{{ state_attr('light.master_bedroom_fan_switch', 'brightness') | default(0, true) }}"
