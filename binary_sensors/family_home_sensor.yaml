@@ -3,5 +3,5 @@
     family_home:
       unique_id: 55c017c0-9c0d-471a-bb61-37461a3394c8
       friendly_name: Family Home
-      value_template: >
+      value_template: >-
         {{ is_state('person.daniel_frey', 'home') or is_state('person.stephanie_frey', 'home') or is_state('person.camdyn_frey', 'home') or is_state('person.molly_frey', 'home') }}

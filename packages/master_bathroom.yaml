@@ -64,3 +64,27 @@ automation:
                   transition: 2
                   brightness_pct: 20
                   kelvin: 2237
+
+  - id: 'f0a25d51-92a9-4918-a033-87211ca59ee1'
+    alias: "Routine | Master Bathroom | Away"
+    description: "Turn off the master bathroom lights when the parents are away"
+    mode: single
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.parents_home
+      from: "on"
+      to: "off"
+      for:
+        minutes: 5
+    condition: []
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data: {}
+        target: &areas
+          - master_bathroom
+      - service: switch.turn_off
+        metadata: {}
+        data: {}
+        target: *areas

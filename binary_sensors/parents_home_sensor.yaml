@@ -1,0 +1,7 @@
+- platform: template
+  sensors:
+    parents_home:
+      unique_id: 5d29db3a-bcfd-4cb3-9256-0037da8870f0
+      friendly_name: Parents Home
+      value_template: >-
+        {{ is_state('person.daniel_frey', 'home') or is_state('person.stephanie_frey', 'home') }}
