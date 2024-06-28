@@ -87,4 +87,5 @@ automation:
       - service: switch.turn_off
         metadata: {}
         data: {}
-        target: *areas
+        target: 
+          area_id: *areas
