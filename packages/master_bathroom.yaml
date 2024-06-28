@@ -83,7 +83,8 @@ automation:
         metadata: {}
         data:
           transition: 2
-        target: &areas
+        target: 
+          area_id: &areas
           - master_bathroom
       - service: switch.turn_off
         metadata: {}
