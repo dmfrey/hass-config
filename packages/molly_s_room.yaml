@@ -79,8 +79,8 @@ automation:
           brightness_pct: 60
 
   - id: '69139fbb-ad53-4b80-9944-56f12d8aa90f'
-    alias: "Routine | Molly's Room | Molly has left home"
-    description: "She arrived at school, turn off the lights"
+    alias: "Routine | Molly's Room | Away"
+    description: "Turn off the lights in Molly's Room when Molly is away"
     mode: single
     trigger:
       - platform: zone
@@ -96,7 +96,7 @@ automation:
           area_id: molly_s_room
 
   - id: '3da19d05-6cdb-40d0-b324-b8ac8b10031b'
-    alias: "Routine | Molly's Room | Molly arrives at home"
+    alias: "Routine | Molly's Room | Arrive Home"
     description: "Turn on Molly's Room Lights when she arrives home and it's after sunset"
     mode: single
     trigger:

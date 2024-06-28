@@ -45,7 +45,7 @@ automation:
           brightness_pct: 60
 
   - id: 'f3bf4eac-01a4-46a8-bd3f-f580fba80cc5'
-    alias: "Routine | Camdyn's Room | Camdyn has left home"
+    alias: "Routine | Camdyn's Room | Away"
     description: "Turn off Camdyn's Room Lights when she is not at home"
     mode: single
     trigger:
@@ -62,7 +62,7 @@ automation:
           area_id: camdyn_s_room
 
   - id: '53af2938-b66c-4226-a5e2-ac4bb455649e'
-    alias: "Routine | Camdyn's Room | Camdyn arrives at home"
+    alias: "Routine | Camdyn's Room | Arrive Home"
     description: "Turn on Camdyn's Room Lights when she arrives home and it's after sunset"
     mode: single
     trigger:
