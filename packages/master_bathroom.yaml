@@ -81,7 +81,8 @@ automation:
     action:
       - service: light.turn_off
         metadata: {}
-        data: {}
+        data:
+          transition: 2
         target: &areas
           - master_bathroom
       - service: switch.turn_off

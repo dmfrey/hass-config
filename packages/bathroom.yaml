@@ -48,6 +48,7 @@ automation:
     action:
       - service: light.turn_off
         metadata: {}
-        data: {}
+        data:
+          transition: 2
         target: 
           area_id: *areas

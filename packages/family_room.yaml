@@ -54,3 +54,30 @@ automation:
         target:
           area_id: *areas
 
+  - id: '7c7bcd97-f955-4f9d-b85b-7fb36a0ff198'
+    alias: "Routine | Family Room | Away"
+    description: "Everyone has left the house, turn off the Family Room Lights if the time is before sunset"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.family_home
+        from: "on"
+        to: "off"
+        for:
+          minutes: 5
+    condition:
+      - condition: sun
+        before: sunset
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data:
+          transition: 2
+        target:
+          area_id: *areas
+      - service: switch.turn_off
+        metadata: {}
+        data: {}
+        target:
+          area_id: *areas
