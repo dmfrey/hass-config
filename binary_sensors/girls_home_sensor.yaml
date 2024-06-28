@@ -1,6 +1,6 @@
 - platform: template
   sensors:
-    family_home:
+    girls_home:
       unique_id: 23c097c4-cf57-4b5e-8995-4fbfa3593758
       friendly_name: Girls Home
       value_template: >
