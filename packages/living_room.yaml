@@ -1,6 +1,6 @@
 automation:
 
-  - id: 'bd94adbb-6d48-41e8-ba41-deb8f9538bd5'
+  - id: '73db59ea-b4ef-4b9e-9990-ee8bf6be994c'
     alias: "Routine | Living Room | Sunrise"
     description: "Turn off the lights 45 minutes after sunrise"
     mode: single
