@@ -1,5 +1,23 @@
 automation:
 
+  - id: 'cb172f97-ab95-4e69-aaaf-4790685ab87d'
+    alias: "Routine | Kitchen | Sunrise"
+    description: "Turn off the lights 45 minutes after sunrise"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: "00:45:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        data:
+          transition: 2
+        target:
+          area_id: &areas
+            - dining_room
+            - kitchen
+
   - id: 'e75e2a71-c66d-4db8-bcc2-dd856e373c1f'
     alias: "Routine | Kitchen | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
@@ -16,9 +34,41 @@ automation:
           kelvin: 2700
           brightness_pct: 100
         target:
-          area_id:
-            - dining_room
-            - kitchen
+          area_id: *areas
+
+  - id: 'f53f40a7-08e6-469c-8fe9-779e21ede6c3'
+    alias: "Routine | Kitchen | Relax"
+    description: "It's time to relax"
+    mode: single
+    trigger:
+      - platform: time
+        at: "20:15:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          transition: 5
+          kelvin: 2237
+          brightness_pct: 60
+        target:
+          area_id: *areas
+
+  - id: '03ced7e8-00d7-445a-8efb-5c16815c0bbb'
+    alias: "Routine | House | Dinner Time"
+    description: "Turn the lights on in the kitchen to start making dinner"
+    mode: single
+    trigger:
+      - platform: time
+        at: "16:45:00"
+    condition: []
+    action:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+          transition: 900
+        target:
+          area_id: *areas
 
   - id: '14bb3ffc-bbfa-404e-9d9c-cdfaa531e5d8'
     alias: "Routine | Kitchen | Everyone is away"
@@ -38,7 +88,7 @@ automation:
         data:
           transition: 2
         target:
-          area_id: kitchen
+          area_id: *areas
       - delay:
           hours: 0
           minutes: 0
@@ -49,41 +99,3 @@ automation:
         data:
           title: Everyone is away
           message: The Kitchen Lights have turned off!
-
-  - id: 'f53f40a7-08e6-469c-8fe9-779e21ede6c3'
-    alias: "Routine | Kitchen | Relax"
-    description: "It's time to relax"
-    mode: single
-    trigger:
-      - platform: time
-        at: "20:15:00"
-    condition: []
-    action:
-      - service: light.turn_on
-        metadata: {}
-        target:
-          area_id:
-            - dining_room
-            - kitchen
-        data:
-          transition: 5
-          kelvin: 2237
-          brightness_pct: 60
-
-  - id: '03ced7e8-00d7-445a-8efb-5c16815c0bbb'
-    alias: "Routine | House | Dinner Time"
-    description: "Turn the lights on in the kitchen to start making dinner"
-    trigger:
-      - platform: time
-        at: "16:45:00"
-    condition: []
-    action:
-      - service: light.turn_on
-        data:
-          brightness_pct: 100
-          transition: 900
-        target:
-          area_id:
-            - kitchen
-            - dining_room
-    mode: single

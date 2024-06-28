@@ -1,5 +1,22 @@
 automation:
 
+  - id: 'bd94adbb-6d48-41e8-ba41-deb8f9538bd5'
+    alias: "Routine | Living Room | Sunrise"
+    description: "Turn off the lights 45 minutes after sunrise"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: "00:45:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        data:
+          transition: 2
+        target:
+          area_id: &areas
+            - living_room
+
   - id: '0e7b26f8-d2f6-439b-bde6-ca100d8570e7'
     alias: "Routine | Living Room | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
@@ -16,8 +33,7 @@ automation:
           kelvin: 2700
           brightness_pct: 100
         target:
-          area_id:
-            - living_room
+          area_id: *areas
 
   - id: '499a815a-3962-4d7b-9f91-90e0906ec376'
     alias: "Routine | Living Room | Relax"
@@ -30,10 +46,9 @@ automation:
     action:
       - service: light.turn_on
         metadata: {}
-        target:
-          area_id:
-            - living_room
         data:
           transition: 5
           kelvin: 2237
           brightness_pct: 60
+        target:
+          area_id: *areas

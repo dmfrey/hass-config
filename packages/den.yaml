@@ -1,5 +1,22 @@
 automation:
 
+  - id: 'aa2c400f-30b1-45ac-bb86-dfc7aa49f991'
+    alias: "Routine | Den | Sunrise"
+    description: "Turn off the lights 45 minutes after sunrise"
+    mode: single
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: "00:45:00"
+    condition: []
+    action:
+      - service: light.turn_off
+        data:
+          transition: 2
+        target:
+          area_id: &areas
+            - foyer
+
   - id: 'b7b19a14-efe6-48ef-b257-1a1d8478b6b6'
     alias: "Routine | Den | Sunset"
     description: "Turn on the lights 30 minutes before sunset"
@@ -16,8 +33,7 @@ automation:
           kelvin: 2700
           brightness_pct: 100
         target:
-          area_id:
-            - den
+          area_id: *areas
 
   - id: 'f0563edc-f36c-4c35-9ad3-6b7c55bfdfa6'
     alias: "Routine | Den | Relax"
@@ -30,10 +46,9 @@ automation:
     action:
       - service: light.turn_on
         metadata: {}
-        target:
-          area_id:
-            - den
         data:
           transition: 5
           kelvin: 2237
           brightness_pct: 60
+        target:
+          area_id: *areas
