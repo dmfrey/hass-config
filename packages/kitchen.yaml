@@ -71,14 +71,17 @@ automation:
           area_id: *areas
 
   - id: '14bb3ffc-bbfa-404e-9d9c-cdfaa531e5d8'
-    alias: "Routine | Kitchen | Everyone is away"
+    alias: "Routine | Kitchen | Away"
     description: "Everyone has left the house, turn off the Kitchen Lights if the time is before sunset"
     mode: single
     trigger:
       - platform: state
         entity_id:
-          - sensor.anyone_home
-        to: away
+          - binary_sensor.family_home
+        from: "on"
+        to: "off"
+        for:
+          minutes: 5
     condition:
       - condition: sun
         before: sunset

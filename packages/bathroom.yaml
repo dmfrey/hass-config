@@ -24,23 +24,24 @@ automation:
                 state: "on"
     action:
       - service: light.turn_on
-        target:
-          area_id: bathroom
         data:
           transition: 300
           kelvin: 2700
           brightness_pct: 30
+        target:
+          area_id: &areas
+            - bathroom
 
   - id: 'b7d8f59b-f3b2-4ddb-973e-76c474bff574'
-    alias: "Routine | Bathroom | The girls are away"
+    alias: "Routine | Bathroom | Away"
     description: "Turn off the bathroom lights when the girls are away"
     mode: single
     initial_state: true
     trigger:
       platform: state
-      entity_id: group.girls
-      from: "home"
-      to: "not_home"
+      entity_id: binary_sensor.girls_home
+      from: "on"
+      to: "off"
       for:
         minutes: 5
     condition: []
@@ -48,5 +49,4 @@ automation:
       - service: light.turn_off
         metadata: {}
         data: {}
-        target:
-          area_id: bathroom
+        target: *areas
