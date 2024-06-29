@@ -5,9 +5,8 @@ automation:
     description: "Turn off the lights 45 minutes after sunrise"
     mode: single
     trigger:
-      - platform: sun
-        event: sunrise
-        offset: "00:45:00"
+      - platform: time
+        at: "08:00:00"
     condition: []
     action:
       - service: light.turn_off
@@ -16,7 +15,7 @@ automation:
         target:
           area_id:
             - family_room
-            - family_room_ambient
+            # - family_room_ambient
 
   - id: '3f4c0fdf-d9ef-468e-a973-8e7fa82c7483'
     alias: "Routine | Family Room | Sunset"

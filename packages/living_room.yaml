@@ -5,9 +5,8 @@ automation:
     description: "Turn off the lights 45 minutes after sunrise"
     mode: single
     trigger:
-      - platform: sun
-        event: sunrise
-        offset: "00:45:00"
+      - platform: time
+        at: "08:00:00"
     condition: []
     action:
       - service: light.turn_off
