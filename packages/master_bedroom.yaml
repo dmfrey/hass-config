@@ -16,7 +16,7 @@ automation:
           kelvin: 2700
           brightness_pct: 100
         target:
-          entity_id: 
+          entity_id: &entities
             - light.master_bedroom_light_1
             - light.master_bedroom_light_2
 
@@ -32,13 +32,34 @@ automation:
       - service: light.turn_on
         metadata: {}
         target:
-          entity_id: 
-            - light.master_bedroom_light_1
-            - light.master_bedroom_light_2
+          entity_id: *entities
         data:
           transition: 5
           kelvin: 2237
           brightness_pct: 60
+
+  - id: '84be444f-0bc8-44a1-ba92-afa951459267'
+    alias: "Routine | Master Bedroom | Away"
+    description: "Everyone has left the house, turn off the Master Bedroom Lights if the time is before sunset"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.parents_home
+        from: "on"
+        to: "off"
+        for:
+          minutes: 5
+    condition:
+      - condition: sun
+        before: sunset
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data:
+          transition: 2
+        target:
+          entity_id: *entities
 
   - id: 'b1d2683a-f4a9-4b73-a915-1550141d2522'
     alias: 'Routine | Master Bedroom | Wake Up'

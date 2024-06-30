@@ -13,7 +13,7 @@ automation:
         data:
           transition: 2
         target:
-          area_id:
+          area_id: &areas
             - family_room
             # - family_room_ambient
 
@@ -33,9 +33,7 @@ automation:
           kelvin: 2700
           brightness_pct: 100
         target:
-          area_id:
-            - family_room
-            - family_room_ambient
+          area_id: *areas
 
   - id: 'a85932d9-ff4e-486b-a3a1-89b07e84feef'
     alias: "Routine | Family Room | Relax"
@@ -53,9 +51,7 @@ automation:
           kelvin: 2237
           brightness_pct: 60
         target:
-          area_id:
-            - family_room
-            - family_room_ambient
+          area_id: *areas
 
   - id: '7c7bcd97-f955-4f9d-b85b-7fb36a0ff198'
     alias: "Routine | Family Room | Away"
@@ -78,9 +74,7 @@ automation:
         data:
           transition: 2
         target:
-          area_id:
-            - family_room
-            - family_room_ambient
+          area_id: *areas
       - service: switch.turn_off
         metadata: {}
         data: {}

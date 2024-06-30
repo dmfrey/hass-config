@@ -52,3 +52,25 @@ automation:
         target:
           area_id: *areas
 
+  - id: 'bbd54d64-7f5d-45cc-9f82-aa9b24f13828'
+    alias: "Routine | Hallway | Away"
+    description: "Everyone has left the house, turn off the Hallway Lights if the time is before sunset"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - binary_sensor.family_home
+        from: "on"
+        to: "off"
+        for:
+          minutes: 5
+    condition:
+      - condition: sun
+        before: sunset
+    action:
+      - service: light.turn_off
+        metadata: {}
+        data:
+          transition: 2
+        target:
+          area_id: *areas
