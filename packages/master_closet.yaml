@@ -33,7 +33,7 @@ automation:
                   kelvin: 2700
                   brightness_pct: 100
                 target:
-                  entity_id: light.master_closet_downlight
+                  area_id: master_closet
           - conditions:
               - condition: trigger
                 id:
