@@ -44,5 +44,5 @@ automation:
                 data: 
                   transition: 2
                 target:
-                  entity_id: light.master_closet_downlight
+                  area_id: master_closet
   
