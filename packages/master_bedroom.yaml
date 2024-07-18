@@ -19,6 +19,7 @@ automation:
           entity_id: &entities
             - light.master_bedroom_light_1
             - light.master_bedroom_light_2
+            - ligth.master_bedroom_light_switch
 
   - id: 'c03a9f48-2c98-4d19-a10c-64b3bef2a9bd'
     alias: "Routine | Master Bedroom | Relax"
