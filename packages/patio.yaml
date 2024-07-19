@@ -11,13 +11,15 @@ automation:
     condition: []
     action:
       - service: light.turn_on
+        target: &targets
+          area_id:
+            - patio
+          entity_id:
+            - light.patio_light_switch
         data:
           transition: 2
           kelvin: 2700
           brightness_pct: 100
-        target:
-          area_id:
-            - patio
 
   - id: '1ab71119-81b3-4b1c-ae7d-803c79446bd1'
     alias: "Routine | Patio | Relax"
@@ -30,9 +32,7 @@ automation:
     action:
       - service: light.turn_on
         metadata: {}
-        target:
-          area_id:
-            - patio
+        target: *targets
         data:
           transition: 5
           kelvin: 2237
