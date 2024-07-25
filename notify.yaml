@@ -1,12 +1,12 @@
 - name: parent_devices
   platform: group
   services:
-    - service: mobile_app_dan_s_pixel_8_pro
-    - service: mobile_app_steph_s_pixel_7
+    - service: mobile_app_dan_s_phone
+    - service: mobile_app_steph_s_phone
 - name: family_devices
   platform: group
   services:
-    - service: mobile_app_dan_s_pixel_8_pro
-    - service: mobile_app_steph_s_pixel_7
-    - service: mobile_app_camdyn_s_pixel_6a
-    - service: mobile_app_molly_s_pixel_6a
+    - service: mobile_app_dan_s_phone
+    - service: mobile_app_steph_s_phone
+    - service: mobile_app_camdyn_s_phone
+    - service: mobile_app_molly_s_phone

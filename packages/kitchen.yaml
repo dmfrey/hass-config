@@ -96,7 +96,7 @@ automation:
           minutes: 0
           seconds: 5
           milliseconds: 0
-      - service: notify.mobile_app_dan_s_pixel_8_pro
+      - service: notify.mobile_app_dan_s_phone
         metadata: {}
         data:
           title: Everyone is away
