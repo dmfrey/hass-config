@@ -17,3 +17,4 @@ nest/
 configuration.yaml
 **/__pycache__
 .bash_history
+hass-config/

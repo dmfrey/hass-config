@@ -1,3 +1,5 @@
 [user]
 	email = dmfrey@gmail.com
 	name = Daniel Frey
+[safe]
+	directory = /config
