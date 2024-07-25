@@ -1,0 +1,10 @@
+good_night:
+  sequence:
+    - service: automation.trigger
+      metadata: {}
+      data:
+        skip_condition: true
+      target:
+        entity_id:
+          - automation.routine_house_goodnight
+          - automation.routine_master_bedroom_goodnight
