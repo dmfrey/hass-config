@@ -1,5 +1,39 @@
 [user]
 	email = dmfrey@gmail.com
 	name = Daniel Frey
+[core]
+	autocrlf = input
+	excludesfile = /root/.gitignore
+[http]
+	postBuffer = 100000000
+[alias]
+	co = checkout
+	st = status
+[apply]
+	whitespace = nowarn
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[pull]
+	rebase = false
+[filter "tabspace"]
+	smudge = gunexpand --tabs=4 --first-only
+	clean = gexpand --tabs=4 --initial
+[init]
+	defaultBranch = main
 [safe]
 	directory = /config
