@@ -3,7 +3,6 @@
 	name = Daniel Frey
 [core]
 	autocrlf = input
-	excludesfile = /root/.gitignore
 [http]
 	postBuffer = 100000000
 [alias]
