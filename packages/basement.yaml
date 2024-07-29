@@ -41,13 +41,13 @@ automation:
     trigger:
       - platform: device
         domain: mqtt
-        device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
+        device_id: 3a88666b670f8e46cdaef002f4d63c2d
         type: action
         subtype: single
         id: basement_switch_single
       - platform: device
         domain: mqtt
-        device_id: 7b8bf34e84dbeb7526f9c6be3e89b1d8
+        device_id: 3a88666b670f8e46cdaef002f4d63c2d
         type: action
         subtype: double
         id: basement_switch_double
