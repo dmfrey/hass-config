@@ -2,19 +2,52 @@ automation:
 - id: 'a54f6e03-4ce2-4fe0-8cb3-923cba043e23'
   alias: Notification | Mail Box | Mailbox Opened
   description: "Send a notification when the mailbox is opened"
-  mode: queued
-  max: 10
+  mode: single
   trigger:
     - platform: state
-      entity_id: binary_sensor.mailbox
+      entity_id: sensor.mbox_state
       to: "on"
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 1
+      from: null
   condition: []
   action:
     - service: notify.parent_devices
       data:
-        message: You have mail!
-    - service: mqtt.publish
-      data:
-        topic: homeassistant/binary_sensor/mailbox/state
-        payload: empty
-        retain: true
+        title: Mailbox Opened!
+        message: The mailbox was opened.
+        data:
+          url: /lovelace/home
+          persistent: true
+          importance: high
+          channel: MailBox
+          tag: mailbox
+          image: /media/local/notify/mailbox.jpg
+          actions:
+            - action: received
+              title: I checked the mailbox
+
+    - id: '95dc4665-c395-4a9a-b877-df95b7d54664'
+      alias: Notification | Mail Box | Mailbox Close Received
+      description: "Clear a mailbox notification"
+      mode: single
+      trigger:
+        - platform: event
+          event_data:
+            action: received
+          event_type: mobile_app_notification_action
+      condition: []
+      action:
+        - service: mqtt.publish
+          data:
+            qos: 0
+            retain: true
+            topic: homeassistant/sensor/mbox/state
+            payload: empty
+        - service: notify.parent_devices
+          data:
+            message: clear_notification
+            data:
+              tag: mailbox
