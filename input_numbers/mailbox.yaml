@@ -4,6 +4,12 @@ mailbox_guard_count:
   max: 255
   icon: mdi:mail
 
+mailbox_guard_battery:
+  name: Mailbox Guard Battery
+  min: 0
+  max: 100
+  icon: mdi:battery
+
 mailbox_guard_rssi:
   name: Mailbox Guard RSSI
   min: -196
