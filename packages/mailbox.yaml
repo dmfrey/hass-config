@@ -8,10 +8,10 @@ automation:
       entity_id: sensor.mbox_state
       from: null
       to: "mail"
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 1
+      # for:
+      #   hours: 0
+      #   minutes: 0
+      #   seconds: 1
   condition: []
   action:
     - service: notify.parent_devices
