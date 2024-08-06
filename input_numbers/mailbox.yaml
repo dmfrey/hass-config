@@ -1,0 +1,17 @@
+mailbox_guard_count:
+  name: Mailbox Guard Count
+  min: 0
+  max: 255
+  icon: mdi:mail
+
+mailbox_guard_rssi:
+  name: Mailbox Guard RSSI
+  min: -196
+  max: 63
+  icon: mdi:signal
+
+mailbox_guard_snr:
+  name: Mailbox Guard SNR
+  min: -32.0
+  max: 32.0
+  icon: mdi:waves
