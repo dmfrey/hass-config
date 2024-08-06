@@ -31,25 +31,19 @@ automation:
       data:
         entity_id: input_boolean.mailbox_guard_motion
 
-# - id: '95dc4665-c395-4a9a-b877-df95b7d54664'
-#   alias: Notification | Mail Box | Mailbox Close Received
-#   description: "Clear a mailbox notification"
-#   mode: single
-#   trigger:
-#     - platform: event
-#       event_data:
-#         action: received
-#       event_type: mobile_app_notification_action
-#   condition: []
-#   action:
-#     - service: mqtt.publish
-#       data:
-#         qos: 0
-#         retain: true
-#         topic: homeassistant/sensor/mbox/state
-#         payload: empty
-#     - service: notify.parent_devices
-#       data:
-#         message: clear_notification
-#         data:
-#           tag: mailbox
+- id: '95dc4665-c395-4a9a-b877-df95b7d54664'
+  alias: Notification | Mail Box | Low Battery
+  description: "Send a notification the mailbox sensor battery is low"
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: input_boolean.mailbox_guard_low_battery
+      to: "on"
+  condition: []
+  action:
+    - service: notify.parent_devices
+      data:
+        message: Mailbox Guard Low Battery!
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.mailbox_guard_low_battery
