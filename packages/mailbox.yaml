@@ -5,13 +5,8 @@ automation:
   mode: single
   trigger:
     - platform: state
-      entity_id: sensor.mbox_state
-      from: null
-      to: "mail"
-      # for:
-      #   hours: 0
-      #   minutes: 0
-      #   seconds: 1
+      entity_id: input_boolean.mailbox_guard_motion
+      to: "on"
   condition: []
   action:
     - service: notify.parent_devices
@@ -28,26 +23,33 @@ automation:
           actions:
             - action: received
               title: I checked the mailbox
+    - service: input_number.set_value
+      data:
+        entity_id: input_number.mailbox_guard_count
+        value: "{{ (states.input_number.mailbox_guard_count.state | int) + 1 }}"
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.mailbox_guard_motion
 
-- id: '95dc4665-c395-4a9a-b877-df95b7d54664'
-  alias: Notification | Mail Box | Mailbox Close Received
-  description: "Clear a mailbox notification"
-  mode: single
-  trigger:
-    - platform: event
-      event_data:
-        action: received
-      event_type: mobile_app_notification_action
-  condition: []
-  action:
-    - service: mqtt.publish
-      data:
-        qos: 0
-        retain: true
-        topic: homeassistant/sensor/mbox/state
-        payload: empty
-    - service: notify.parent_devices
-      data:
-        message: clear_notification
-        data:
-          tag: mailbox
+# - id: '95dc4665-c395-4a9a-b877-df95b7d54664'
+#   alias: Notification | Mail Box | Mailbox Close Received
+#   description: "Clear a mailbox notification"
+#   mode: single
+#   trigger:
+#     - platform: event
+#       event_data:
+#         action: received
+#       event_type: mobile_app_notification_action
+#   condition: []
+#   action:
+#     - service: mqtt.publish
+#       data:
+#         qos: 0
+#         retain: true
+#         topic: homeassistant/sensor/mbox/state
+#         payload: empty
+#     - service: notify.parent_devices
+#       data:
+#         message: clear_notification
+#         data:
+#           tag: mailbox
