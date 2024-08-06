@@ -6,12 +6,12 @@ automation:
   trigger:
     - platform: state
       entity_id: sensor.mbox_state
-      to: "on"
+      from: null
+      to: "mail"
       for:
         hours: 0
         minutes: 0
         seconds: 1
-      from: null
   condition: []
   action:
     - service: notify.parent_devices
