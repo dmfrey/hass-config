@@ -103,3 +103,37 @@ automation:
         target:
           entity_id:
             - input_boolean.good_night
+
+  - id: '050e32fe-5a15-4efb-ba1f-e28db0f99b90'
+    alias: "Routine | House | Rainy Day"
+    description: "Turn on the lights when the lux goes below 30"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.kitchen_sensor_illuminance_lux
+        to: null
+    condition:
+      - condition: sun
+        after: sunset
+      - condition: sun
+        before: sunset
+      - condition: numeric_state
+        entity_id: sensor.kitchen_sensor_illuminance_lux
+        below: "30"
+    action:
+      - action: light.turn_on
+        metadata: {}
+        target:
+          area_id:
+            - den
+            - dining_room
+            - family_room
+            - hallway
+            - foyer
+            - kitchen
+            - living_room
+        data:
+          transition: 5
+          kelvin: 2700
+          brightness_pct: 60
