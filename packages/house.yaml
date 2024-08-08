@@ -122,7 +122,7 @@ automation:
         entity_id: sensor.kitchen_sensor_illuminance_lux
         below: "30"
     action:
-      - action: light.turn_on
+      - service: light.turn_on
         metadata: {}
         target:
           area_id:
