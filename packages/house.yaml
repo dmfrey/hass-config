@@ -115,7 +115,7 @@ automation:
         to: null
     condition:
       - condition: sun
-        after: sunset
+        after: sunrise
       - condition: sun
         before: sunset
       - condition: numeric_state
