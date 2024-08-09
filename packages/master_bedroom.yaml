@@ -88,7 +88,7 @@ automation:
       - service: fan.turn_off
         target:
           entity_id: fan.master_bedroom_tower_fan
-        data: {}
+        data: {} 
 
   - id: '152dd72a-4354-41bf-ab8a-ec2c260dba0f'
     alias: "Routine | Master Bedroom | Goodnight"
