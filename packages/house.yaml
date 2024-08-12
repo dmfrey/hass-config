@@ -114,8 +114,16 @@ automation:
           - sensor.kitchen_sensor_illuminance_lux
         to: null
     condition:
-      - condition: sun
-        after: sunrise
+      - condition: time
+        after: "08:00:00"
+        weekday:
+          - sun
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+          - sat
       - condition: sun
         before: sunset
       - condition: numeric_state
