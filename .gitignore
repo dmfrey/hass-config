@@ -4,7 +4,10 @@
 secrets.yaml
 *.pem
 .cloud/
+.ssh/
 .storage/
+.worktrees/
+hass-config
 backups/
 deps/
 image/
@@ -17,4 +20,4 @@ nest/
 configuration.yaml
 **/__pycache__
 .bash_history
-hass-config/
+
