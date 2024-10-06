@@ -3,6 +3,7 @@
 *.log*
 secrets.yaml
 *.pem
+.cache/
 .cloud/
 .ssh/
 .storage/
