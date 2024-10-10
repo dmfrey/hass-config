@@ -76,8 +76,6 @@ automation:
           minutes: 3
           seconds: 0
     condition: 
-      - condition: sun
-        after: sunrise
       - condition: time
         before: "10:00:00"
     action:
