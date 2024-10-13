@@ -88,8 +88,30 @@ automation:
           entity_id: fan.master_bedroom_tower_fan
         data: {} 
 
-  - id: '152dd72a-4354-41bf-ab8a-ec2c260dba0f'
+  - id: 'f4f7be88-33bd-4c61-b246-c74347d14a5e'
     alias: "Routine | Master Bedroom | Goodnight"
+    description: "Turn off the Master Bedroom"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id:
+          - input_boolean.good_night
+        to: "on"
+    condition: []
+    action:
+      - service: light.turn_off
+        target:
+          area_id:
+            - master_bedroom
+      - service: fan.turn_on
+        data:
+          percentage: 33
+        target:
+          entity_id: fan.master_bedroom_tower_fan
+        metadata: {}
+
+  - id: '152dd72a-4354-41bf-ab8a-ec2c260dba0f'
+    alias: "Routine | Master Bedroom | Goodnight when Dan is Home"
     description: "Turn off the Master Bedroom, but only when Dan is at home"
     mode: single
     trigger:
@@ -98,9 +120,9 @@ automation:
           - input_boolean.good_night
         to: "on"
     condition:
-      - condition: sun
-        after: sunset
-        enabled: true
+      # - condition: sun
+      #   after: sunset
+      #   enabled: true
       - condition: state
         entity_id: person.daniel_frey
         state: home

@@ -34,10 +34,10 @@ automation:
         entity_id:
           - input_boolean.good_night
         to: "on"
-    condition:
-      - condition: sun
-        after: sunset
-        enabled: true
+    condition: []
+      # - condition: sun
+      #   after: sunset
+      #   enabled: true
     action:
       - service: light.turn_off
         target:
@@ -58,7 +58,6 @@ automation:
             - hallway
             - living_room
             - kitchen
-            - master_bedroom
             - master_closet
             - molly_s_room
             - office
@@ -93,11 +92,6 @@ automation:
           kelvin: 2237
           brightness_pct: 50
         metadata: {}
-      - service: fan.turn_on
-        data:
-          percentage: 33
-        target:
-          entity_id: fan.master_bedroom_tower_fan
       - delay: 5
       - service: input_boolean.turn_off
         target:
