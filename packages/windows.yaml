@@ -17,6 +17,6 @@ automation:
         state: 'on'
     action:
       - service: notify.mobile_app_dan_s_phone
-        data:
-          title: A Window is Open
+        data_template:
+          title: A Window is Open!
           message: "{{ trigger.to_state.attributes.friendly_name }} is open!"
