@@ -1,0 +1,21 @@
+automation:
+
+  - id: '71502fe4-85f4-4a16-840f-6d2ed3c49625'
+    alias: "Notification | House | Window Open"
+    description: "Send a notification when a window is open"
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: group.parents
+        from: home
+        to: not_home
+    condition: 
+      - condition: state
+        entity_id: >-
+          binary_sensor.basement_window_sensor_1_contact,binary_sensor.basement_window_sensor_2_contact
+    state: 'on'
+    action:
+      - service: notify.mobile_app_dan_s_phone
+        data:
+          title: A Window is Open
+          message: "{{ trigger.to_state.attributes.friendly_name }} is open!"
