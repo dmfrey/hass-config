@@ -13,7 +13,7 @@ automation:
       - condition: state
         entity_id: >-
           binary_sensor.basement_window_sensor_1_contact,binary_sensor.basement_window_sensor_2_contact
-    state: 'on'
+        state: 'on'
     action:
       - service: notify.mobile_app_dan_s_phone
         data:
