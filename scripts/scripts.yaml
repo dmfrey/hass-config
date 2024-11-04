@@ -8,3 +8,24 @@ good_night:
         entity_id:
           - automation.routine_house_goodnight
           - automation.routine_master_bedroom_goodnight
+
+fall_scenes:
+  alias: Fall Scenes
+  description: 'Fall Custom Light Scenes'
+  use_blueprint:
+    path: nilsreiter/ha-scenes.yaml
+    input:
+      default_scene: 'Pure: Autumn gold'
+      default_repeat_delay:
+        hours: 0
+        minutes: 2
+        seconds: 0
+      default_use_scene_brightness: true
+      target:
+        entity_id:
+        - light.front_yard_bollard_1
+        - light.front_yard_bollard_2
+        - light.front_yard_bollard_3
+        - light.front_yard_bollard_4
+        - light.front_yard_spot_1
+        - light.front_yard_spot_2
