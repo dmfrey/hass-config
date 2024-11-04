@@ -50,6 +50,8 @@ automation:
                     - light.front_yard_bollard_4
                     - light.front_yard_spot_1
                     - light.front_yard_spot_2
+                    - light.front_yard_festiva_1
+                    - light.front_yard_festiva_2
 
   - id: 'ecf2ed39-f371-4d3b-812d-2a4b3dc4992d'
     alias: 'Routine | Security Lights | Front Yard'
