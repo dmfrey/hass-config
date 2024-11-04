@@ -151,3 +151,19 @@
       auto_off:
         hours: 23
         minutes: 59
+
+- sensor:
+    - name: "Custom Light Schedule"
+      state: >
+        {{ is_state('binary_sensor.valentine', 'on')
+           or is_state('binary_sensor.spring', 'on')
+           or is_state('binary_sensor.patriotic', 'on')
+           or is_state('binary_sensor.summer', 'on')
+           or is_state('binary_sensor.halloween', 'on')
+           or is_state('binary_sensor.fall', 'on')
+           or is_state('binary_sensor.christmas', 'on')
+           or is_state('binary_sensor.winter', 'on')
+           or is_state('binary_sensor.flyers', 'on')
+           or is_state('binary_sensor.eagles', 'on')
+           or is_state('binary_sensor.phillies', 'on')
+           or is_state('binary_sensor.penn_st', 'on') }}
