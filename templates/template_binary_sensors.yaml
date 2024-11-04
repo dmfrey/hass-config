@@ -32,6 +32,7 @@
       auto_off:
         hours: 23
         minutes: 59
+
 - trigger:
     - platform: time
       at: "00:00"
@@ -63,6 +64,90 @@
         minutes: 59
     - name: "Work Travel"
       state: "{{ 'Work Travel' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+
+- trigger:
+    - platform: time
+      at: "00:00"
+  action: 
+    - service: calendar.get_events
+      target:
+        entity_id: calendar.lights_calendar
+      data: 
+        duration: 
+          minutes: 5
+      response_variable: calendar
+    - variables: 
+        events: >
+          {{ 
+            calendar['calendar.lights_calendar'].events
+            | map(attribute='summary')
+            | list
+          }} 
+  binary_sensor:
+    - name: "Valentine"
+      state: "{{ 'Valentine' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Spring"
+      state: "{{ 'Halloween' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Patriotic"
+      state: "{{ 'Patriotic' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Summer"
+      state: "{{ 'Summer' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Halloween"
+      state: "{{ 'Halloween' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Fall"
+      state: "{{ 'Fall' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Christmas"
+      state: "{{ 'Christmas' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Winter"
+      state: "{{ 'Halloween' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+
+    - name: "Flyers"
+      state: "{{ 'Flyers' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+
+    - name: "Eagles"
+      state: "{{ 'Eagles' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+
+    - name: "Phillies"
+      state: "{{ 'Phillies' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+
+    - name: "Penn St"
+      state: "{{ 'Penn St' in events }}"
       auto_off:
         hours: 23
         minutes: 59
