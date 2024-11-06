@@ -9,18 +9,22 @@ good_night:
           - automation.routine_house_goodnight
           - automation.routine_master_bedroom_goodnight
 
-fall_scenes:
-  alias: Fall Scenes
-  description: 'Fall Custom Light Scenes'
+front_yard_custom_light_scene:
+  alias: Front Yard Custom Light Scenes
+  description: 'Hue-like scenes blueprint for Front Yard Lights'
   use_blueprint:
     path: nilsreiter/ha-scenes.yaml
     input:
       default_scene: 'Pure: Autumn gold'
+      default_onlyonlights: true
+      default_use_scene_brightness: true
       default_repeat_delay:
         hours: 0
-        minutes: 2
-        seconds: 0
-      default_use_scene_brightness: true
+        minutes: 0
+        seconds: 45
+      include_mode_color_temp: true
+      skipgroups: false
+      debug: true
       target:
         entity_id:
         - light.front_yard_bollard_1
@@ -29,3 +33,24 @@ fall_scenes:
         - light.front_yard_bollard_4
         - light.front_yard_spot_1
         - light.front_yard_spot_2
+
+front_yard_holiday_custom_light_scene:
+  alias: Front Yard Holiday Custom Light Scenes
+  description: 'Hue-like scenes blueprint for Front Yard Holiday Lights'
+  use_blueprint:
+    path: nilsreiter/ha-scenes.yaml
+    input:
+      default_scene: 'Pure: Autumn gold'
+      default_onlyonlights: true
+      default_use_scene_brightness: true
+      default_repeat_delay:
+        hours: 0
+        minutes: 0
+        seconds: 45
+      include_mode_color_temp: true
+      skipgroups: false
+      debug: true
+      target:
+        entity_id:
+        - light.front_yard_festiva_1
+        - light.front_yard_festiva_2

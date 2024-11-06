@@ -15,10 +15,14 @@ automation:
     condition: []
     action:
       - choose:
+          
           - conditions:
               - condition: trigger
                 id:
                   - just_before_sunset
+              - condition: state
+                entity_id: sensor.custom_light_schedule
+                state: "false"
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -33,6 +37,108 @@ automation:
                     - light.front_yard_bollard_4
                     - light.front_yard_spot_1
                     - light.front_yard_spot_2
+          
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+              - condition: state
+                entity_id: binary_sensor.valentine
+                state: "true"
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Romantic: Ruby romance'
+
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+              - condition: state
+                entity_id: binary_sensor.fall
+                state: "true"
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Pure: Autumn gold'
+          
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+              - condition: state
+                entity_id: binary_sensor.halloween
+                state: "true"
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Halloween: Trick or treat'
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_holiday_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Halloween: Trick or treat'
+          
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+              - condition: state
+                entity_id: binary_sensor.winter
+                state: "true"
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Winter holidays: Snow sparkle'
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_holiday_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Winter holidays: Snow sparkle'
+          
+          - conditions:
+              - condition: trigger
+                id:
+                  - just_before_sunset
+              - condition: state
+                entity_id: binary_sensor.christmas
+                state: "true"
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Winter holidays: Under the tree'
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_holiday_custom_light_scene
+                data:
+                  variables:
+                    scene: 'Winter holidays: Under the tree'
+          
           - conditions:
               - condition: trigger
                 id:
