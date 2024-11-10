@@ -1,7 +1,7 @@
 automation:
   - id: '33054812-ad0f-4412-af49-9aae78c484bd'
-    alias: 'Routine | Security Lights | Firepit'
-    description: "Firepit Security Lights turn on or off"
+    alias: 'Routine | Sunset | Firepit'
+    description: "Firepit Lights turn on or off"
     mode: single
     trigger:
       - platform: sun
