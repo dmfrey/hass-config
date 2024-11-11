@@ -1,0 +1,13 @@
+type: entities
+title: Firepit Custom Lights
+show_header_toggle: false
+entities:
+  - type: custom:mushroom-template-card
+    primary: Savanna sunset
+    picture: /local/hue/Savanna sunset.jpg
+    tap_action:
+      action: call-service
+      service: script.firepit_custom_light_scene
+      target: {}
+      data:
+        scene: Savanna sunset
