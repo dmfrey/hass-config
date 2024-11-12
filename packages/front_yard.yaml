@@ -50,7 +50,7 @@ automation:
                       - just_before_sunset
                   - condition: state
                     entity_id: binary_sensor.valentine
-                    state: "true"
+                    state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -69,7 +69,7 @@ automation:
                       - just_before_sunset
                   - condition: state
                     entity_id: binary_sensor.fall
-                    state: "true"
+                    state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -88,7 +88,7 @@ automation:
                       - just_before_sunset
                   - condition: state
                     entity_id: binary_sensor.halloween
-                    state: "true"
+                    state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -114,7 +114,7 @@ automation:
                       - just_before_sunset
                   - condition: state
                     entity_id: binary_sensor.winter
-                    state: "true"
+                    state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -140,7 +140,7 @@ automation:
                       - just_before_sunset
                   - condition: state
                     entity_id: binary_sensor.christmas
-                    state: "true"
+                    state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -166,7 +166,7 @@ automation:
                       - just_before_sunset
                   - condition: state
                     entity_id: binary_sensor.flyers
-                    state: "true"
+                    state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -185,7 +185,7 @@ automation:
                     - just_before_sunset
                 - condition: state
                   entity_id: binary_sensor.eagles
-                  state: "true"
+                  state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -204,7 +204,7 @@ automation:
                     - just_before_sunset
                 - condition: state
                   entity_id: binary_sensor.phillies
-                  state: "true"
+                  state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -223,7 +223,7 @@ automation:
                     - just_before_sunset
                 - condition: state
                   entity_id: binary_sensor.penn_st
-                  state: "true"
+                  state: "True"
             sequence:
               - action: script.turn_on
                 metadata: {}

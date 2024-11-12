@@ -1,0 +1,14 @@
+custom_light_scene_selections:
+    name: Custom Light Scene Selections
+    options:
+      - 'Romantic: Ruby romance'
+      - 'Peaceful: Spring blossom'
+      - 'Race Day: Miami'
+      - 'Pure: Midsummer sun'
+      - 'Pure: Autumn gold'
+      - 'Halloween: Trick or treat'
+      - 'Winter holidays: Snow sparkle'
+      - 'Winter holidays: Under the tree'
+      - &initial Savanna sunset
+    initial: *initial
+    icon: mdi:lightbulb
