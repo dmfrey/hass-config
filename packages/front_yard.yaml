@@ -40,35 +40,16 @@ automation:
                     - light.front_yard_bollard_4
                     - light.front_yard_spot_1
                     - light.front_yard_spot_2
-          
-          - conditions:
-              - alias: It's just before sunset and its Valentine's Day
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
-                  - condition: state
-                    entity_id: binary_sensor.valentine
-                    state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Romantic: Ruby romance'
 
           - conditions:
-              - alias: It's just before sunset and it's the Fall Season
+              - alias: It's just before sunset and a custom light schedule is set
                 condition: and
                 conditions:
                   - condition: trigger
                     id:
                       - just_before_sunset
                   - condition: state
-                    entity_id: binary_sensor.fall
+                    entity_id: sensor.custom_light_schedule
                     state: "True"
             sequence:
               - action: script.turn_on
@@ -77,162 +58,13 @@ automation:
                   entity_id: script.front_yard_custom_light_scene
                 data:
                   variables:
-                    scene: 'Pure: Autumn gold'
-          
-          - conditions:
-              - alias: It's just before sunset and it's Halloween
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
-                  - condition: state
-                    entity_id: binary_sensor.halloween
-                    state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Halloween: Trick or treat'
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_holiday_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Halloween: Trick or treat'
-          
-          - conditions:
-              - alias: It's just before sunset and it's the Winter Season
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
-                  - condition: state
-                    entity_id: binary_sensor.winter
-                    state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Winter holidays: Snow sparkle'
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_holiday_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Winter holidays: Snow sparkle'
-          
-          - conditions:
-              - alias: It's just before sunset and it's Christmas
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
-                  - condition: state
-                    entity_id: binary_sensor.christmas
-                    state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Winter holidays: Under the tree'
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_holiday_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Winter holidays: Under the tree'
+                    scene: |
+                      {% if has_value('input_select.custom_light_scene_selections') %}
+                        {{ states('input_select.custom_light_scene_selections') }}
+                      {% else %}
+                        Savanna sunset
+                      {% endif %}
 
-          - conditions:
-              - alias: It's just before sunset and the Flyers are on
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
-                  - condition: state
-                    entity_id: binary_sensor.flyers
-                    state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Pure: Autumn gold'        
-
-          - conditions:
-            - alias: It's just before sunset and the Eagles are on
-              condition: and
-              conditions:
-                - condition: trigger
-                  id:
-                    - just_before_sunset
-                - condition: state
-                  entity_id: binary_sensor.eagles
-                  state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Pure: Autumn gold'        
-                            
-          - conditions:
-            - alias: It's just before sunset and the Phillies are on
-              condition: and
-              conditions:
-                - condition: trigger
-                  id:
-                    - just_before_sunset
-                - condition: state
-                  entity_id: binary_sensor.phillies
-                  state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Pure: Autumn gold'        
-        
-          - conditions:
-            - alias: It's just before sunset and Penn St is on
-              condition: and
-              conditions:
-                - condition: trigger
-                  id:
-                    - just_before_sunset
-                - condition: state
-                  entity_id: binary_sensor.penn_st
-                  state: "True"
-            sequence:
-              - action: script.turn_on
-                metadata: {}
-                target:
-                  entity_id: script.front_yard_custom_light_scene
-                data:
-                  variables:
-                    scene: 'Pure: Autumn gold'        
-        
           - conditions:
               - condition: trigger
                 id:
