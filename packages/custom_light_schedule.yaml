@@ -156,3 +156,47 @@ automation:
                   option: "Winter holidays: Under the tree"
                 target:
                   entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - sports_flyers
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Pure: Autumn gold"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - sports_eagles
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Pure: Autumn gold"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - sports_phillies
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Pure: Autumn gold"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - sports_penn_st
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Pure: Autumn gold"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
