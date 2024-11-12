@@ -1,0 +1,158 @@
+automation:
+
+  - id: '17555aa9-e75d-4644-9731-366616f41e69'
+    alias: "Routine | Custom Lights | Change Scene"
+    description: "Change the scene when the calendar updates the sensors"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id:
+          - binary_sensor.winter
+        id: season_winter
+        to: "on"
+      - trigger: state
+        entity_id:
+          - binary_sensor.spring
+        id: season_spring
+        to: "on"
+      - trigger: state
+        entity_id:
+          - binary_sensor.summer
+        to: "on"
+        id: season_summer
+      - trigger: state
+        entity_id:
+          - binary_sensor.fall
+        to: "on"
+        id: season_fall
+      - trigger: state
+        entity_id:
+          - binary_sensor.valentine
+        to: "on"
+        id: holiday_valentine
+      - trigger: state
+        entity_id:
+          - binary_sensor.patriotic
+        to: "on"
+        id: holiday_patriotic
+      - trigger: state
+        entity_id:
+          - binary_sensor.halloween
+        to: "on"
+        id: holiday_halloween
+      - trigger: state
+        entity_id:
+          - binary_sensor.christmas
+        to: "on"
+        id: holiday_christmas
+      - trigger: state
+        entity_id:
+          - binary_sensor.flyers
+        to: "on"
+        id: sports_flyers
+      - trigger: state
+        entity_id:
+          - binary_sensor.eagles
+        to: "on"
+        id: sports_eagles
+      - trigger: state
+        entity_id:
+          - binary_sensor.phillies
+        to: "on"
+        id: sports_phillies
+      - trigger: state
+        entity_id:
+          - binary_sensor.penn_st
+        to: "on"
+        id: sports_penn_st
+    conditions: []
+    actions:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - season_winter
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Winter holidays: Snow sparkle"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - season_spring
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Peaceful: Spring blossom"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - season_summer
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Pure: Midsummer sun"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - season_fall
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Pure: Autumn gold"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - holiday_valentine
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Romantic: Ruby romance"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - holiday_patriotic
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Race Day: Miami"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - holiday_halloween
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Halloween: Trick or treat"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
+          - conditions:
+              - condition: trigger
+                id:
+                  - holiday_christmas
+            sequence:
+              - action: input_select.select_option
+                metadata: {}
+                data:
+                  option: "Winter holidays: Under the tree"
+                target:
+                  entity_id: input_select.custom_light_scene_selections
