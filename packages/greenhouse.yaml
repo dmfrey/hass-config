@@ -1,0 +1,20 @@
+automation:
+
+  - id: 'fda5ca95-4c78-417e-b213-797e233d2c00'
+    alias: 'Notification | Family Room | Time to water Sully'
+    description: "It's time to water"
+    mode: single
+    triggers:
+      - trigger: numeric_state
+        entity_id:
+          - sensor.sully_moisture_sensor_humidity
+        below: 4
+    conditions: []
+    actions: 
+      - service: notify.parent_devices
+        metadata: {}
+        data_template:
+          title: "Sully needs water"
+          message: The moisture level in Sully's pot has gone below 4%. It's time to water.
+          data:
+            tag: plants
