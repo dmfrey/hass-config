@@ -1,7 +1,7 @@
 automation:
   - id: '3896b676-61fa-4da6-a12d-5ad00b12de43'
-    alias: 'Routine | Security Lights | Driveway'
-    description: "Driveway Security Lights turn on or off"
+    alias: 'Routine | Driveway | Sunset'
+    description: "Driveway Lights turn on or off"
     mode: single
     trigger:
       - platform: sun
@@ -15,19 +15,52 @@ automation:
     condition: []
     action:
       - choose:
+          
           - conditions:
-              - condition: trigger
-                id:
-                  - just_before_sunset
+              - alias: It's just before sunset and there is no custom schedule set
+                condition: and
+                conditions:
+                  - condition: trigger
+                    id:
+                      - just_before_sunset
+                  - condition: state
+                    entity_id: sensor.custom_light_schedule
+                    state: "False"
             sequence:
               - service: light.turn_on
                 metadata: {}
                 data:
+                  kelvin: 2700
                   brightness_pct: 100
                 target:
                   entity_id:
                     - light.back_door_light
                     - light.driveway_security_light
+
+          - conditions:
+              - alias: It's just before sunset and a custom light schedule is set
+                condition: and
+                conditions:
+                  - condition: trigger
+                    id:
+                      - just_before_sunset
+                  - condition: state
+                    entity_id: sensor.custom_light_schedule
+                    state: "True"
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.driveway_custom_light_scene
+                data:
+                  variables:
+                    scene: |
+                      {% if has_value('input_select.custom_light_scene_selections') %}
+                        {{ states('input_select.custom_light_scene_selections') }}
+                      {% else %}
+                        Savanna sunset
+                      {% endif %}
+
           - conditions:
               - condition: trigger
                 id:

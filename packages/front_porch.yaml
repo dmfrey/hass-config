@@ -1,7 +1,7 @@
 automation:
   - id: 'a132c698-0908-410f-932c-ef3e82437b28'
-    alias: 'Routine | Security Lights | Front Porch'
-    description: "Front Porch Security Lights turn on or off"
+    alias: 'Routine | Front Porch | Sunset'
+    description: "Front Porch Lights turn on or off"
     mode: single
     trigger:
       - platform: sun
@@ -15,18 +15,51 @@ automation:
     condition: []
     action:
       - choose:
+          
           - conditions:
-              - condition: trigger
-                id:
-                  - just_before_sunset
+              - alias: It's just before sunset and there is no custom schedule set
+                condition: and
+                conditions:
+                  - condition: trigger
+                    id:
+                      - just_before_sunset
+                  - condition: state
+                    entity_id: sensor.custom_light_schedule
+                    state: "False"
             sequence:
               - service: light.turn_on
                 metadata: {}
                 data:
+                  kelvin: 2700
                   brightness_pct: 100
                 target:
                   entity_id:
                     - light.front_door_light
+
+          - conditions:
+              - alias: It's just before sunset and a custom light schedule is set
+                condition: and
+                conditions:
+                  - condition: trigger
+                    id:
+                      - just_before_sunset
+                  - condition: state
+                    entity_id: sensor.custom_light_schedule
+                    state: "True"
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_porch_custom_light_scene
+                data:
+                  variables:
+                    scene: |
+                      {% if has_value('input_select.custom_light_scene_selections') %}
+                        {{ states('input_select.custom_light_scene_selections') }}
+                      {% else %}
+                        Savanna sunset
+                      {% endif %}
+
           - conditions:
               - condition: trigger
                 id:
