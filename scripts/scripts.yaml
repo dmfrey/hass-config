@@ -9,6 +9,67 @@ good_night:
           - automation.routine_house_goodnight
           - automation.routine_master_bedroom_goodnight
 
+driveway_custom_light_scene:
+  alias: Driveway Custom Light Scenes
+  description: 'Hue-like scenes blueprint for Driveway Lights'
+  use_blueprint:
+    path: nilsreiter/ha-scenes.yaml
+    input:
+      default_scene: 'Pure: Autumn gold'
+      default_onlyonlights: true
+      default_use_scene_brightness: true
+      default_repeat_delay:
+        hours: 0
+        minutes: 0
+        seconds: 45
+      include_mode_color_temp: true
+      skipgroups: false
+      debug: true
+      target:
+        entity_id:
+        - light.back_door_light
+        - light.driveway_security_light
+
+firepit_custom_light_scene:
+  alias: Firepit Custom Light Scenes
+  description: 'Hue-like scenes blueprint for Firepit Lights'
+  use_blueprint:
+    path: nilsreiter/ha-scenes.yaml
+    input:
+      default_scene: 'Pure: Autumn gold'
+      default_onlyonlights: true
+      default_use_scene_brightness: true
+      default_repeat_delay:
+        hours: 0
+        minutes: 0
+        seconds: 45
+      include_mode_color_temp: true
+      skipgroups: false
+      debug: true
+      target:
+        entity_id:
+        - light.barn_door_light
+
+front_porch_custom_light_scene:
+  alias: Front Porch Custom Light Scenes
+  description: 'Hue-like scenes blueprint for Front Porch Lights'
+  use_blueprint:
+    path: nilsreiter/ha-scenes.yaml
+    input:
+      default_scene: 'Pure: Autumn gold'
+      default_onlyonlights: true
+      default_use_scene_brightness: true
+      default_repeat_delay:
+        hours: 0
+        minutes: 0
+        seconds: 45
+      include_mode_color_temp: true
+      skipgroups: false
+      debug: true
+      target:
+        entity_id:
+        - light.front_door_light
+
 front_yard_custom_light_scene:
   alias: Front Yard Custom Light Scenes
   description: 'Hue-like scenes blueprint for Front Yard Lights'
@@ -55,9 +116,9 @@ front_yard_holiday_custom_light_scene:
         - light.front_yard_festiva_1
         - light.front_yard_festiva_2
 
-firepit_custom_light_scene:
-  alias: Firepit Custom Light Scenes
-  description: 'Hue-like scenes blueprint for Firepit Lights'
+patio_custom_light_scene:
+  alias: Patio Custom Light Scenes
+  description: 'Hue-like scenes blueprint for Patio Lights'
   use_blueprint:
     path: nilsreiter/ha-scenes.yaml
     input:
@@ -73,4 +134,8 @@ firepit_custom_light_scene:
       debug: true
       target:
         entity_id:
-        - light.barn_door_light
+        - light.patio_light_1
+        - light.patio_light_2
+        - light.patio_light_3
+        - light.patio_light_4
+
