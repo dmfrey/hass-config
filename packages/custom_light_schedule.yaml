@@ -109,7 +109,7 @@ automation:
               - action: input_select.select_option
                 metadata: {}
                 data:
-                  option: "Pure: Autumn gold"
+                  option: "Cozy: Honolulu"
                 target:
                   entity_id: input_select.custom_light_scene_selections
           - conditions:
@@ -164,7 +164,7 @@ automation:
               - action: input_select.select_option
                 metadata: {}
                 data:
-                  option: "Pure: Autumn gold"
+                  option: "Race Day: Zandvoort"
                 target:
                   entity_id: input_select.custom_light_scene_selections
           - conditions:
@@ -175,7 +175,7 @@ automation:
               - action: input_select.select_option
                 metadata: {}
                 data:
-                  option: "Pure: Autumn gold"
+                  option: "Race Day: São Paulo"
                 target:
                   entity_id: input_select.custom_light_scene_selections
           - conditions:
@@ -186,7 +186,7 @@ automation:
               - action: input_select.select_option
                 metadata: {}
                 data:
-                  option: "Pure: Autumn gold"
+                  option: "Dreamy: Adrift"
                 target:
                   entity_id: input_select.custom_light_scene_selections
           - conditions:
@@ -197,6 +197,6 @@ automation:
               - action: input_select.select_option
                 metadata: {}
                 data:
-                  option: "Pure: Autumn gold"
+                  option: "Futuristic: Magneto"
                 target:
                   entity_id: input_select.custom_light_scene_selections
