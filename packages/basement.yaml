@@ -77,7 +77,7 @@ automation:
                 data:
                   transition: 2
                   kelvin: 2237
-                  brightness_pct: 100
+                  brightness_pct: 60
 
     # trigger:
     #   - platform: mqtt
