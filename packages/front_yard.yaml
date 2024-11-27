@@ -64,6 +64,37 @@ automation:
                       {% else %}
                         Savanna sunset
                       {% endif %}
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: binary_sensor.winter
+                    state: "on"
+                  - condition: state
+                    entity_id: binary_sensor.christmas
+                    state: "on"
+              - action: light.turn_on
+                metadata: {}
+                data: {}
+                target:
+                  entity_id:
+                    - light.front_yard_christmas_lights
+                    - light.front_yard_christmas_tree_light
+                    - light.tp_link_smart_plug_8d86_garage_christmas_lights_1
+                    - light.tp_link_smart_plug_8d86_garage_christmas_lights_2
+                    - light.tp_link_smart_plug_938d_living_room_christmas_lights_1
+                    - light.tp_link_smart_plug_938d_living_room_christmas_lights_2
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id: script.front_yard_holiday_custom_light_scene
+                data:
+                  variables:
+                    scene: >
+                      {% if has_value('input_select.custom_light_scene_selections') %}
+                        {{ states('input_select.custom_light_scene_selections') }}
+                      {% else %}
+                        Savanna sunset
+                      {% endif %}
 
           - conditions:
               - condition: trigger
@@ -82,6 +113,12 @@ automation:
                     - light.front_yard_bollard_4
                     - light.front_yard_spot_1
                     - light.front_yard_spot_2
+                    - light.front_yard_christmas_lights
+                    - light.front_yard_christmas_tree_light
+                    - light.tp_link_smart_plug_8d86_garage_christmas_lights_1
+                    - light.tp_link_smart_plug_8d86_garage_christmas_lights_2
+                    - light.tp_link_smart_plug_938d_living_room_christmas_lights_1
+                    - light.tp_link_smart_plug_938d_living_room_christmas_lights_2
                     - light.front_yard_festiva_1
                     - light.front_yard_festiva_2
 
