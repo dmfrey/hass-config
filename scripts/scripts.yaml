@@ -113,8 +113,8 @@ front_yard_holiday_custom_light_scene:
       debug: true
       target:
         entity_id:
-        - light.front_yard_festiva_1
-        - light.front_yard_festiva_2
+        - light.front_yard_festiva_light_1
+        - light.front_yard_festiva_light_2
 
 patio_custom_light_scene:
   alias: Patio Custom Light Scenes
