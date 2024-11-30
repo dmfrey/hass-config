@@ -87,13 +87,32 @@
             | list
           }} 
   binary_sensor:
-    - name: "Valentine"
-      state: "{{ 'Valentine' in events }}"
+
+    # Sports sensors
+    - name: "Phillies"
+      state: "{{ 'Phillies' in events }}"
       auto_off:
         hours: 23
         minutes: 59
-    - name: "Spring"
-      state: "{{ 'Halloween' in events }}"
+    - name: "Penn St"
+      state: "{{ 'Penn St' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Eagles"
+      state: "{{ 'Eagles' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Flyers"
+      state: "{{ 'Flyers' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+
+    # Holiday sensors
+    - name: "Valentine"
+      state: "{{ 'Valentine' in events }}"
       auto_off:
         hours: 23
         minutes: 59
@@ -102,18 +121,8 @@
       auto_off:
         hours: 23
         minutes: 59
-    - name: "Summer"
-      state: "{{ 'Summer' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
     - name: "Halloween"
       state: "{{ 'Halloween' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-    - name: "Fall"
-      state: "{{ 'Fall' in events }}"
       auto_off:
         hours: 23
         minutes: 59
@@ -122,32 +131,25 @@
       auto_off:
         hours: 23
         minutes: 59
+
+    # Season sensors
+    - name: "Spring"
+      state: "{{ 'Spring' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Summer"
+      state: "{{ 'Summer' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Fall"
+      state: "{{ 'Fall' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
     - name: "Winter"
       state: "{{ 'Halloween' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-
-    - name: "Flyers"
-      state: "{{ 'Flyers' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-
-    - name: "Eagles"
-      state: "{{ 'Eagles' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-
-    - name: "Phillies"
-      state: "{{ 'Phillies' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-
-    - name: "Penn St"
-      state: "{{ 'Penn St' in events }}"
       auto_off:
         hours: 23
         minutes: 59

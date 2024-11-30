@@ -23,6 +23,6 @@ family_room_holiday:
     name: "Family Room Holiday Lights"
     entities:
       - switch.bookshelf_christmas_lights
-      - switch.christmas_tree_light
+      - light.christmas_tree_light
       - switch.mantle_lights
 
