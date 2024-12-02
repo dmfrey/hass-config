@@ -1,6 +1,6 @@
 automation:
 
-  - id: '738a8a9c-9792-4b41-819b-ea4cca648a8b'
+  - id: '14f666a9-0e2e-4a87-adf1-57e0fc29231a'
     alias: "Game Time | Philadelphia Phillies"
     description: "Game Time: The Philadelphia Phillies are on"
     mode: single
