@@ -1,0 +1,57 @@
+automation:
+
+  - id: '738a8a9c-9792-4b41-819b-ea4cca648a8b'
+    alias: "Game Time | Philadelphia Phillies"
+    description: "Game Time: The Philadelphia Phillies are on"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id:
+          - calendar.philadelphia_phillies
+        to: "on"
+        id: game_started
+      - trigger: state
+        entity_id:
+          - calendar.philadelphia_phillies
+        to: "off"
+        id: game_ended
+    conditions: []
+    actions:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - game_started
+            sequence:
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id:
+                    - script.driveway_custom_light_scene
+                    - script.firepit_custom_light_scene
+                    - script.front_porch_custom_light_scene
+                    - script.front_yard_custom_light_scene
+                    - script.patio_custom_light_scene
+                data:
+                  scene: "Special: My scene"
+                  repeat_delay:
+                    hours: 0
+                    minutes: 0
+                    seconds: 45
+                  onlyonlights: false
+                  use_scene_brightness: false
+                  brightness: 100
+                  my_scene:
+                    c:
+                      - - 0.609
+                        - 0.321
+                      - - 0.17
+                        - 0.133
+                      - - 0.313
+                        - 0.329
+                    b: 0.6
+          - conditions:
+              - condition: trigger
+                id:
+                  - game_ended
+            sequence: []
