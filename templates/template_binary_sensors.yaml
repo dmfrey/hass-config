@@ -88,28 +88,6 @@
           }} 
   binary_sensor:
 
-    # Sports sensors
-    - name: "Phillies"
-      state: "{{ 'Phillies' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-    - name: "Penn St"
-      state: "{{ 'Penn St' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-    - name: "Eagles"
-      state: "{{ 'Eagles' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-    - name: "Flyers"
-      state: "{{ 'Flyers' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-
     # Holiday sensors
     - name: "Valentine"
       state: "{{ 'Valentine' in events }}"
@@ -164,8 +142,4 @@
            or is_state('binary_sensor.halloween', 'on')
            or is_state('binary_sensor.fall', 'on')
            or is_state('binary_sensor.christmas', 'on')
-           or is_state('binary_sensor.winter', 'on')
-           or is_state('binary_sensor.flyers', 'on')
-           or is_state('binary_sensor.eagles', 'on')
-           or is_state('binary_sensor.phillies', 'on')
-           or is_state('binary_sensor.penn_st', 'on') }}
+           or is_state('binary_sensor.winter', 'on') }}
