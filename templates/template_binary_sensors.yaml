@@ -105,7 +105,7 @@
         hours: 23
         minutes: 59
     - name: "Winter"
-      state: "{{ 'Halloween' in events }}"
+      state: "{{ 'Winter' in events }}"
       auto_off:
         hours: 23
         minutes: 59
