@@ -88,28 +88,6 @@
           }} 
   binary_sensor:
 
-    # Holiday sensors
-    - name: "Valentine"
-      state: "{{ 'Valentine' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-    - name: "Patriotic"
-      state: "{{ 'Patriotic' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-    - name: "Halloween"
-      state: "{{ 'Halloween' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-    - name: "Christmas"
-      state: "{{ 'Christmas' in events }}"
-      auto_off:
-        hours: 23
-        minutes: 59
-
     # Season sensors
     - name: "Spring"
       state: "{{ 'Spring' in events }}"
@@ -132,14 +110,97 @@
         hours: 23
         minutes: 59
 
+- trigger:
+    - platform: time
+      at: "00:00"
+  action: 
+    - service: calendar.get_events
+      target:
+        entity_id: calendar.holidays_in_united_states
+      data: 
+        duration: 
+          minutes: 5
+      response_variable: calendar
+    - variables: 
+        events: >
+          {{ 
+            calendar['calendar.holidays_in_united_states'].events
+            | map(attribute='summary')
+            | list
+          }} 
+  binary_sensor:
+
+    # Holiday sensors
+    - name: "New Years Day"
+      state: "{{ 'New Year\\'s Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Valentine"
+      state: "{{ 'Valentine\\'s Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "St Patrick"
+      state: "{{ 'St. Patrick\\'s Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Easter"
+      state: "{{ 'Easter Sunday' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Mothers Day"
+      state: "{{ 'Mother\\'s Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Memorial Day"
+      state: "{{ 'Memorial Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Fathers Day"
+      state: "{{ 'Father\\'s Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Independence Day"
+      state: "{{ 'Independences Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Labor Day"
+      state: "{{ 'Labor Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Halloween"
+      state: "{{ 'Halloween' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Christmas Eve"
+      state: "{{ 'Christmas Eve' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "Christmas Day"
+      state: "{{ 'Christmas Day' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+    - name: "New Years Eve"
+      state: "{{ 'New Year\\'s Eve' in events }}"
+      auto_off:
+        hours: 23
+        minutes: 59
+
 - sensor:
     - name: "Custom Light Schedule"
       state: >
-        {{ is_state('binary_sensor.valentine', 'on')
-           or is_state('binary_sensor.spring', 'on')
-           or is_state('binary_sensor.patriotic', 'on')
+        {{ is_state('binary_sensor.spring', 'on')
            or is_state('binary_sensor.summer', 'on')
-           or is_state('binary_sensor.halloween', 'on')
            or is_state('binary_sensor.fall', 'on')
-           or is_state('binary_sensor.christmas', 'on')
            or is_state('binary_sensor.winter', 'on') }}
