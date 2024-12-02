@@ -70,7 +70,10 @@ automation:
                     entity_id: binary_sensor.winter
                     state: "on"
                   - condition: state
-                    entity_id: binary_sensor.christmas
+                    entity_id: binary_sensor.christmas_eve
+                    state: "on"
+                  - condition: state
+                    entity_id: binary_sensor.christmas_day
                     state: "on"
               - action: light.turn_on
                 metadata: {}
