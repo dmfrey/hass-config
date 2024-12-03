@@ -35,9 +35,6 @@ automation:
           - input_boolean.good_night
         to: "on"
     condition: []
-      # - condition: sun
-      #   after: sunset
-      #   enabled: true
     action:
       - service: light.turn_off
         target:
@@ -49,11 +46,10 @@ automation:
             - den
             - dining_room
             - family_room
-            # - family_room_ambient
-            # - family_room_holiday
             - foyer
+            - front_porch
             - front_yard
-            # - front_yard_holiday
+            - front_yard_holiday
             - garden
             - hallway
             - living_room
@@ -70,18 +66,12 @@ automation:
           area_id:
             - bathroom
             - camdyn_s_room
-            # - family_room_ambient
-            # - family_room_holiday
             - front_yard
-            # - front_yard_holiday
             - hallway
             - living_room
             - master_bathroom
             - molly_s_room
             - workshop
-          # entity_id:
-          #   - switch.outside_holiday_switches
-          #   - switch.holiday_lights
         data: {}
       - service: light.turn_on
         target:

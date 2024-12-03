@@ -54,4 +54,8 @@ automation:
               - condition: trigger
                 id:
                   - game_ended
-            sequence: []
+            sequence: 
+              - service: input_boolean.turn_on
+                target:
+                  entity_id:
+                    - input_boolean.light_reset

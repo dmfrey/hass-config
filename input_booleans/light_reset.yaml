@@ -1,0 +1,4 @@
+light_reset:
+  name: Light Reset
+  icon: mdi:lightbulb
+  initial: off
