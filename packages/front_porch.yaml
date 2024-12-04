@@ -59,7 +59,24 @@ automation:
                       {% else %}
                         Savanna sunset
                       {% endif %}
-
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: binary_sensor.winter
+                    state: "on"
+                  - condition: state
+                    entity_id: binary_sensor.christmas_eve
+                    state: "on"
+                  - condition: state
+                    entity_id: binary_sensor.christmas_day
+                    state: "on"
+              - action: light.turn_on
+                metadata: {}
+                data: {}
+                target:
+                  entity_id:
+                    - light.front_porch_lights
+                    
           - conditions:
               - condition: trigger
                 id:
@@ -72,3 +89,4 @@ automation:
                 target:
                   entity_id:
                     - light.front_door_light
+                    - light.front_porch_lights
