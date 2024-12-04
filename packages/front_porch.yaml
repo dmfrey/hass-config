@@ -4,14 +4,19 @@ automation:
     description: "Front Porch Lights turn on or off"
     mode: single
     trigger:
-      - platform: sun
+      - trigger: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: sun
+      - trigger: sun
         event: sunrise
         offset: "00:20:00"
         id: just_after_sunrise
+      - trigger: state
+        entity_id:
+          - input_boolean.light_reset
+        to: "on"
+        id: light_reset
     condition: []
     action:
       - choose:
@@ -76,7 +81,7 @@ automation:
                 target:
                   entity_id:
                     - light.front_porch_lights
-                    
+
           - conditions:
               - condition: trigger
                 id:
