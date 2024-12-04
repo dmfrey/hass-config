@@ -101,3 +101,13 @@ automation:
                   entity_id:
                     - light.front_door_light
                     - light.front_porch_lights
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      - action: input_boolean.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.light_reset
