@@ -22,15 +22,18 @@ automation:
       - choose:
           
           - conditions:
-              - alias: It's just before sunset and there is no custom schedule set
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
+              - alias: It's just before sunset or light reset and there is no custom schedule set
+                and:
                   - condition: state
                     entity_id: sensor.custom_light_schedule
                     state: "False"
+                  - or:
+                    - condition: trigger
+                      id:
+                        - just_before_sunset
+                    - condition: trigger
+                      id:
+                        - light_reset
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -42,15 +45,18 @@ automation:
                     - light.front_door_light
 
           - conditions:
-              - alias: It's just before sunset and a custom light schedule is set
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
+              - alias: It's just before sunset or light reset and a custom light schedule is set
+                and:
                   - condition: state
                     entity_id: sensor.custom_light_schedule
                     state: "True"
+                  - or:
+                    - condition: trigger
+                      id:
+                        - just_before_sunset
+                    - condition: trigger
+                      id:
+                        - light_reset
             sequence:
               - action: script.turn_on
                 metadata: {}
