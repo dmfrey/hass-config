@@ -60,6 +60,13 @@ automation:
                       {% else %}
                         Savanna sunset
                       {% endif %}
+                    repeat_delay:
+                      hours: 0
+                      minutes: 0
+                      seconds: 30
+                    onlyonlights: false
+                    use_scene_brightness: false
+                    brightness: 100
 
           - conditions:
               - condition: trigger
