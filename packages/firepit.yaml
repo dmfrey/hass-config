@@ -4,28 +4,36 @@ automation:
     description: "Firepit Lights turn on or off"
     mode: single
     trigger:
-      - platform: sun
+      - trigger: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: sun
+      - trigger: sun
         event: sunrise
         offset: "00:20:00"
         id: just_after_sunrise
+      - trigger: state
+        entity_id:
+          - input_boolean.light_reset
+        to: "on"
+        id: light_reset
     condition: []
     action:
       - choose:
           
           - conditions:
-              - alias: It's just before sunset and there is no custom schedule set
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
+              - alias: It's just before sunset or light reset and there is no custom schedule set
+                and:
                   - condition: state
                     entity_id: sensor.custom_light_schedule
                     state: "False"
+                  - or:
+                    - condition: trigger
+                      id:
+                        - just_before_sunset
+                    - condition: trigger
+                      id:
+                        - light_reset
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -37,15 +45,18 @@ automation:
                     - light.barn_door_light
 
           - conditions:
-              - alias: It's just before sunset and a custom light schedule is set
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
+              - alias: It's just before sunset or light reset and a custom light schedule is set
+                and:
                   - condition: state
                     entity_id: sensor.custom_light_schedule
                     state: "True"
+                  - or:
+                    - condition: trigger
+                      id:
+                        - just_before_sunset
+                    - condition: trigger
+                      id:
+                        - light_reset
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -79,3 +90,15 @@ automation:
                 target:
                   entity_id:
                     - light.barn_door_light
+      
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      
+      - action: input_boolean.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.light_reset

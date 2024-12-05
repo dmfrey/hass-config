@@ -4,28 +4,36 @@ automation:
     description: "Front Yard Lights turn on or off"
     mode: single
     trigger:
-      - platform: sun
+      - trigger: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: sun
+      - trigger: sun
         event: sunrise
         offset: "00:20:00"
         id: just_after_sunrise
+      - trigger: state
+        entity_id:
+          - input_boolean.light_reset
+        to: "on"
+        id: light_reset
     condition: []
     action:
       - choose:
           
           - conditions:
-              - alias: It's just before sunset and there is no custom schedule set
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
+              - alias: It's just before sunset or light reset and there is no custom schedule set
+                and:
                   - condition: state
                     entity_id: sensor.custom_light_schedule
-                    state: "false"
+                    state: "False"
+                  - or:
+                    - condition: trigger
+                      id:
+                        - just_before_sunset
+                    - condition: trigger
+                      id:
+                        - light_reset
             sequence:
               - service: light.turn_on
                 metadata: {}
@@ -42,15 +50,18 @@ automation:
                     - light.front_yard_spot_2
 
           - conditions:
-              - alias: It's just before sunset and a custom light schedule is set
-                condition: and
-                conditions:
-                  - condition: trigger
-                    id:
-                      - just_before_sunset
+              - alias: It's just before sunset or light reset and a custom light schedule is set
+                and:
                   - condition: state
                     entity_id: sensor.custom_light_schedule
                     state: "True"
+                  - or:
+                    - condition: trigger
+                      id:
+                        - just_before_sunset
+                    - condition: trigger
+                      id:
+                        - light_reset
             sequence:
               - action: script.turn_on
                 metadata: {}
@@ -139,17 +150,29 @@ automation:
                     - light.tp_link_smart_plug_938d_living_room_christmas_lights_2
                     - light.front_yard_festiva_1
                     - light.front_yard_festiva_2
+      
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 30
+          milliseconds: 0
+      
+      - action: input_boolean.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.light_reset
 
   - id: 'ecf2ed39-f371-4d3b-812d-2a4b3dc4992d'
     alias: 'Routine | Security Lights | Front Yard'
     description: "Front Yard Security Lights turn on or off"
     mode: single
     trigger:
-      - platform: sun
+      - trigger: sun
         event: sunset
         offset: "-00:45"
         id: just_before_sunset
-      - platform: sun
+      - trigger: sun
         event: sunrise
         offset: "00:20:00"
         id: just_after_sunrise
@@ -188,12 +211,12 @@ automation:
     description: "Front Yard Security Lights Automations"
     mode: single
     trigger:
-      - platform: state
+      - trigger: state
         entity_id:
           - binary_sensor.front_yard_sensor_occupancy
         to: "on"
         id: front_yard_sensor_motion_detected
-      - platform: state
+      - trigger: state
         entity_id:
           - binary_sensor.front_yard_sensor_occupancy
         to: "off"
