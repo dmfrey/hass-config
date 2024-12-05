@@ -1,7 +1,7 @@
 automation:
 
   - id: 'a8572890-cca7-4414-b3a9-4d6ef5a66b28'
-    alias: 'Notification | Applances | Dishwasher Finished'
+    alias: 'Notification | Appliance | Dishwasher Finished'
     description: "Notify Parent Devices when the Dishwasher has finished"
     mode: single
     triggers:
