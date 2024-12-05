@@ -1,0 +1,21 @@
+automation:
+
+  - id: 'a8572890-cca7-4414-b3a9-4d6ef5a66b28'
+    alias: 'Notification | Applances | Dishwasher Finished'
+    description: "Notify Parent Devices when the Dishwasher has finished"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id:
+          - binary_sensor.d828c9343e5b_dishwasher_is_clean
+        to: "on"
+    conditions: []
+    actions:
+      - action: notify.parent_devices
+        metadata: {}
+        data_template:
+          title: Dishwasher Finished
+          message: >
+            The dishwasher has finished running
+          data:
+            tag: appliance
