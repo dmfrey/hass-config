@@ -33,21 +33,22 @@ automation:
                     - script.front_yard_custom_light_scene
                     - script.patio_custom_light_scene
                 data:
-                  scene: "Special: My scene"
-                  repeat_delay:
-                    hours: 0
-                    minutes: 0
-                    seconds: 45
-                  onlyonlights: false
-                  use_scene_brightness: false
-                  brightness: 100
-                  my_scene:
-                    c:
-                      - - 0.18
-                        - 0.175
-                      - - 0.304
-                        - 0.325
-                    b: 0.6
+                  variables:
+                    scene: "Special: My scene"
+                    repeat_delay:
+                      hours: 0
+                      minutes: 0
+                      seconds: 45
+                    onlyonlights: false
+                    use_scene_brightness: false
+                    brightness: 100
+                    my_scene:
+                      c:
+                        - - 0.18
+                          - 0.175
+                        - - 0.304
+                          - 0.325
+                      b: 0.6
           - conditions:
               - condition: trigger
                 id:
