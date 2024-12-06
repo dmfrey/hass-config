@@ -1,6 +1,6 @@
 automation:
 
-  - id: 'f0f77397-a4be-4cf2-a7b0-12709e8267f2'
+  - id: 'a9340356-40d6-43d0-ab76-8b186831af28'
     alias: 'Notification | Appliance | Dryer Finished'
     description: "Notify Parent Devices when the Dryer has finished"
     mode: single
