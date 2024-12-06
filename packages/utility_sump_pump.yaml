@@ -1,0 +1,43 @@
+automation:
+
+  - id: '0bf71b7a-c2eb-4cc4-a537-250a5ebba41a'
+    alias: 'Notification | Utility | Sump Pump Running'
+    description: "Notify Parent Devices when the Sump Pump is running"
+    mode: single
+    triggers:
+      - trigger: numeric_state
+        entity_id:
+          - sensor.basement_sump_pump_power
+        above: 2
+    conditions: []
+    actions:
+      - action: notify.parent_devices
+        metadata: {}
+        data_template:
+          title: Sump Pump Running
+          message: >
+            The Sump Pump is running
+          data:
+            tag: utility
+
+  - id: 'afe14c2e-4225-4580-9f99-2889b8ca1eb9'
+    alias: 'Notification | Utility | Sump Pump Stopped'
+    description: "Notify Parent Devices when the Sump Pump has finished"
+    mode: single
+    triggers:
+      - trigger: numeric_state
+        entity_id:
+          - sensor.basement_sump_pump_power
+        below: 1
+        for:
+          minutes: 1
+    conditions: []
+    actions:
+      - action: notify.parent_devices
+        metadata: {}
+        data_template:
+          title: Sump Pump Finished
+          message: >
+            The Sump Pump has finished running
+          data:
+            tag: utility
