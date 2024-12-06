@@ -1,0 +1,21 @@
+automation:
+
+  - id: 'f0f77397-a4be-4cf2-a7b0-12709e8267f2'
+    alias: 'Notification | Appliance | Washing Machine Finished'
+    description: "Notify Parent Devices when the Washing Machine has finished"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id:
+          - binary_sensor.rm171996g_laundry_end_of_cycle
+        to: "on"
+    conditions: []
+    actions:
+      - action: notify.parent_devices
+        metadata: {}
+        data_template:
+          title: Washing Machine Finished
+          message: >
+            The washing machine has finished running
+          data:
+            tag: appliance

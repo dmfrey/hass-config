@@ -1,0 +1,21 @@
+automation:
+
+  - id: 'f0f77397-a4be-4cf2-a7b0-12709e8267f2'
+    alias: 'Notification | Appliance | Dryer Finished'
+    description: "Notify Parent Devices when the Dryer has finished"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id:
+          - binary_sensor.rm833274c_laundry_end_of_cycle
+        to: "on"
+    conditions: []
+    actions:
+      - action: notify.parent_devices
+        metadata: {}
+        data_template:
+          title: Dryer Finished
+          message: >
+            The dryer has finished running
+          data:
+            tag: appliance
