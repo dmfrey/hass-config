@@ -70,7 +70,6 @@ automation:
                     - script.front_yard_holiday_custom_light_scene
                 data: *data
 
-
           - conditions:
               - condition: trigger
                 id:

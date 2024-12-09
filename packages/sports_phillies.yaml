@@ -18,6 +18,7 @@ automation:
     conditions: []
     actions:
       - choose:
+          
           - conditions:
               - condition: trigger
                 id:
@@ -32,7 +33,7 @@ automation:
                     - script.front_porch_custom_light_scene
                     - script.front_yard_custom_light_scene
                     - script.patio_custom_light_scene
-                data:
+                data: &data
                   variables:
                     scene: "Special: My scene"
                     repeat_delay:
@@ -51,6 +52,26 @@ automation:
                         - - 0.313
                           - 0.329
                       b: 0.6
+
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: binary_sensor.winter
+                    state: "on"
+                  - condition: state
+                    entity_id: binary_sensor.christmas_eve
+                    state: "on"
+                  - condition: state
+                    entity_id: binary_sensor.christmas_day
+                    state: "on"
+
+              - action: script.turn_on
+                metadata: {}
+                target:
+                  entity_id:
+                    - script.front_yard_holiday_custom_light_scene
+                data: *data
+
           - conditions:
               - condition: trigger
                 id:
