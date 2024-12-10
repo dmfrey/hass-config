@@ -76,7 +76,7 @@ automation:
               - action: input_select.select_option
                 metadata: {}
                 data:
-                  option: "Winter holidays: Snow sparkle"
+                  option: "Winter holidays: Under the tree"
                 target:
                   entity_id: input_select.custom_light_scene_selections
           - conditions:
