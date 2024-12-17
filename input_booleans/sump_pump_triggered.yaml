@@ -1,0 +1,4 @@
+sump_pump_triggered:
+  name: Sump Pump Triggered
+  icon: mdi:utility
+  initial: off
