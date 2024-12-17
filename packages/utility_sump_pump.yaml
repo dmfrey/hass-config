@@ -19,7 +19,7 @@ automation:
             The Sump Pump is running
           data:
             tag: utility
-      - action: input_boolean.turn_off
+      - action: input_boolean.turn_on
         metadata: {}
         data: {}
         target:
