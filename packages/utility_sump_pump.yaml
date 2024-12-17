@@ -19,6 +19,11 @@ automation:
             The Sump Pump is running
           data:
             tag: utility
+      - action: input_boolean.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.sump_pump_triggered
 
   - id: 'afe14c2e-4225-4580-9f99-2889b8ca1eb9'
     alias: 'Notification | Utility | Sump Pump Stopped'
@@ -31,7 +36,10 @@ automation:
         below: 1
         for:
           minutes: 1
-    conditions: []
+    conditions:
+      - condition: state
+        entity_id: input_boolean.sump_pump_triggered
+        state: "on"
     actions:
       - action: notify.parent_devices
         metadata: {}
@@ -41,3 +49,8 @@ automation:
             The Sump Pump has finished running
           data:
             tag: utility
+      - action: input_boolean.turn_off
+        metadata: {}
+        data: {}
+        target:
+          entity_id: input_boolean.sump_pump_triggered
