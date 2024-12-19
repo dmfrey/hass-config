@@ -20,6 +20,14 @@ automation:
             - light.master_bedroom_light_1
             - light.master_bedroom_light_2
             - light.master_bedroom_light_switch
+            - light.master_bedroom_ceiling_light
+            - light.master_bedroom_ceiling_light_switch
+            - light.master_bedroom_surround_light_1
+            - light.master_bedroom_surround_light_2
+            - light.master_bedroom_surround_light_3
+            - light.master_bedroom_surround_light_4
+            - light.master_bedroom_surround_light_5
+            - light.master_bedroom_surround_light_switch
 
   - id: 'c03a9f48-2c98-4d19-a10c-64b3bef2a9bd'
     alias: "Routine | Master Bedroom | Relax"
