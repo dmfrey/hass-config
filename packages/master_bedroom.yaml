@@ -131,3 +131,52 @@ automation:
         target:
           entity_id: scene.turn_on_diffuser
         metadata: {}
+
+  - id: 'a9565c57-9cd9-4dbc-b38b-4f327fd14458'
+    alias: 'Automation | Master Bedroom | Entertainment Lights'
+    description: "Turn on or off the Entertainment Lights"
+    mode: single
+    triggers:
+      - domain: mqtt
+        device_id: a2ac8391f7b7364918d3155b0d74381e
+        type: action
+        subtype: up_double
+        trigger: device
+        id: up_double
+      - domain: mqtt
+        device_id: a2ac8391f7b7364918d3155b0d74381e
+        type: action
+        subtype: down_single
+        trigger: device
+        id: down_single
+    conditions: []
+    actions:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - up_double
+            sequence:
+              - action: light.turn_on
+                metadata: {}
+                data:
+                  transition: 4
+                  kelvin: 2700
+                  brightness_pct: 75
+                target:
+                  entity_id:
+                    - light.master_bedroom_surround_light_1
+                    - light.master_bedroom_surround_light_2
+          - conditions:
+              - condition: trigger
+                id:
+                  - down_single
+            sequence:
+              - action: light.turn_off
+                metadata: {}
+                data:
+                  transition: 2
+                target:
+                  entity_id:
+                    - light.master_bedroom_surround_light_1
+                    - light.master_bedroom_surround_light_2
