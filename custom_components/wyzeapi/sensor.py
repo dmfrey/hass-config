@@ -37,7 +37,7 @@ from .token_manager import token_exception_handler
 
 _LOGGER = logging.getLogger(__name__)
 ATTRIBUTION = "Data provided by Wyze"
-CAMERAS_WITH_BATTERIES = ["WVOD1"]
+CAMERAS_WITH_BATTERIES = ["WVOD1", "HL_WCO2", "AN_RSCW", "GW_BE1"]
 OUTDOOR_PLUGS = ["WLPPO"]
 
 
@@ -235,6 +235,7 @@ class WyzeCameraBatterySensor(SensorEntity):
 
     @property
     def device_info(self):
+        """Return the device info."""
         return {
             "identifiers": {
                 (DOMAIN, self._camera.mac)
@@ -245,7 +246,9 @@ class WyzeCameraBatterySensor(SensorEntity):
                     self._camera.mac,
                 )
             },
-            "name": f"{self._camera.nickname}.battery"
+            "name": self._camera.nickname,
+            "model": self._camera.product_model,
+            "manufacturer": "WyzeLabs"
         }
 
     @property
