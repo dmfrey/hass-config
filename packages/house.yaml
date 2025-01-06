@@ -95,8 +95,8 @@ automation:
     trigger:
       - platform: state
         entity_id:
-          - sensor.kitchen_sensor_illuminance_lux
-        to: null
+          - binary_sensor.kitchen_sensor_occupancy
+        to: 'on'
     condition:
       - condition: time
         after: "08:00:00"
@@ -111,7 +111,7 @@ automation:
       - condition: sun
         before: sunset
       - condition: numeric_state
-        entity_id: sensor.kitchen_sensor_illuminance_lux
+        entity_id: sensor.kitchen_sensor_illuminance
         below: "30"
     action:
       - service: light.turn_on
