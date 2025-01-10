@@ -1,6 +1,7 @@
 automation:
 
   - id: 'b4dca479-7cdc-41a8-adb9-6c4b3a31d1cb'
+    alias: "Automation | Workshop | Turn lights on or off when door lock changes"
     description: "Turn the Workshop lights on or off when the door lock changes"
     mode: single
     triggers:
