@@ -1,0 +1,4 @@
+workshop_lock:
+  name: Workshop Lock
+  icon: mdi:moon-full
+  initial: off
