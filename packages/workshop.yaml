@@ -1,0 +1,42 @@
+automation:
+
+  - id: 'b4dca479-7cdc-41a8-adb9-6c4b3a31d1cb'
+    description: "Turn the Workshop lights on or off when the door lock changes"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id:
+          - input_boolean.workshop_lock
+        to: "on"
+        id: workshop_opened
+      - trigger: state
+        entity_id:
+          - input_boolean.workshop_lock
+        to: "off"
+        id: workshop_closed
+    conditions: []
+    actions:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id:
+                  - workshop_opened
+            sequence:
+              - action: light.turn_on
+                metadata: {}
+                data:
+                  transition: 2
+                  brightness_pct: 100
+                target:
+                  area_id: workshop
+          - conditions:
+              - condition: trigger
+                id:
+                  - workshop_closed
+            sequence:
+              - action: light.turn_off
+                metadata: {}
+                data:
+                  transition: 2
+                target:
+                  area_id: workshop
