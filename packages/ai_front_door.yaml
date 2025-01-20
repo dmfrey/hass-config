@@ -1,0 +1,52 @@
+automation:
+
+  - id: 'afac78c3-7ea7-4e4d-a339-83557fa61b60'
+    alias: 'AI | Person Detected | Front Door'
+    description: "A Person was detected at the Front Door"
+    mode: single
+    triggers:
+      - device_id: 709fa2e96409d0be65a4ad56998a6002
+        domain: nest
+        type: camera_person
+        trigger: device
+    conditions: []
+    actions:
+      - action: camera.snapshot
+        metadata: {}
+        data:
+          filename: /config/www/tmp/snapshot-front-door.jpg
+        target:
+          entity_id: camera.front_door_doorbell
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+      - action: llmvision.image_analyzer
+        metadata: {}
+        data:
+          remember: true
+          include_filename: false
+          max_tokens: 100
+          temperature: 0.2
+          generate_title: true
+          expose_images: true
+          expose_images_persist: true
+          model: llama3.2
+          image_file: /config/www/tmp/snapshot-front-door.jpg
+          message: >-
+            Describe in one sentence the person in the picture. If they are carrying
+            something, describe what they are carrying.
+        response_variable: response
+      - action: notify.parent_devices
+        metadata: {}
+        data:
+          message: |
+            {{ response.text }}
+          title: Someone is at the Front Door
+          data:
+            image: /local/tmp/snapshot-front-door.jpg
+            entity_id: camera.front_door_doorbell
+            actions:
+              - action: URI
+                title: Open Camera
+                uri: /lovelace-dashboard/front-door
