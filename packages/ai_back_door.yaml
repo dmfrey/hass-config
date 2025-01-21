@@ -1,0 +1,52 @@
+automation:
+
+  - id: 'ae9ebdfe-d932-48e0-ac9c-6e23be5c7e56'
+    alias: 'AI | Person Detected | Back Door'
+    description: "A Person was detected at the Back Door"
+    mode: single
+    triggers:
+      - device_id: 08f8a662aa55cf0794b8b9d5bb924980
+        domain: nest
+        type: camera_person
+        trigger: device
+    conditions: []
+    actions:
+      - action: camera.snapshot
+        metadata: {}
+        data:
+          filename: /config/www/tmp/snapshot-back-door.jpg
+        target:
+          entity_id: camera.front_door_doorbell
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+      - action: llmvision.image_analyzer
+        metadata: {}
+        data:
+          remember: true
+          include_filename: false
+          max_tokens: 100
+          temperature: 0.2
+          generate_title: true
+          expose_images: true
+          expose_images_persist: true
+          model: llama3.2
+          image_file: /config/www/tmp/snapshot-back-door.jpg
+          message: >-
+            Describe in one sentence the person in the picture. If they are carrying
+            something, describe what they are carrying.
+        response_variable: response
+      - action: notify.parent_devices
+        metadata: {}
+        data:
+          message: |
+            {{ response.text }}
+          title: Someone is at the Back Door
+          data:
+            image: /local/tmp/snapshot-back-door.jpg
+            entity_id: camera.back
+            actions:
+              - action: URI
+                title: Open Camera
+                uri: /lovelace-dashboard/back-door
