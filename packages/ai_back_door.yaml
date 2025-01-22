@@ -7,7 +7,7 @@ automation:
     triggers:
       - device_id: 08f8a662aa55cf0794b8b9d5bb924980
         domain: nest
-        type: camera_person
+        type: doorbell_chime
         trigger: device
     conditions: []
     actions:
@@ -16,7 +16,7 @@ automation:
         data:
           filename: /config/www/tmp/snapshot-back-door.jpg
         target:
-          entity_id: camera.front_door_doorbell
+          entity_id: camera.back_door_doorbell
       - delay:
           hours: 0
           minutes: 0

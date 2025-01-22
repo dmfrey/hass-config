@@ -7,7 +7,7 @@ automation:
     triggers:
       - device_id: 709fa2e96409d0be65a4ad56998a6002
         domain: nest
-        type: camera_person
+        type: doorbell_chime
         trigger: device
     conditions: []
     actions:
