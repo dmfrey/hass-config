@@ -38,7 +38,7 @@ automation:
               - service: light.turn_on
                 metadata: {}
                 data:
-                  kelvin: 2700
+                  color_temp_kelvin: 2700
                   brightness_pct: 100
                 target:
                   entity_id:
