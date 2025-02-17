@@ -1,5 +1,25 @@
 automation:
 
+  - id: 'a63879a8-3229-47fb-a7b5-30b640e7c07a'
+    alias: 'Notification | Utility | Sump Pump Offline'
+    description: "Notify Parent Devices when the Sump Pump is online or offline"
+    mode: single
+    triggers:
+      - trigger: state
+        entity_id:
+          - switch.basement_sump_pump
+        to: unavailable
+    conditions: []
+    actions:
+      - action: notify.parent_devices
+        metadata: {}
+        data_template:
+          title: Sump Pump Offline
+          message: >
+            The Sump Pump is offline. Check the GFI Outlet!
+          data:
+            tag: utility
+
   - id: '0bf71b7a-c2eb-4cc4-a537-250a5ebba41a'
     alias: 'Notification | Utility | Sump Pump Running'
     description: "Notify Parent Devices when the Sump Pump is running"

@@ -18,7 +18,7 @@ automation:
             - light.patio_light_switch
         data:
           transition: 2
-          kelvin: 2700
+          color_temp_kelvin: 2700
           brightness_pct: 100
 
   - id: '1ab71119-81b3-4b1c-ae7d-803c79446bd1'
@@ -35,6 +35,6 @@ automation:
         target: *targets
         data:
           transition: 5
-          kelvin: 2237
+          color_temp_kelvin: 2237
           brightness_pct: 60
 

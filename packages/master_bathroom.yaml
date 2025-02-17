@@ -9,12 +9,12 @@ automation:
     trigger:
       - platform: state
         entity_id:
-          - binary_sensor.master_bathroom_sensor_occupancy
+          - binary_sensor.master_bathroom_sensor_occupancy_2
         to: "on"
         id: master_bathroom_sensor_detected
       - platform: state
         entity_id:
-          - binary_sensor.master_bathroom_sensor_occupancy
+          - binary_sensor.master_bathroom_sensor_occupancy_2
         to: "off"
         for:
           hours: 0
@@ -47,7 +47,7 @@ automation:
                   area_id: master_bathroom
                 data:
                   transition: 2
-                  kelvin: 2700
+                  color_temp_kelvin: 2700
                   brightness_pct: 100
           - conditions:
               - condition: trigger
@@ -63,7 +63,7 @@ automation:
                 data:
                   transition: 2
                   brightness_pct: 20
-                  kelvin: 2237
+                  color_temp_kelvin: 2237
 
   - id: 'f0a25d51-92a9-4918-a033-87211ca59ee1'
     alias: "Routine | Master Bathroom | Away"

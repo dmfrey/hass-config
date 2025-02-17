@@ -79,7 +79,7 @@ automation:
             - light.barn_door_light
         data:
           transition: 5
-          kelvin: 2237
+          color_temp_kelvin: 2237
           brightness_pct: 50
         metadata: {}
       - delay: 5
@@ -127,5 +127,5 @@ automation:
             - living_room
         data:
           transition: 5
-          kelvin: 2700
+          color_temp_kelvin: 2700
           brightness_pct: 60

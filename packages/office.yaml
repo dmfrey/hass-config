@@ -50,7 +50,7 @@ automation:
                 metadata: {}
                 data:
                   transition: 1
-                  kelvin: 2700
+                  color_temp_kelvin: 2700
                   brightness_pct: 100
                 target:
                   area_id: office
