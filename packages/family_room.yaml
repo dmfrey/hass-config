@@ -30,7 +30,7 @@ automation:
       - service: light.turn_on
         data:
           transition: 2
-          kelvin: 2700
+          color_temp_kelvin: 2700
           brightness_pct: 100
         target:
           area_id: *areas
@@ -48,7 +48,7 @@ automation:
         metadata: {}
         data:
           transition: 5
-          kelvin: 2237
+          color_temp_kelvin: 2237
           brightness_pct: 60
         target:
           area_id: *areas
