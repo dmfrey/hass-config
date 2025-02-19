@@ -13,7 +13,7 @@ automation:
       - service: light.turn_on
         data:
           transition: 2
-          color_temp_kelvin: 2700
+          kelvin: 2700
           brightness_pct: 100
         target:
           entity_id: &entities
@@ -44,7 +44,7 @@ automation:
           entity_id: *entities
         data:
           transition: 5
-          color_temp_kelvin: 2237
+          kelvin: 2237
           brightness_pct: 60
 
   - id: '84be444f-0bc8-44a1-ba92-afa951459267'
@@ -169,7 +169,7 @@ automation:
                 metadata: {}
                 data:
                   transition: 4
-                  color_temp_kelvin: 2700
+                  kelvin: 2700
                   brightness_pct: 75
                 target:
                   entity_id:

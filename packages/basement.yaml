@@ -64,7 +64,7 @@ automation:
                   area_id: basement
                 data:
                   transition: 2
-                  color_temp_kelvin: 2700
+                  kelvin: 2700
                   brightness_pct: 100
           - conditions:
               - condition: trigger
@@ -76,7 +76,7 @@ automation:
                   area_id: basement
                 data:
                   transition: 2
-                  color_temp_kelvin: 2237
+                  kelvin: 2237
                   brightness_pct: 60
 
     # trigger:
@@ -228,7 +228,7 @@ automation:
   #               metadata: {}
   #               data:
   #                 # transition: 2
-  #                 # color_temp_kelvin: 2700
+  #                 # kelvin: 2700
   #                 brightness_pct: 100
   #               target:
   #                 area_id: basement
@@ -258,7 +258,7 @@ automation:
   #               metadata: {}
   #               data:
   #                 # transition: 2
-  #                 # color_temp_kelvin: 2700
+  #                 # kelvin: 2700
   #                 brightness_pct: 100
   #               target:
   #                 area_id: basement
@@ -276,7 +276,7 @@ automation:
   #               metadata: {}
   #               data:
   #                 # transition: 2
-  #                 # color_temp_kelvin: 2700
+  #                 # kelvin: 2700
   #                 brightness_pct: 30
   #               target:
   #                 area_id: basement
@@ -315,6 +315,6 @@ automation:
   #               entity_id: light.basement_light_1
   #               data:
   #                 # transition: 2
-  #                 # color_temp_kelvin: 2700
+  #                 # kelvin: 2700
   #                 brightness: "{{ state_attr('light.basement_switch', 'brightness') | default(0, true) }}"
 

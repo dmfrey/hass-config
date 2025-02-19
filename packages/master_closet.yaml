@@ -30,7 +30,7 @@ automation:
                 metadata: {}
                 data:
                   transition: 2
-                  color_temp_kelvin: 2700
+                  kelvin: 2700
                   brightness_pct: 100
                 target:
                   area_id: master_closet

@@ -31,7 +31,7 @@ automation:
           area_id: molly_s_room
         data:
           transition: 300
-          color_temp_kelvin: 2700
+          kelvin: 2700
           brightness_pct: 100
 
   - id: '68890773-dafe-4248-824f-83efc7591979'
@@ -50,7 +50,7 @@ automation:
       - service: light.turn_on
         data:
           transition: 2
-          color_temp_kelvin: 2700
+          kelvin: 2700
           brightness_pct: 100
         target:
           area_id:
@@ -75,7 +75,7 @@ automation:
             - molly_s_room
         data:
           transition: 5
-          color_temp_kelvin: 2237
+          kelvin: 2237
           brightness_pct: 60
 
   - id: '69139fbb-ad53-4b80-9944-56f12d8aa90f'
@@ -112,7 +112,7 @@ automation:
         metadata: {}
         data:
           transition: 2
-          color_temp_kelvin: 2700
+          kelvin: 2700
           brightness_pct: 75
         target:
           area_id: molly_s_room
@@ -147,7 +147,7 @@ automation:
   #                 area_id: molly_s_room
   #               data:
   #                 transition: 2
-  #                 color_temp_kelvin: 2700
+  #                 kelvin: 2700
   #                 brightness_pct: 100
   #         - conditions:
   #             - condition: trigger
@@ -159,7 +159,7 @@ automation:
   #                 area_id: molly_s_room
   #               data:
   #                 transition: 2
-  #                 color_temp_kelvin: 2237
+  #                 kelvin: 2237
   #                 brightness_pct: 100
    
     # description: "Molly's Room Dimmer Switch turns Molly's Room Lights on or off, dimming capable"
@@ -203,7 +203,7 @@ automation:
     #               area_id: molly_s_room
     #             data:
     #               transition: 1
-    #               color_temp_kelvin: 2700
+    #               kelvin: 2700
     #               brightness_pct: 100
     #       - conditions:
     #           - condition: trigger
@@ -227,7 +227,7 @@ automation:
     #                 - light.molly_s_desk_light
     #             data:
     #               brightness_step_pct: 10
-    #               color_temp_kelvin: 2700
+    #               kelvin: 2700
     #       - conditions:
     #           - condition: trigger
     #             id:
@@ -240,4 +240,4 @@ automation:
     #                 - light.molly_s_desk_light
     #             data:
     #               brightness_step_pct: -10
-    #               color_temp_kelvin: 2700
+    #               kelvin: 2700
