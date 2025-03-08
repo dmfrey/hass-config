@@ -35,6 +35,17 @@ automation:
                       id:
                         - light_reset
             sequence:
+              - service: light.turn_off
+                metadata: {}
+                data: {}
+                target:
+                  entity_id:
+                    - light.barn_door_light
+              - delay:
+                  hours: 0
+                  minutes: 0
+                  seconds: 30
+                  milliseconds: 0
               - service: light.turn_on
                 metadata: {}
                 data:
