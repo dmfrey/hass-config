@@ -35,6 +35,22 @@ automation:
                       id:
                         - light_reset
             sequence:
+              - service: light.turn_off
+                metadata: {}
+                data: {}
+                target:
+                  entity_id:
+                    - light.front_yard_bollard_1
+                    - light.front_yard_bollard_2
+                    - light.front_yard_bollard_3
+                    - light.front_yard_bollard_4
+                    - light.front_yard_spot_1
+                    - light.front_yard_spot_2
+              - delay:
+                  hours: 0
+                  minutes: 0
+                  seconds: 5
+                  milliseconds: 0
               - service: light.turn_on
                 metadata: {}
                 data:

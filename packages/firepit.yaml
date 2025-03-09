@@ -44,7 +44,7 @@ automation:
               - delay:
                   hours: 0
                   minutes: 0
-                  seconds: 30
+                  seconds: 5
                   milliseconds: 0
               - service: light.turn_on
                 metadata: {}
