@@ -3,13 +3,13 @@ automation:
     alias: Event | GitHub | Push
 
     trigger:
-    - platform: webhook
-      webhook_id: !env_var HASS_DEPLOY_CONFIG_WEBHOOK_ID
-      local_only: false
+      - platform: webhook
+        webhook_id: !env_var HASS_DEPLOY_CONFIG_WEBHOOK_ID
+        local_only: false
 
     actions:
-    - action: shell_command.deploy_config
-    - action: homeassistant.reload_all
+      - action: shell_command.deploy_config
+      - action: homeassistant.reload_all
 
 shell_command:
   deploy_config: cd /config && git pull || git reset origin/main && git reset origin/main --hard
