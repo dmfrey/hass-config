@@ -1,0 +1,35 @@
+- id: '1741548057571'
+  alias: AI Event Summary (v1.4.0)
+  description: ''
+  use_blueprint:
+    path: valentinfrlch/event_summary_beta.yaml
+    input:
+      important: true
+      remember: true
+      use_memory: true
+      notify_device:
+      - 580dd20cc37be2949464dfcce9e43e2b
+      camera_entities:
+      - camera.back_door_doorbell
+      - camera.barn_door_camera
+      - camera.front_door_doorbell
+      - camera.front_yard_camera
+      - camera.garden_camera
+      provider: 01JJ2MEBJEPG68GPS79VSSTDSX
+      model: llama3.2
+- id: '1741565087721'
+  alias: Analyze Garden Movement
+  description: ''
+  use_blueprint:
+    path: valentinfrlch/event_summary_beta.yaml
+    input:
+      remember: true
+      notify_device:
+      - 580dd20cc37be2949464dfcce9e43e2b
+      camera_entities:
+      - camera.garden_camera
+      motion_sensors:
+      - binary_sensor.garden_sensor_occupancy
+      provider: 01JJ2MEBJEPG68GPS79VSSTDSX
+      model: llama3.2
+      important: true
