@@ -40,3 +40,4 @@
         the information as if directly observing the events. If no movement is detected,
         respond with: ''No activity observed.'''
       tap_navigate: /lovelace/camera-events/0
+      trigger_state: streaming
